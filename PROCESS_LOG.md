@@ -151,6 +151,45 @@ unverändert offen — relevant erst bei einem Reprocessing.
 
 ---
 
+### 2026-07-03 (Fortsetzung) — `/project-case`: DE-Portfolio-Case gebaut + Hub-Prosa-Toolchain-Fix
+
+`/project-case check → story → slides → report` auf zh-tram-data. Erster **engineering-first**
+Portfolio-Case im Workspace — das Case-Template ist auf Analyse/ML geschnitten (Findings, Model-MAE,
+Recommendations), musste für DE umgedeutet werden.
+
+**Phase-2-Entscheidung (Kay):** Backlog #1/#2 (trip_id-Brücke / `UMLAUF_ID`) bleiben offen — sind
+Reprocessing-Kandidaten für eine **Projektneuauflage**, nicht für jetzt. Der Master wird as-is
+verwendet, die Grenzen werden als Known Limitations Teil der Story (Transparenz als DE-Signal).
+
+**DE-Adaption des Case (P2-Blueprint, an echtem Case definiert statt abstrakt):**
+- Kernthese: „Reduzieren was da ist, anreichern was fehlt" — zwei Bögen (Reduktion + Anreicherung).
+- Mapping: Key Findings → **Engineering Decisions** · Model Results → **Data Quality & Pipeline** ·
+  Recommendations → **Known Limitations**.
+- `slides.yaml`: 6 Kapitel, StoryView (voll, 20 Slides) → TechView (19, mit 3 tech-exklusiven
+  Evidenz-Slides: Polars-Detail, Data Dictionary, Validierung) → Overview (10, verdichtet). Beide
+  Prozess-SVGs eingebettet.
+
+**Zahlen gegen echte Artefakte verifiziert** (nichts erfunden): Master-Parquet-Schema gelesen →
+**26 Spalten = 10 IST · 3 GTFS · 2 Geo · 7 Meteo · 4 Events**; KEEP_COLS im Code = **10** (nicht 8).
+→ Offenes Finding: `00_introduction` sagt IST-Reduktion „21 → 8", korrekt ist „21 → 10" — Notebook-Text
+nachziehen (NotebookEdit, mit Kays OK). Vermerkt im `portfolio.md` Status-Block.
+
+**Toolchain-Fix (in wgnd-skills, eigener Commit):** `index-template.html` enthielt hartcodierte
+zh-tram-flow-Prosa (Tagline, „Das Projekt"-Sektion, Quick-Links, Footer) — jedes andere Projekt bekam
+dessen Story in seinen Hub. Parametrisiert: Tagline/Subtitle/About/Quick-Links/Footer kommen jetzt aus
+dem `hub`-Block der `slides.yaml`. zh-tram-flow migriert (Output byte-identisch verifiziert).
+
+**Repro-Fix (P3):** pip-Extra `[dan]`/`[dsc]` → `[da]` (DE erbt DA-Struktur, kein ML-Extra) — pyproject,
+README, Makefile.
+
+**SVG-Pfad-Klärung:** `../img/` in den Views ist deployment-korrekt (klemmt bei GitHub Pages mit
+`public/` als Site-Root am Root fest) — lokal via `file://` 404, wie bei zh-tram-flow. Kein Bug.
+
+**Nächster Schritt:** Deployment (`public/` → GitHub Pages) + stale „21→8" im `00_introduction` fixen.
+Offene Toolchain-Nachzüge: P1 (ETL-Check-Dimension in project-review) + P4 (Notebook-Header in scaffolding).
+
+---
+
 ### 2026-07-03 (Fortsetzung) — `/project-review` #2 + Notebooks-Tabelle, drei Toolchain-Findings behoben
 
 Zweiter `/project-review`-Durchlauf (Fundament solide, keine Blocker). Ergebnis: die Kern-Lücken

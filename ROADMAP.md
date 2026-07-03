@@ -60,9 +60,10 @@ Original in `sf_data-research`.
 
 ## Phase 3 — Portfolio-Aufbereitung
 
-- [ ] `/project-case` — Engineering-Case bauen (Differenzierer: ETL/Datenqualität/Architektur,
-      nicht Modellierung — Ergänzung zu `zh-tram-flow`)
+- [x] `/project-case` — Engineering-Case gebaut (engineering-first, 6 Kapitel: Reduktion + Anreicherung
+      als zwei Bögen; Hub + overview/storyview/techview aus `slides.yaml` generiert). 2026-07-03.
 - [ ] Deployment (`public/` → GitHub Pages)
+- [ ] `00_introduction`: stale IST-Reduktion „21 → 8" → „21 → 10" korrigieren (NotebookEdit)
 
 ---
 
