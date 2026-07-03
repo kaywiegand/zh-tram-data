@@ -129,3 +129,24 @@ Pfad-Widerspruch in der Skill. Kay passt die Skill in separater Session an.
 durchgehen, bevor ein Reprocessing ansteht.
 
 ---
+
+### 2026-07-03 (Fortsetzung) — `index.html` mit Inhalt + Asset-Struktur deployment-fest
+
+- **README:** `## TL;DR` vor `## Projekt` ergänzt (results-first, nur die wichtigsten Fakten). Zahlen
+  stammen aus vorhandenen README-Sections, nicht frisch aus Notebooks kopiert.
+- **`public/index.html`:** vom Scaffold-Platzhalter zu echtem Inhalt — Lead-Beschreibung plus
+  Motivation / Beschreibung / Datenquellen / Prozess / Ergebnis, 1:1 aus README `## Projekt`
+  übernommen (jede `###` → `<h2>`, Markdown → HTML).
+- **Asset-Struktur deployment-fest gemacht:** `assets/` aufgelöst → beide SVGs nach `public/img/`
+  (getrackt). Referenzen: `index.html` via `img/…`, README via `public/img/…`. Grund: `public/` wird
+  in Phase 3 GitHub-Pages-Root — der vorherige `../assets/`-Pfad hätte über den Site-Root
+  hinausgezeigt (404 beim Deployment). Damit ist der Deployment-Pfad-Punkt erledigt, nicht nur vertagt.
+- **geopandas-Explorations-PDFs** (3×) wie die Appendix aus Git genommen (`git rm --cached` +
+  `.gitignore`), lokal in `public/img/` erhalten.
+
+Offen (Phase 3, bewusst vertagt): Datenquellen-Tabelle in `index.html` unstyled. BACKLOG #1/#2
+unverändert offen — relevant erst bei einem Reprocessing.
+
+**Nächster Schritt:** unverändert — Phase 2 (Backlog-Entscheidung) vor vollständigem Phase-3-Ausbau.
+
+---
