@@ -150,3 +150,33 @@ unverändert offen — relevant erst bei einem Reprocessing.
 **Nächster Schritt:** unverändert — Phase 2 (Backlog-Entscheidung) vor vollständigem Phase-3-Ausbau.
 
 ---
+
+### 2026-07-03 (Fortsetzung) — `/project-review` #2 + Notebooks-Tabelle, drei Toolchain-Findings behoben
+
+Zweiter `/project-review`-Durchlauf (Fundament solide, keine Blocker). Ergebnis: die Kern-Lücken
+waren **Toolchain-Findings**, nicht Projekt-Findings — genau der Zweck von zh-tram-data als
+`wgnd-ai-dev-toolchain`-Testlauf. In `wgnd-scaffolding` + `wgnd-skills` gefixt (dort eigene Commits):
+
+- **A — Report-Link fehlte im Scaffold:** `readme_template.py` erzeugte nie eine Section, die auf
+  `public/index.html` verweist. Standard-`## Report`-Section ergänzt → alle künftigen Projekte ab Tag 1.
+- **B — Notebooks-Liste dreifach gepflegt / gedriftet:** README-Struktur-Tree war im Template
+  hartkodiert und hing dem Notebook-Generator hinterher (zeigte alte DS-Namen). Fix: `get_notebook_index()`
+  aus einer neuen `_specs()`-**Single-Source** in `notebooks_da/ds.py`; README rendert Tree + verlinkte
+  Notebooks-Tabelle daraus. Drift strukturell ausgeschlossen.
+- **C — `/project-review` PNG-fixiert:** harter „min. 3 PNG"-Check → format-agnostisch (PNG/SVG egal,
+  DE-Projekte liefern SVG-Diagramme) + weicher Verlinkungs-Check.
+
+**Für dieses Projekt** (Nachtrag von Hand, da Notebooks migriert statt scaffold-generiert):
+verlinkte Notebooks-Tabelle (`00`–`08`) + `## Report`-Section in die README, `index.html`-Titel
+„Executive Summary" → „Data Engineering Case". Alle 9 Notebook-Links gegen echte Files geprüft.
+
+**Toolchain-Arbeitsteilung bestätigt:** Scaffolding = korrekt bei Geburt (keine Template-Drift),
+`/project-review` = laufende Wachsamkeit über die Projekt-Lebenszeit (fängt Migrations-Drift wie hier).
+
+Zwei neue Findings ins `docs/BACKLOG.md` (nicht gefixt): CLI akzeptiert kein `DE` (scaffolding #11),
+`portfolio-readme-template.md` hat dieselbe PNG-Fixierung (Workspace/Infra #20).
+
+**Nächster Schritt:** unverändert — Phase 2 Backlog-Entscheidung (#1/#2, trip_id-Brücke / `UMLAUF_ID`)
+vor Phase-3-Ausbau. README-Restpunkte offen: Author-Section, Sprach-Entscheidung DE/EN.
+
+---
