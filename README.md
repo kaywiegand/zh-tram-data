@@ -168,6 +168,31 @@ zh-tram-data/
 
 ---
 
+## Notebooks
+
+In Lesereihenfolge — Recherche → Sammlung → Bearbeitung → Zusammenführung → Validierung:
+
+| Notebook | Zweck |
+| :--- | :--- |
+| [`00_introduction`](notebooks/00_introduction.ipynb) | Strategie + Datenlandschaft |
+| [`01_tooling-evaluation`](notebooks/01_tooling-evaluation.ipynb) | Werkzeugwahl: Pandas vs. Polars |
+| [`02_ingestion-ist`](notebooks/02_ingestion-ist.ipynb) | IST-Verkehrsdaten (Verspätungen) |
+| [`03_ingestion-gtfs`](notebooks/03_ingestion-gtfs.ipynb) | GTFS-Fahrplan + Stadtkreis-Join |
+| [`04_ingestion-meteo`](notebooks/04_ingestion-meteo.ipynb) | Wetterdaten (3 Quellen) |
+| [`05_ingestion-events`](notebooks/05_ingestion-events.ipynb) | Event-Kalender |
+| [`06_geo-reference`](notebooks/06_geo-reference.ipynb) | Geo-Bibliotheks-Benchmark + Stadtkreis-Zuordnung |
+| [`07_master-preparation`](notebooks/07_master-preparation.ipynb) | Join aller Quellen → `vbz_master.parquet` |
+| [`08_master-validation`](notebooks/08_master-validation.ipynb) | Validierung des Master-Datensatzes |
+
+---
+
+## Report
+
+Öffentlicher Einstieg / Präsentation: [`public/index.html`](public/index.html) — Projekt-Landing mit
+Motivation, Datenquellen, Prozessdiagrammen und Ergebnis.
+
+---
+
 ## Konfiguration
 
 ### Pfade (`src/zh_tram_data/config.py`)
