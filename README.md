@@ -52,10 +52,12 @@ Tram übrig bleibt, warum 21 Rohspalten auf 10 reduziert wurden, warum Polars st
 
 ## Prozess
 
+Zum Vergrößern anklicken.
+
 <table>
 <tr>
-<td valign="top"><img src="assets/vbz_strategy.svg" alt="Gesamte Datenpipeline: IST-Daten, GTFS, Meteo, Events -> Merge -> vbz_master.parquet" height="480"></td>
-<td valign="top"><img src="assets/vbz_preparation.svg" alt="Master-Preparation Join-Pipeline: vier Quellen -> drei Joins -> Qualitätsprüfung -> vbz_master.parquet" height="480"></td>
+<td valign="top"><a href="assets/vbz_strategy.svg" target="_blank"><img src="assets/vbz_strategy.svg" alt="Gesamte Datenpipeline: IST-Daten, GTFS, Meteo, Events -> Merge -> vbz_master.parquet" height="480"></a></td>
+<td valign="top"><a href="assets/vbz_preparation.svg" target="_blank"><img src="assets/vbz_preparation.svg" alt="Master-Preparation Join-Pipeline: vier Quellen -> drei Joins -> Qualitätsprüfung -> vbz_master.parquet" height="480"></a></td>
 </tr>
 </table>
 
