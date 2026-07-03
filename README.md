@@ -22,19 +22,19 @@ den Alltag, die Lebensqualität, im besten Fall auch auf Nachhaltigkeit.
 Die Recherche führte über den ÖPNV nach Zürich: Die Stadt betreibt eine außergewöhnlich
 gute Open-Data-Landschaft für ihr Tramnetz (VBZ) — frei zugänglich, gut dokumentiert,
 granular genug für echte Analyse. Ein Musterbeispiel dafür, wie Daten sinnstiftend
-eingesetzt werden können — nicht als Übung, sondern mit greifbarem Bezug zum Alltag von
-Millionen Fahrgästen.
+eingesetzt werden können — nicht als Übung, sondern mit greifbarem Bezug zum Alltag der
+Stadt.
 
 ---
 
 ## Beschreibung
 
-Ziel ist ein einziger, sauberer Master-Datensatz, der die tatsächlichen Tram-Fahrten der
+Ziel ist ein einziger, sauberer Master-Datensatz, der die tatsächlichen Tram-Halte der
 VBZ mit Fahrplan, Wetter und Stadt-Events verknüpft. Fokus liegt bewusst auf dem Weg
 dorthin — Recherche, Filterung, Zusammenführung, Qualitätssicherung — nicht auf
 Modellierung. Jede Filter-Entscheidung ist dokumentiert (siehe
 `notebooks/00_introduction.ipynb`): warum von ~400 Schweizer Transportunternehmen nur VBZ
-Tram übrig bleibt, warum 21 Rohspalten auf 8–10 reduziert wurden, warum Polars statt Pandas.
+Tram übrig bleibt, warum 21 Rohspalten auf 10 reduziert wurden, warum Polars statt Pandas.
 
 ---
 
@@ -50,12 +50,12 @@ Tram übrig bleibt, warum 21 Rohspalten auf 8–10 reduziert wurden, warum Polar
 
 ---
 
-## Process
+## Prozess
 
 <table>
 <tr>
-<td width="50%" valign="top"><img src="assets/vbz_strategy.svg" alt="Gesamte Datenpipeline: IST-Daten, GTFS, Meteo, Events -> Merge -> vbz_master.parquet" width="100%"></td>
-<td width="50%" valign="top"><img src="assets/vbz_preparation.svg" alt="Master-Preparation Join-Pipeline: vier Quellen -> drei Joins -> Qualitätsprüfung -> vbz_master.parquet" width="100%"></td>
+<td valign="top"><img src="assets/vbz_strategy.svg" alt="Gesamte Datenpipeline: IST-Daten, GTFS, Meteo, Events -> Merge -> vbz_master.parquet" height="380"></td>
+<td valign="top"><img src="assets/vbz_preparation.svg" alt="Master-Preparation Join-Pipeline: vier Quellen -> drei Joins -> Qualitätsprüfung -> vbz_master.parquet" height="380"></td>
 </tr>
 </table>
 
@@ -63,10 +63,11 @@ Tram übrig bleibt, warum 21 Rohspalten auf 8–10 reduziert wurden, warum Polar
 
 ## Ergebnis
 
-`data/interim/vbz_master.parquet` — **94.358.531 Zeilen × 26 Spalten**: jede reale
-VBZ-Tram-Fahrt 2023–2025, angereichert mit Fahrplan (inkl. Stadtkreis via Spatial Join),
-Wetter (stündlich) und Event-Kalender. Reproduzierbar über die 9 nummerierten Notebooks
-(`00`–`08`), siehe `notebooks/00_introduction.ipynb` für die vollständige Strategie.
+`data/interim/vbz_master.parquet` — **94.358.531 Zeilen × 26 Spalten**: jeder reale
+VBZ-Tram-Halt 2023–2025 (eine Zeile pro Halt, nicht pro Fahrt — ~230 Halte je Fahrt im
+Schnitt), angereichert mit Fahrplan (inkl. Stadtkreis via Spatial Join), Wetter (stündlich)
+und Event-Kalender. Reproduzierbar über die 9 nummerierten Notebooks (`00`–`08`), siehe
+`notebooks/00_introduction.ipynb` für die vollständige Strategie.
 
 Weiterverwendet in [`zh-tram-flow`](https://github.com/kaywiegand/zh-tram-flow) für Analyse,
 Modellierung und Dashboard.
