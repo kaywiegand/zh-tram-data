@@ -52,7 +52,8 @@ Original in `sf_data-research`.
 
 - [ ] Offene Backlog-Punkte aus der Migration prüfen (trip_id-Mismatch, fehlende Spalten —
       siehe `BACKLOG.md`)
-- [ ] `/project-review` als Audit-Loop — zweiter echter Test von `wgnd-ai-dev-toolchain`
+- [x] `/project-review` als Audit-Loop — zweiter echter Test von `wgnd-ai-dev-toolchain`
+      (2026-07-03: kein blockierender Fehler, Konsistenz-Fixes umgesetzt — siehe `PROCESS_LOG.md`)
 - [ ] README, CLAUDE.md, Stack-Angaben finalisieren
 
 ---

@@ -42,6 +42,10 @@ build/
 .ipynb_checkpoints/
 *.ipynb_metadata
 
+# ── Appendix-Notebooks (Explorationsmaterial, schwere Map-Outputs) ──────────
+# Lokal behalten, aber nicht im öffentlichen Repo (folium/plotly ~11 MB Blobs).
+notebooks/appendix/
+
 # ── IDE & OS ───────────────────────────────────────────────────────────────
 .vscode/settings.json
 .idea/

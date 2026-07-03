@@ -10,7 +10,7 @@
 | Feld | Inhalt |
 | :--- | :--- |
 | Slug | `zh-tram-data` |
-| Typ | DAN |
+| Typ | DE |
 | Stack | Polars · Plotly · Jupyter |
 
 ## Kontext-Einstieg

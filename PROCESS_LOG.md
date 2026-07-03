@@ -10,7 +10,7 @@
 | Feld | Inhalt |
 | :--- | :--- |
 | Projektname | Zurich Tram Data |
-| Erstellt | 2026-07-02 |
+| Erstellt | 2026-05-07 |
 | Status | 🟢 Phase 1 abgeschlossen — alle 9 Notebooks laufen fehlerfrei, `vbz_master.parquet` reproduziert (94.358.531 Zeilen × 26 Spalten, deckungsgleich mit Original) |
 | Nächster Schritt | Backlog-Punkte (trip_id-Mismatch, fehlende Spalten) sichten, dann `/project-review` als Audit-Loop |
 
@@ -101,5 +101,31 @@ Alle drei gefundenen Bugs lagen im migrierten Notebook-Code selbst, nicht im Too
 **Nächster Schritt:** Backlog-Punkte sichten (trip_id-Mismatch IST↔GTFS, fehlende Spalten wie
 `UMLAUF_ID`), dann `/project-review` als Audit-Loop — zweiter echter Testpunkt für
 `wgnd-ai-dev-toolchain`.
+
+---
+
+### 2026-07-03 — `/project-review` Audit-Loop + Konsistenz-Fixes
+
+`/project-review` gelaufen (zweiter `wgnd-ai-dev-toolchain`-Testpunkt, ROADMAP Phase 2). Ergebnis:
+kein blockierender Fehler, Fundament solide. Befunde waren Konsistenz-Drift + stage-gerechte
+Portfolio-Lücken (index.html noch Platzhalter — Phase 3, erwartbar).
+
+Umgesetzte Fixes (ein Commit):
+- **Typ DAN → DE** vereinheitlicht (`CLAUDE.md`, pyproject-Description, `docs/PROJECTS.md`). README war
+  bereits „Data Engineering". Der `[dan]`-pip-Extra bleibt bewusst — Scaffolding-Mechanismus-Slot
+  (bündelt plotly/folium), kein Typ-Label.
+- **Erstell-Datum** in `PROCESS_LOG` auf `2026-05-07` gezogen (Deckung mit README; Session-Daten unberührt).
+- **`docs/PROJECTS.md`** Phasenstand `1 — Setup` → `1 — Notebooks ✅`.
+- **Git-Hygiene:** `notebooks/appendix/` untracked (`git rm --cached` + `.gitignore`) — ~11 MB Map-Blobs
+  (folium/plotly) raus aus dem öffentlichen Repo, lokal erhalten.
+
+Bewusst **nicht** angefasst: Backlog #1/#2 (inhaltliche Entscheidung, kein Konsistenz-Fix).
+
+**Toolchain-Befund:** Die `/project-review`-Skill prüft in Schritt 2 hart auf `reports/index.html`,
+das Scaffolding erzeugt aber `public/` (Schritt 3.5+ referenziert korrekt `public/`) — interner
+Pfad-Widerspruch in der Skill. Kay passt die Skill in separater Session an.
+
+**Nächster Schritt:** Phase 2 abschließen — Backlog #1/#2 (trip_id-Brücke / `UMLAUF_ID`) als Entscheidung
+durchgehen, bevor ein Reprocessing ansteht.
 
 ---
