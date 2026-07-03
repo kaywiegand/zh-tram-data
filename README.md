@@ -12,7 +12,7 @@ Data-Engineering-Grundlage für [`zh-tram-flow`](https://github.com/kaywiegand/z
 
 ---
 
-## Motivation
+### Motivation
 
 Entstanden als Abschlussarbeit einer Data-Science-Fortbildung. Die Ausgangsfrage war
 nicht "welches Modell", sondern "welches Thema" — eines, an dem sich Data Science nicht
@@ -27,7 +27,7 @@ Stadt.
 
 ---
 
-## Beschreibung
+### Beschreibung
 
 Ziel ist ein einziger, sauberer Master-Datensatz, der die tatsächlichen Tram-Halte der
 VBZ mit Fahrplan, Wetter und Stadt-Events verknüpft. Fokus liegt bewusst auf dem Weg
@@ -38,7 +38,7 @@ Tram übrig bleibt, warum 21 Rohspalten auf 10 reduziert wurden, warum Polars st
 
 ---
 
-## Datenquellen
+### Datenquellen
 
 | Schicht | Quelle | Format | Herausforderung |
 | :--- | :--- | :--- | :--- |
@@ -50,7 +50,7 @@ Tram übrig bleibt, warum 21 Rohspalten auf 10 reduziert wurden, warum Polars st
 
 ---
 
-## Prozess
+### Prozess
 
 Zum Vergrößern anklicken.
 
@@ -63,7 +63,7 @@ Zum Vergrößern anklicken.
 
 ---
 
-## Ergebnis
+### Ergebnis
 
 `data/interim/vbz_master.parquet` — **94.358.531 Zeilen × 26 Spalten**: jeder reale
 VBZ-Tram-Halt 2023–2025 (eine Zeile pro Halt, nicht pro Fahrt — ~230 Halte je Fahrt im
