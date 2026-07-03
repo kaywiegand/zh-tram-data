@@ -1,24 +1,44 @@
 # Zurich Tram Data
 
-> **Typ:** DAN &nbsp;|&nbsp; **Erstellt:** 2026-07-02 &nbsp;|&nbsp; **Version:** 0.1.0
+> **Typ:** Data Engineering &nbsp;|&nbsp; **Erstellt:** 2026-05-07 &nbsp;|&nbsp; **Version:** 0.1.0
 
 ---
 
-## Warum dieses Projekt
+## Projekt
 
-Zürich hat eine außergewöhnlich gute Open-Data-Landschaft für den ÖPNV — kostenlos,
-maschinenlesbar, gut dokumentiert. Dieses Projekt nutzt das: Ziel ist ein einziger,
-sauberer Master-Datensatz, der die tatsächlichen Tram-Fahrten der VBZ mit Fahrplan,
-Wetter und Stadt-Events verknüpft — die Data-Engineering-Grundlage für Verspätungsanalyse
-und -vorhersage (Fortsetzung in [`zh-tram-flow`](https://github.com/kaywiegand/zh-tram-flow)).
+Sammlung und Anreicherung von Daten des Zürcher Tram-Netzes der VBZ — die
+Data-Engineering-Grundlage für [`zh-tram-flow`](https://github.com/kaywiegand/zh-tram-flow)
+(Analyse & Verspätungsvorhersage).
 
-Fokus liegt bewusst auf dem Weg dorthin — Recherche, Filterung, Zusammenführung,
-Qualitätssicherung — nicht auf Modellierung. Jede Filter-Entscheidung ist dokumentiert
-(siehe `notebooks/00_introduction.ipynb`): warum von ~400 Schweizer Transportunternehmen
-nur VBZ Tram übrig bleibt, warum 21 Rohspalten auf 8–10 reduziert wurden, warum Polars
-statt Pandas.
+---
 
-### Die fünf Datenquellen
+## Motivation
+
+Entstanden als Abschlussarbeit einer Data-Science-Fortbildung. Die Ausgangsfrage war
+nicht "welches Modell", sondern "welches Thema" — eines, an dem sich Data Science nicht
+abstrakt anfühlt, sondern nachvollziehbar an einem Alltagsbeispiel mit echtem Impact: auf
+den Alltag, die Lebensqualität, im besten Fall auch auf Nachhaltigkeit.
+
+Die Recherche führte über den ÖPNV nach Zürich: Die Stadt betreibt eine außergewöhnlich
+gute Open-Data-Landschaft für ihr Tramnetz (VBZ) — frei zugänglich, gut dokumentiert,
+granular genug für echte Analyse. Ein Musterbeispiel dafür, wie Daten sinnstiftend
+eingesetzt werden können — nicht als Übung, sondern mit greifbarem Bezug zum Alltag von
+Millionen Fahrgästen.
+
+---
+
+## Beschreibung
+
+Ziel ist ein einziger, sauberer Master-Datensatz, der die tatsächlichen Tram-Fahrten der
+VBZ mit Fahrplan, Wetter und Stadt-Events verknüpft. Fokus liegt bewusst auf dem Weg
+dorthin — Recherche, Filterung, Zusammenführung, Qualitätssicherung — nicht auf
+Modellierung. Jede Filter-Entscheidung ist dokumentiert (siehe
+`notebooks/00_introduction.ipynb`): warum von ~400 Schweizer Transportunternehmen nur VBZ
+Tram übrig bleibt, warum 21 Rohspalten auf 8–10 reduziert wurden, warum Polars statt Pandas.
+
+---
+
+## Datenquellen
 
 | Schicht | Quelle | Format | Herausforderung |
 | :--- | :--- | :--- | :--- |
@@ -28,16 +48,28 @@ statt Pandas.
 | **Events** (Kalender) | Manueller Crawl (Gemini, Perplexity, Transfermarkt) | CSV | Keine strukturierte Quelle verfügbar |
 | **Geo** (Stadtkreise) | data.stadt-zuerich.ch | GeoJSON | Sofort verwendbar |
 
-### Ergebnis
+---
+
+## Process
+
+<table>
+<tr>
+<td width="50%" valign="top"><img src="assets/vbz_strategy.svg" alt="Gesamte Datenpipeline: IST-Daten, GTFS, Meteo, Events -> Merge -> vbz_master.parquet" width="100%"></td>
+<td width="50%" valign="top"><img src="assets/vbz_preparation.svg" alt="Master-Preparation Join-Pipeline: vier Quellen -> drei Joins -> Qualitätsprüfung -> vbz_master.parquet" width="100%"></td>
+</tr>
+</table>
+
+---
+
+## Ergebnis
 
 `data/interim/vbz_master.parquet` — **94.358.531 Zeilen × 26 Spalten**: jede reale
 VBZ-Tram-Fahrt 2023–2025, angereichert mit Fahrplan (inkl. Stadtkreis via Spatial Join),
 Wetter (stündlich) und Event-Kalender. Reproduzierbar über die 9 nummerierten Notebooks
 (`00`–`08`), siehe `notebooks/00_introduction.ipynb` für die vollständige Strategie.
 
-<img src="assets/vbz_strategy.svg" alt="Gesamte Datenpipeline: IST-Daten, GTFS, Meteo, Events -> Merge -> vbz_master.parquet" width="100%">
-
-<img src="assets/vbz_preparation.svg" alt="Master-Preparation Join-Pipeline: vier Quellen -> drei Joins -> Qualitätsprüfung -> vbz_master.parquet" width="100%">
+Weiterverwendet in [`zh-tram-flow`](https://github.com/kaywiegand/zh-tram-flow) für Analyse,
+Modellierung und Dashboard.
 
 ---
 
