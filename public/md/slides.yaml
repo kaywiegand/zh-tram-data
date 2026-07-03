@@ -1,0 +1,558 @@
+# Slide-Registry — Single Source of Truth für Overview/StoryView/TechView
+#
+# DE-Case (engineering-first): "Findings" → "Engineering Decisions",
+# "Model Results" → "Data Quality & Pipeline", "Recommendations" → "Known Limitations".
+# Fakten-Referenz: public/md/portfolio.md. Alle Zahlen aus Notebooks / echtem Master-Parquet.
+#
+# Schema:
+#   chapters: Liste von Kapiteln (id, nav_label, slides).
+#   Jede Slide: id, views (Liste), role (optional: title/closing), title, subtitle, content.
+#   Content-Typen mit Renderer: figures, figures_with_context, steps, chart_refs, contrasts,
+#   sequence, statement, comparison_table, scenarios, recommendations, sections, tools, agenda, links.
+#   view_composition: pro View die Kapitel-IDs in Anzeigereihenfolge.
+
+chapters:
+
+  # =====================================================================
+  - id: ausgangssituation
+    nav_label: Ausgangssituation
+    slides:
+      - id: ausgangssituation-title-overview
+        views: [overview]
+        role: title
+        title: "Zurich Tram Data"
+        subtitle:
+          - "Ein sauberer Datensatz aus fünf Quellen"
+          - "Die Data-Engineering-Grundlage für zh-tram-flow"
+        content:
+          - type: figures
+            items:
+              - {value: "38 GB", label: "IST-Rohdaten, schweizweit", sentiment: neutral}
+              - {value: "94,4 M", label: "Halt-Ereignisse im Master", sentiment: neutral}
+              - {value: "26", label: "Spalten aus 5 Quellen", sentiment: positive}
+              - {value: "9", label: "reproduzierbare Notebooks", sentiment: neutral}
+
+      - id: ausgangssituation-title-storyview
+        views: [storyview]
+        role: title
+        title: "Zurich Tram Data"
+        subtitle:
+          - "Vom Rohdaten-Archiv zum Master-Datensatz"
+          - "Recherche · Reduktion · Anreicherung · Vereinigung"
+        content:
+          - type: figures
+            items:
+              - {value: "38 GB", label: "IST-Rohdaten, schweizweit", sentiment: neutral}
+              - {value: "94,4 M", label: "Halt-Ereignisse im Master", sentiment: neutral}
+              - {value: "26", label: "Spalten aus 5 Quellen", sentiment: positive}
+              - {value: "9", label: "reproduzierbare Notebooks", sentiment: neutral}
+
+      - id: ausgangssituation-title-techview
+        views: [techview]
+        role: title
+        title: "Zurich Tram Data"
+        subtitle:
+          - "End-to-End Data-Engineering-Pipeline"
+          - "Polars · GeoPandas · Left/Spatial Joins · 5 Quellen → 1 Master"
+        content:
+          - type: figures
+            items:
+              - {value: "38 GB", label: "IST-Rohdaten komprimiert", sentiment: neutral}
+              - {value: "~4×", label: "Polars vs. Pandas", sentiment: positive}
+              - {value: "10 → 26", label: "Spalten nach Anreicherung", sentiment: positive}
+              - {value: "94,4 M", label: "Zeilen, validiert", sentiment: neutral}
+
+      - id: ausgangssituation-agenda-overview
+        views: [overview]
+        title: "Inhalt"
+        subtitle: "Diese Präsentation auf einen Blick"
+        content:
+          - type: agenda
+            items:
+              - "Das Projekt"
+              - "Reduktion"
+              - "Anreicherung"
+              - "Der Master"
+              - "Grenzen & Einordnung"
+
+      - id: ausgangssituation-agenda-storyview
+        views: [storyview]
+        title: "Inhalt"
+        subtitle: "Sechs Kapitel, ein durchgehender Datenpfad"
+        content:
+          - type: agenda
+            items:
+              - "Ausgangssituation"
+              - "Reduktion — das Überwältigende bändigen"
+              - "Anreicherung — das Dünne aufwerten"
+              - "Vereinigung zum Master"
+              - "Das Resultat"
+              - "Grenzen & Ausblick"
+
+      - id: ausgangssituation-agenda-techview
+        views: [techview]
+        title: "Inhalt"
+        subtitle: "Der technische Weg durch die Pipeline"
+        content:
+          - type: agenda
+            items:
+              - "Rohdaten & Werkzeugwahl"
+              - "Reduktion"
+              - "Anreicherung (4 Quellen)"
+              - "Join-Mechanik"
+              - "Master, Dictionary & Validierung"
+              - "Grenzen"
+
+      - id: ausgangssituation-summary
+        views: [storyview, overview]
+        title: "Worum es geht"
+        subtitle: "Ziel, Fokus und Einordnung des Projekts"
+        content:
+          - type: sections
+            items:
+              - label: "Ziel"
+                points:
+                  - "Ein einziger, sauberer Master-Datensatz der realen VBZ-Tram-Halte"
+                  - "Angereichert mit Fahrplan, Wetter, Events und Geografie"
+              - label: "Fokus"
+                points:
+                  - "Der Weg dorthin: Recherche · Filterung · Zusammenführung · Qualitätssicherung"
+                  - "Bewusst nicht Modellierung"
+              - label: "Einordnung"
+                points:
+                  - "Data-Engineering-Grundlage für zh-tram-flow (Analyse & Verspätungsvorhersage)"
+
+      - id: ausgangssituation-these
+        views: [storyview]
+        title: "Die These"
+        subtitle: "Ein Satz, der das Projekt trägt"
+        content:
+          - type: statement
+            sentiment: neutral
+            text: "Reduzieren was da ist, anreichern was fehlt."
+          - type: statement
+            sentiment: positive
+            text: "Aus 38 GB schweizweiten Rohdaten wird das Relevante herausgefiltert — und die für sich dünnen Tram-Halte durch gezielt recherchierte Zusatzquellen zu einem Datensatz vereint, mit dem man wirklich arbeiten kann."
+
+      - id: ausgangssituation-strategie
+        views: [storyview, overview, techview]
+        title: "Die Datenstrategie auf einen Blick"
+        subtitle: "Fünf Quellen, ein Weg zum Master"
+        content:
+          - type: chart_refs
+            items:
+              - label: "Gesamte Datenpipeline"
+                source: "vbz_strategy.svg"
+                caption: "IST · GTFS · Meteo · Events · Geo → Merge → vbz_master.parquet."
+
+  # =====================================================================
+  - id: reduktion
+    nav_label: Reduktion
+    slides:
+      - id: reduktion-gesamtdaten
+        views: [storyview, techview]
+        title: "Die Ausgangslage: das ganze Land"
+        subtitle: "38 GB, jede Fahrt der Schweiz"
+        content:
+          - type: figures
+            items:
+              - {value: "38 GB", label: "komprimierte Archiv-ZIPs", sentiment: neutral}
+              - {value: "~400", label: "Transportunternehmen CH", sentiment: neutral}
+              - {value: "5", label: "Verkehrsmittel-Arten", sentiment: neutral}
+          - type: statement
+            sentiment: neutral
+            text: "Die IST-Rohdaten beschreiben den gesamten öffentlichen Verkehr der Schweiz — jeder Zug, Bus, jedes Tram, Schiff, jede Seilbahn. Relevant ist ein schmaler Ausschnitt: VBZ Tram Zürich."
+
+      - id: reduktion-polars
+        views: [storyview, techview]
+        title: "Werkzeugwahl: Polars statt Pandas"
+        subtitle: "Auf den echten Daten gemessen, nicht angenommen"
+        content:
+          - type: comparison_table
+            columns: ["", "Pandas", "Polars", "Faktor"]
+            rows:
+              - {cells: ["Ladezeit (alle Parquets)", "25,7 s", "6,6 s", "~4×"], highlight: false}
+              - {cells: ["RAM-Verbrauch", "6,1 GB", "~1,4 GB", "~4×"], highlight: true}
+          - type: statement
+            sentiment: positive
+            text: "Entscheidung: Polars für alle großen Operationen (IST, Merge). Pandas bleibt für kleine Quellen (GTFS/Meteo/Events) und als Lernreferenz."
+
+      - id: reduktion-polars-detail
+        views: [techview]
+        title: "Benchmark im Detail"
+        subtitle: "Warum Polars — und wie der Wechsel funktioniert"
+        content:
+          - type: steps
+            items:
+              - {step: "1", label: "Messung auf echten Daten", detail: "Benchmark auf dem realen IST-Datensatz (~88 Mio Zeilen), nicht auf Spielzeugdaten"}
+              - {step: "2", label: "Warum Pandas anstößt", detail: "Bei dieser Größe am RAM-Limit (6,1 GB) — keine Lazy Evaluation"}
+              - {step: "3", label: "Polars-Vorteil", detail: "Query-Planung + Streaming: scan_parquet('*.parquet') liest ~1.035 Tages-Parquets als einen Datensatz"}
+              - {step: "4", label: "Brücke", detail: "pl.from_pandas() / df.to_pandas() für den Wechsel zwischen kleinen und großen Operationen"}
+
+      - id: reduktion-reduzieren
+        views: [storyview, techview]
+        title: "Von der Schweiz zu VBZ Tram"
+        subtitle: "Jede Filter-Entscheidung begründet"
+        content:
+          - type: steps
+            items:
+              - {step: "1", label: "Betreiber & Produkt", detail: "~400 CH-Unternehmen → BETREIBER_ID 85:3849 (VBZ), PRODUKT_ID = Tram"}
+              - {step: "2", label: "Zeitraum & Format", detail: "2023–2025, nur Format v1 (v2 ab Mitte 2025 ausgeklammert)"}
+              - {step: "3", label: "Messqualität", detail: "nur REAL-GPS-Messungen; Durchfahrten & Zusatzfahrten raus"}
+              - {step: "4", label: "Ausfälle behalten", detail: "FAELLT_AUS_TF = true bewusst drin — extremster Verspätungsfall"}
+              - {step: "5", label: "Spalten", detail: "21 Rohfelder → 10 (KEEP_COLS); Delays & stop_sequence abgeleitet"}
+          - type: statement
+            sentiment: neutral
+            text: "~11 % der Zeilen entfernt — übrig bleiben echte, planmäßige Halte mit GPS-Zeitstempeln, plus alle Ausfälle."
+
+      - id: reduktion-overview
+        views: [overview]
+        title: "Das Überwältigende bändigen"
+        subtitle: "Reduktion in drei Schritten"
+        content:
+          - type: steps
+            items:
+              - {step: "1", label: "Reduzieren", detail: "38 GB schweizweit → VBZ Tram Zürich (~400 Betreiber → 1)"}
+              - {step: "2", label: "Richtige Werkzeuge", detail: "Polars statt Pandas — ~4× schneller und sparsamer, per Benchmark belegt"}
+              - {step: "3", label: "Fokus", detail: "21 → 10 Spalten, ~11 % Zeilen raus — echte Halte plus Ausfälle"}
+
+  # =====================================================================
+  - id: anreicherung
+    nav_label: Anreicherung
+    slides:
+      - id: anreicherung-intro
+        views: [storyview]
+        title: "Tram-Halte allein erklären wenig"
+        subtitle: "Was macht Verspätung überhaupt nachvollziehbar?"
+        content:
+          - type: statement
+            sentiment: neutral
+            text: "Ein Tram-Halt mit einer Verspätungszahl erklärt für sich genommen wenig. Erst der Kontext — Fahrplan, Wetter, Events, Geografie — macht Verspätung nachvollziehbar."
+          - type: statement
+            sentiment: positive
+            text: "Also: vier gezielt recherchierte Zusatzquellen identifizieren und in den Master integrieren."
+
+      - id: anreicherung-gtfs
+        views: [storyview, techview]
+        title: "Anreicherung 1 — GTFS (Fahrplan)"
+        subtitle: "woher · was zu tun · wie übernommen"
+        content:
+          - type: sections
+            items:
+              - label: "Woher"
+                points:
+                  - "data.stadt-zuerich.ch · ZIP/TXT · CC0"
+                  - "3 Jahrgänge, gesamtes ZVV-Netz"
+              - label: "Was zu tun"
+                points:
+                  - "Auf VBZ-Tram-Linien filtern, 2024 als Primärreferenz"
+                  - "10+ GTFS-Tabellen → 4 Parquets (routes, stops, shapes, trips)"
+              - label: "Wie übernommen"
+                points:
+                  - "Join über bpuic (Haltestellen-ID) → stop_name, stop_lat, stop_lon"
+                  - "+3 Spalten im Master"
+
+      - id: anreicherung-meteo
+        views: [storyview, techview]
+        title: "Anreicherung 2 — Meteo (Wetter)"
+        subtitle: "woher · was zu tun · wie übernommen"
+        content:
+          - type: sections
+            items:
+              - label: "Woher"
+                points:
+                  - "data.stadt-zuerich.ch (UGZ, Wapo, ERZ) · CSV/Parquet · CC0"
+                  - "3 Quellen, unterschiedliche Auflösung"
+              - label: "Was zu tun"
+                points:
+                  - "Auf ein stündliches Raster konsolidieren"
+                  - "2 Referenzstationen: Stampfenbachstrasse (Stadtlage) + Mythenquai (Seelage)"
+              - label: "Wie übernommen"
+                points:
+                  - "floor(1h) als Join-Schlüssel zu den Tram-Zeitstempeln"
+                  - "+7 Spalten (u.a. temperature, precipitation, wind_speed, flood_intensity)"
+
+      - id: anreicherung-events
+        views: [storyview, techview]
+        title: "Anreicherung 3 — Events (der harte Fall)"
+        subtitle: "Kein Open Data — von Hand aufgebaut"
+        content:
+          - type: sections
+            items:
+              - label: "Woher"
+                points:
+                  - "Keine strukturierte Open-Data-Quelle verfügbar"
+                  - "Manueller Crawl: Gemini, Perplexity, Transfermarkt"
+              - label: "Was zu tun"
+                points:
+                  - "Schwellenwert > 1.000 Besucher, Stadt Zürich, 2023–2025"
+                  - "FCZ/GC-Spiele, Street Parade, Züri Fäscht …"
+              - label: "Wie übernommen"
+                points:
+                  - "Als CSV aufgebaut, Join über das Datum"
+                  - "+4 Spalten (event_name, event_type, event_size, event_location)"
+
+      - id: anreicherung-geo
+        views: [storyview, techview]
+        title: "Anreicherung 4 — Geo (Stadtkreise)"
+        subtitle: "woher · was zu tun · wie übernommen"
+        content:
+          - type: sections
+            items:
+              - label: "Woher"
+                points:
+                  - "data.stadt-zuerich.ch · GeoJSON · CC0"
+                  - "Stadtkreis-Grenzen, sofort verwendbar"
+              - label: "Was zu tun"
+                points:
+                  - "Jeder Haltestelle ihren Stadtkreis zuordnen"
+              - label: "Wie übernommen"
+                points:
+                  - "Spatial Join (Punkt-in-Polygon) auf die GTFS-Stops → district_nr, district_name"
+                  - "+2 Spalten — bereits im Master, kein nachträglicher Join in der EDA nötig"
+
+      - id: anreicherung-overview
+        views: [overview]
+        title: "Das Dünne aufwerten"
+        subtitle: "Vier Quellen, ein bemerkenswerter Sonderfall"
+        content:
+          - type: sections
+            items:
+              - label: "Vier Quellen angereichert"
+                points:
+                  - "GTFS Fahrplan (+3) · Meteo Wetter (+7) · Geo Stadtkreis (+2) · Events (+4)"
+                  - "10 → 26 Spalten"
+              - label: "Spotlight: Events"
+                points:
+                  - "Keine Open-Data-Quelle → von Hand recherchiert und aufgebaut"
+                  - "Der Fall, der echten Daten-Spürsinn verlangt"
+
+  # =====================================================================
+  - id: vereinigung
+    nav_label: Vereinigung
+    slides:
+      - id: vereinigung-grafik
+        views: [storyview, overview, techview]
+        title: "Die Join-Pipeline"
+        subtitle: "Vier Quellen, drei Joins, eine Qualitätsprüfung"
+        content:
+          - type: chart_refs
+            items:
+              - label: "Master-Preparation Pipeline"
+                source: "vbz_preparation.svg"
+                caption: "Vier Quellen → drei Joins → Qualitätsprüfung → vbz_master.parquet."
+
+      - id: vereinigung-leftjoins
+        views: [storyview, techview]
+        title: "Left Joins — kein Zeilenverlust"
+        subtitle: "Die wichtigste Join-Entscheidung"
+        content:
+          - type: statement
+            sentiment: neutral
+            text: "Left Join überall: jede Tram-Fahrt bleibt erhalten. Fehlende Werte (Sensor-Ausfall, Event-freier Tag) werden null — statt die Zeile zu löschen."
+          - type: statement
+            sentiment: positive
+            text: "Datenverlust durch Join ist der häufigste stille Bug in Merge-Pipelines. Left Join macht ihn unmöglich."
+
+      - id: vereinigung-schwierigkeiten
+        views: [storyview, techview]
+        title: "Die Tücken im Detail"
+        subtitle: "Zwei Stolpersteine beim Join"
+        content:
+          - type: contrasts
+            items:
+              - assumption: "Zwei Parquets mit datetime-Spalten joinen einfach"
+                finding: "Meteo via pl.from_pandas → datetime[ns], IST nativ datetime[us]. Polars wirft SchemaError beim Join auf den stundengerundeten Schlüssel. Fix: explizit auf pl.Datetime('us') casten."
+              - assumption: "Stündliches Wetter passt direkt zu Tram-Zeitstempeln"
+                finding: "Tram-Halte sind sekundengenau, Wetter stündlich. floor(1h) auf beiden Seiten erzeugt den gemeinsamen Join-Schlüssel."
+
+  # =====================================================================
+  - id: resultat
+    nav_label: Resultat
+    slides:
+      - id: resultat-master
+        views: [storyview, overview, techview]
+        title: "Der Master-Datensatz"
+        subtitle: "Ein Datensatz, mit dem man wirklich arbeiten kann"
+        content:
+          - type: figures
+            items:
+              - {value: "94,4 M", label: "Halt-Ereignisse", sentiment: neutral}
+              - {value: "26", label: "Spalten aus 5 Quellen", sentiment: positive}
+              - {value: "9", label: "Notebooks, 00–08", sentiment: neutral}
+              - {value: "100 %", label: "reproduzierbar", sentiment: positive}
+          - type: statement
+            sentiment: neutral
+            text: "vbz_master.parquet — eine Zeile pro Halt (~230 je Fahrt), angereichert mit Fahrplan, Wetter, Events und Stadtkreis. 1:1 reproduzierbar über die 9 Notebooks, deckungsgleich mit dem Original aus sf_data-research."
+
+      - id: resultat-dictionary
+        views: [techview]
+        title: "Data Dictionary — 26 Spalten"
+        subtitle: "Zusammensetzung nach Quelle"
+        content:
+          - type: comparison_table
+            columns: ["Quelle", "Spalten", "Beispiele"]
+            rows:
+              - {cells: ["IST (Verkehr)", "10", "operating_date, trip_id, line_name, arrival_delay, canceled, stop_sequence"], highlight: false}
+              - {cells: ["GTFS (Fahrplan)", "3", "stop_name, stop_lat, stop_lon"], highlight: false}
+              - {cells: ["Geo (Stadtkreis)", "2", "district_nr, district_name"], highlight: false}
+              - {cells: ["Meteo (Wetter)", "7", "temperature, precipitation, wind_speed, flood_intensity"], highlight: false}
+              - {cells: ["Events", "4", "event_name, event_type, event_size, event_location"], highlight: false}
+              - {cells: ["Master gesamt", "26", "eine Zeile pro Halt-Ereignis"], highlight: true}
+
+      - id: resultat-validierung
+        views: [techview]
+        title: "Validierung"
+        subtitle: "08_master-validation — die Qualitätsprüfung"
+        content:
+          - type: steps
+            items:
+              - {step: "1", label: "Schema", detail: "26 Spalten, erwartete Typen (date, timestamp[us], float, dictionary …)"}
+              - {step: "2", label: "Dimensionen", detail: "94.358.531 Zeilen — deckungsgleich mit dem Original in sf_data-research"}
+              - {step: "3", label: "Null-Verteilung", detail: "Left-Join-Nulls plausibel (z.B. event_* an event-freien Tagen)"}
+              - {step: "4", label: "Reproduzierbarkeit", detail: "Voller Lauf 00–08 erzeugt denselben Master — idempotent, resume-fähig"}
+
+  # =====================================================================
+  - id: grenzen-ausblick
+    nav_label: Grenzen & Ausblick
+    slides:
+      - id: grenzen-grenzen
+        views: [storyview, overview, techview]
+        title: "Grenzen & bewusste Versäumnisse"
+        subtitle: "Transparenz über Known Issues"
+        content:
+          - type: recommendations
+            items:
+              - category: "Grenze 1 · Backlog #1"
+                title: "trip_id ↔ GTFS nicht direkt matchbar"
+                points:
+                  - "IST-FAHRT_BEZEICHNER (85:3849:…) und GTFS-trip_id (1.T0.1-10-…): 0 % Overlap"
+                  - "Richtungsspezifische Analysen & Kaskadeneffekt bräuchten eine Umlauf-basierte Brücke"
+              - category: "Grenze 2 · Backlog #2"
+                title: "UMLAUF_ID beim Reduktions-Schritt verworfen"
+                points:
+                  - "Wäre die direktere Brücke für Kaskadenanalyse als trip_id-Kontinuität"
+                  - "Nachträglich = volles Reprocessing ab den Roh-ZIPs"
+          - type: statement
+            sentiment: neutral
+            text: "Bewusst dokumentierte Grenzen, nicht übersehene Fehler. Transparenz über Known Issues gehört zu sauberem Data Engineering."
+
+      - id: grenzen-ausblick
+        views: [storyview, techview]
+        title: "Ausblick"
+        subtitle: "Was eine nächste Iteration angeht"
+        content:
+          - type: sequence
+            items:
+              - label: "Format v2"
+                text: "Ab Mitte 2025 wechselt opentransportdata.swiss auf v2 — Integration von 2026 + v2 in einer späteren Iteration."
+              - label: "Mehr Meteo"
+                text: "Zwei Referenzstationen decken den MVP; weitere Stationen erhöhen die räumliche Auflösung."
+              - label: "Reprocessing"
+                text: "Projektneuauflage mit UMLAUF_ID + trip_id-Brücke — Voraussetzung für richtungsspezifische Kaskadenanalyse."
+
+      - id: grenzen-closing
+        views: [storyview, overview]
+        role: closing
+        title: "Einordnung"
+        subtitle: "Das Fundament und der Aufbau"
+        content:
+          - type: statement
+            sentiment: neutral
+            text: "zh-tram-data ist das Data-Engineering-Fundament: der saubere, reproduzierbare Master-Datensatz."
+          - type: statement
+            sentiment: positive
+            text: "Analyse, Modellierung und Vorhersage bauen darauf auf — in zh-tram-flow. Zusammen der volle Data-Cycle, sauber in Fundament und Aufbau getrennt."
+
+# ===========================================================================
+view_meta:
+  overview:
+    project: "Zurich Tram Data"
+    period: "2023–2025"
+    author: "Kay Wiegand"
+    github: "kaywiegand/zh-tram-data"
+    presentation_title: "Der Datensatz & sein Weg"
+    audience: "HR · Business · Hiring Manager"
+    duration_minutes: 8
+  storyview:
+    project: "Zurich Tram Data"
+    period: "2023–2025"
+    author: "Kay Wiegand"
+    github: "kaywiegand/zh-tram-data"
+    presentation_title: "Vom Rohdaten-Archiv zum Master"
+    audience: "Portfolio · Vollbild"
+    duration_minutes: 20
+  techview:
+    project: "Zurich Tram Data"
+    period: "2023–2025"
+    author: "Kay Wiegand"
+    github: "kaywiegand/zh-tram-data"
+    presentation_title: "Engineering Deep-Dive"
+    audience: "Data Engineers · Tech Leads · Interviewer"
+    duration_minutes: 15
+
+# ===========================================================================
+# Steuert public/index.html (Hub). headline_kpis_from zeigt auf eine Slide-ID —
+# die 4 Hero-KPIs auf dem Hub sind genau die figures-Liste dieser Slide.
+hub:
+  headline_kpis_from: ausgangssituation-title-overview
+  tagline: "Vom Rohdaten-Archiv zum Master-Datensatz"
+  subtitle: "Data-Engineering-Pipeline für das Zürcher Tramnetz (VBZ)"
+  footer_tagline: "Data-Engineering-Grundlage für zh-tram-flow"
+  about:
+    - label: "Ziel"
+      text: "Ein einziger, sauberer Master-Datensatz der realen VBZ-Tram-Halte — angereichert mit Fahrplan, Wetter, Events und Geografie. Die Data-Engineering-Grundlage für zh-tram-flow."
+    - label: "These"
+      text: "Reduzieren was da ist, anreichern was fehlt. Aus 38 GB schweizweiten Rohdaten wird das Relevante herausgefiltert und durch gezielt recherchierte Zusatzquellen zu einem Datensatz vereint, mit dem man wirklich arbeiten kann."
+    - label: "Reduktion"
+      text: "~400 Transportunternehmen → VBZ Tram, Polars statt Pandas (~4× schneller und sparsamer, per Benchmark belegt), 21 → 10 Spalten, ~11 % Zeilen entfernt."
+    - label: "Anreicherung"
+      text: "Vier Kontextquellen recherchiert und integriert — GTFS, Meteo, Events (kein Open Data → Handaufbau), Geo. 10 → 26 Spalten über Left- und Spatial-Joins."
+    - label: "Resultat"
+      text: "vbz_master.parquet — 94,4 M Halt-Ereignisse × 26 Spalten, 1:1 reproduzierbar über 9 Notebooks, validiert und deckungsgleich mit dem Original."
+  quick_links: []
+  view_order: [overview, techview, storyview]
+  view_cards:
+    overview:
+      kicker: "Overview"
+      label: "Business & Ergebnis"
+      description: "Der Datensatz und der Weg dorthin, verdichtet für Stakeholder und Recruiter. Fokus auf Reduktion, Anreicherung und Resultat."
+      badge: "HR · Business"
+      badge_class: blue
+    techview:
+      kicker: "Tech View"
+      label: "Engineering Deep-Dive"
+      description: "Werkzeugwahl, Join-Mechanik, Schema und Validierung im Detail. Für Data Engineers und Tech Leads."
+      badge: "Data Engineering"
+      badge_class: dark
+    storyview:
+      kicker: "Story View"
+      label: "Der ganze Weg"
+      description: "Von 38 GB Rohdaten zum Master: Reduktion, Anreicherung, Vereinigung — vollständig erzählt. Portfolio-Vollansicht."
+      badge: "Portfolio"
+      badge_class: purple
+
+view_composition:
+  overview:
+    - ausgangssituation
+    - reduktion
+    - anreicherung
+    - vereinigung
+    - resultat
+    - grenzen-ausblick
+
+  storyview:
+    - ausgangssituation
+    - reduktion
+    - anreicherung
+    - vereinigung
+    - resultat
+    - grenzen-ausblick
+
+  techview:
+    - ausgangssituation
+    - reduktion
+    - anreicherung
+    - vereinigung
+    - resultat
+    - grenzen-ausblick

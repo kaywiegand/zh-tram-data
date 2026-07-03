@@ -49,6 +49,9 @@ notebooks/appendix/
 # ── Explorations-PDFs (geopandas-Maps) — lokal behalten, nicht im Repo ──────
 public/img/*.pdf
 
+# ── Portfolio-Pipeline Build-Snapshots (public/archive/vN/) — nicht ins Git ──
+public/archive/
+
 # ── IDE & OS ───────────────────────────────────────────────────────────────
 .vscode/settings.json
 .idea/

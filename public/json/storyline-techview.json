@@ -1,0 +1,618 @@
+{
+  "meta": {
+    "project": "Zurich Tram Data",
+    "period": "2023–2025",
+    "author": "Kay Wiegand",
+    "github": "kaywiegand/zh-tram-data",
+    "presentation_title": "Engineering Deep-Dive",
+    "audience": "Data Engineers · Tech Leads · Interviewer",
+    "duration_minutes": 15
+  },
+  "chapters": [
+    {
+      "nav_label": "Ausgangssituation",
+      "slides": [
+        {
+          "role": "title",
+          "title": "Zurich Tram Data",
+          "subtitle": [
+            "End-to-End Data-Engineering-Pipeline",
+            "Polars · GeoPandas · Left/Spatial Joins · 5 Quellen → 1 Master"
+          ],
+          "content": [
+            {
+              "type": "figures",
+              "items": [
+                {
+                  "value": "38 GB",
+                  "label": "IST-Rohdaten komprimiert",
+                  "sentiment": "neutral"
+                },
+                {
+                  "value": "~4×",
+                  "label": "Polars vs. Pandas",
+                  "sentiment": "positive"
+                },
+                {
+                  "value": "10 → 26",
+                  "label": "Spalten nach Anreicherung",
+                  "sentiment": "positive"
+                },
+                {
+                  "value": "94,4 M",
+                  "label": "Zeilen, validiert",
+                  "sentiment": "neutral"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Inhalt",
+          "subtitle": "Der technische Weg durch die Pipeline",
+          "content": [
+            {
+              "type": "agenda",
+              "items": [
+                "Rohdaten & Werkzeugwahl",
+                "Reduktion",
+                "Anreicherung (4 Quellen)",
+                "Join-Mechanik",
+                "Master, Dictionary & Validierung",
+                "Grenzen"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Die Datenstrategie auf einen Blick",
+          "subtitle": "Fünf Quellen, ein Weg zum Master",
+          "content": [
+            {
+              "type": "chart_refs",
+              "items": [
+                {
+                  "label": "Gesamte Datenpipeline",
+                  "source": "vbz_strategy.svg",
+                  "caption": "IST · GTFS · Meteo · Events · Geo → Merge → vbz_master.parquet."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nav_label": "Reduktion",
+      "slides": [
+        {
+          "title": "Die Ausgangslage: das ganze Land",
+          "subtitle": "38 GB, jede Fahrt der Schweiz",
+          "content": [
+            {
+              "type": "figures",
+              "items": [
+                {
+                  "value": "38 GB",
+                  "label": "komprimierte Archiv-ZIPs",
+                  "sentiment": "neutral"
+                },
+                {
+                  "value": "~400",
+                  "label": "Transportunternehmen CH",
+                  "sentiment": "neutral"
+                },
+                {
+                  "value": "5",
+                  "label": "Verkehrsmittel-Arten",
+                  "sentiment": "neutral"
+                }
+              ]
+            },
+            {
+              "type": "statement",
+              "sentiment": "neutral",
+              "text": "Die IST-Rohdaten beschreiben den gesamten öffentlichen Verkehr der Schweiz — jeder Zug, Bus, jedes Tram, Schiff, jede Seilbahn. Relevant ist ein schmaler Ausschnitt: VBZ Tram Zürich."
+            }
+          ]
+        },
+        {
+          "title": "Werkzeugwahl: Polars statt Pandas",
+          "subtitle": "Auf den echten Daten gemessen, nicht angenommen",
+          "content": [
+            {
+              "type": "comparison_table",
+              "columns": [
+                "",
+                "Pandas",
+                "Polars",
+                "Faktor"
+              ],
+              "rows": [
+                {
+                  "cells": [
+                    "Ladezeit (alle Parquets)",
+                    "25,7 s",
+                    "6,6 s",
+                    "~4×"
+                  ],
+                  "highlight": false
+                },
+                {
+                  "cells": [
+                    "RAM-Verbrauch",
+                    "6,1 GB",
+                    "~1,4 GB",
+                    "~4×"
+                  ],
+                  "highlight": true
+                }
+              ]
+            },
+            {
+              "type": "statement",
+              "sentiment": "positive",
+              "text": "Entscheidung: Polars für alle großen Operationen (IST, Merge). Pandas bleibt für kleine Quellen (GTFS/Meteo/Events) und als Lernreferenz."
+            }
+          ]
+        },
+        {
+          "title": "Benchmark im Detail",
+          "subtitle": "Warum Polars — und wie der Wechsel funktioniert",
+          "content": [
+            {
+              "type": "steps",
+              "items": [
+                {
+                  "step": "1",
+                  "label": "Messung auf echten Daten",
+                  "detail": "Benchmark auf dem realen IST-Datensatz (~88 Mio Zeilen), nicht auf Spielzeugdaten"
+                },
+                {
+                  "step": "2",
+                  "label": "Warum Pandas anstößt",
+                  "detail": "Bei dieser Größe am RAM-Limit (6,1 GB) — keine Lazy Evaluation"
+                },
+                {
+                  "step": "3",
+                  "label": "Polars-Vorteil",
+                  "detail": "Query-Planung + Streaming: scan_parquet('*.parquet') liest ~1.035 Tages-Parquets als einen Datensatz"
+                },
+                {
+                  "step": "4",
+                  "label": "Brücke",
+                  "detail": "pl.from_pandas() / df.to_pandas() für den Wechsel zwischen kleinen und großen Operationen"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Von der Schweiz zu VBZ Tram",
+          "subtitle": "Jede Filter-Entscheidung begründet",
+          "content": [
+            {
+              "type": "steps",
+              "items": [
+                {
+                  "step": "1",
+                  "label": "Betreiber & Produkt",
+                  "detail": "~400 CH-Unternehmen → BETREIBER_ID 85:3849 (VBZ), PRODUKT_ID = Tram"
+                },
+                {
+                  "step": "2",
+                  "label": "Zeitraum & Format",
+                  "detail": "2023–2025, nur Format v1 (v2 ab Mitte 2025 ausgeklammert)"
+                },
+                {
+                  "step": "3",
+                  "label": "Messqualität",
+                  "detail": "nur REAL-GPS-Messungen; Durchfahrten & Zusatzfahrten raus"
+                },
+                {
+                  "step": "4",
+                  "label": "Ausfälle behalten",
+                  "detail": "FAELLT_AUS_TF = true bewusst drin — extremster Verspätungsfall"
+                },
+                {
+                  "step": "5",
+                  "label": "Spalten",
+                  "detail": "21 Rohfelder → 10 (KEEP_COLS); Delays & stop_sequence abgeleitet"
+                }
+              ]
+            },
+            {
+              "type": "statement",
+              "sentiment": "neutral",
+              "text": "~11 % der Zeilen entfernt — übrig bleiben echte, planmäßige Halte mit GPS-Zeitstempeln, plus alle Ausfälle."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nav_label": "Anreicherung",
+      "slides": [
+        {
+          "title": "Anreicherung 1 — GTFS (Fahrplan)",
+          "subtitle": "woher · was zu tun · wie übernommen",
+          "content": [
+            {
+              "type": "sections",
+              "items": [
+                {
+                  "label": "Woher",
+                  "points": [
+                    "data.stadt-zuerich.ch · ZIP/TXT · CC0",
+                    "3 Jahrgänge, gesamtes ZVV-Netz"
+                  ]
+                },
+                {
+                  "label": "Was zu tun",
+                  "points": [
+                    "Auf VBZ-Tram-Linien filtern, 2024 als Primärreferenz",
+                    "10+ GTFS-Tabellen → 4 Parquets (routes, stops, shapes, trips)"
+                  ]
+                },
+                {
+                  "label": "Wie übernommen",
+                  "points": [
+                    "Join über bpuic (Haltestellen-ID) → stop_name, stop_lat, stop_lon",
+                    "+3 Spalten im Master"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Anreicherung 2 — Meteo (Wetter)",
+          "subtitle": "woher · was zu tun · wie übernommen",
+          "content": [
+            {
+              "type": "sections",
+              "items": [
+                {
+                  "label": "Woher",
+                  "points": [
+                    "data.stadt-zuerich.ch (UGZ, Wapo, ERZ) · CSV/Parquet · CC0",
+                    "3 Quellen, unterschiedliche Auflösung"
+                  ]
+                },
+                {
+                  "label": "Was zu tun",
+                  "points": [
+                    "Auf ein stündliches Raster konsolidieren",
+                    "2 Referenzstationen: Stampfenbachstrasse (Stadtlage) + Mythenquai (Seelage)"
+                  ]
+                },
+                {
+                  "label": "Wie übernommen",
+                  "points": [
+                    "floor(1h) als Join-Schlüssel zu den Tram-Zeitstempeln",
+                    "+7 Spalten (u.a. temperature, precipitation, wind_speed, flood_intensity)"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Anreicherung 3 — Events (der harte Fall)",
+          "subtitle": "Kein Open Data — von Hand aufgebaut",
+          "content": [
+            {
+              "type": "sections",
+              "items": [
+                {
+                  "label": "Woher",
+                  "points": [
+                    "Keine strukturierte Open-Data-Quelle verfügbar",
+                    "Manueller Crawl: Gemini, Perplexity, Transfermarkt"
+                  ]
+                },
+                {
+                  "label": "Was zu tun",
+                  "points": [
+                    "Schwellenwert > 1.000 Besucher, Stadt Zürich, 2023–2025",
+                    "FCZ/GC-Spiele, Street Parade, Züri Fäscht …"
+                  ]
+                },
+                {
+                  "label": "Wie übernommen",
+                  "points": [
+                    "Als CSV aufgebaut, Join über das Datum",
+                    "+4 Spalten (event_name, event_type, event_size, event_location)"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Anreicherung 4 — Geo (Stadtkreise)",
+          "subtitle": "woher · was zu tun · wie übernommen",
+          "content": [
+            {
+              "type": "sections",
+              "items": [
+                {
+                  "label": "Woher",
+                  "points": [
+                    "data.stadt-zuerich.ch · GeoJSON · CC0",
+                    "Stadtkreis-Grenzen, sofort verwendbar"
+                  ]
+                },
+                {
+                  "label": "Was zu tun",
+                  "points": [
+                    "Jeder Haltestelle ihren Stadtkreis zuordnen"
+                  ]
+                },
+                {
+                  "label": "Wie übernommen",
+                  "points": [
+                    "Spatial Join (Punkt-in-Polygon) auf die GTFS-Stops → district_nr, district_name",
+                    "+2 Spalten — bereits im Master, kein nachträglicher Join in der EDA nötig"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nav_label": "Vereinigung",
+      "slides": [
+        {
+          "title": "Die Join-Pipeline",
+          "subtitle": "Vier Quellen, drei Joins, eine Qualitätsprüfung",
+          "content": [
+            {
+              "type": "chart_refs",
+              "items": [
+                {
+                  "label": "Master-Preparation Pipeline",
+                  "source": "vbz_preparation.svg",
+                  "caption": "Vier Quellen → drei Joins → Qualitätsprüfung → vbz_master.parquet."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Left Joins — kein Zeilenverlust",
+          "subtitle": "Die wichtigste Join-Entscheidung",
+          "content": [
+            {
+              "type": "statement",
+              "sentiment": "neutral",
+              "text": "Left Join überall: jede Tram-Fahrt bleibt erhalten. Fehlende Werte (Sensor-Ausfall, Event-freier Tag) werden null — statt die Zeile zu löschen."
+            },
+            {
+              "type": "statement",
+              "sentiment": "positive",
+              "text": "Datenverlust durch Join ist der häufigste stille Bug in Merge-Pipelines. Left Join macht ihn unmöglich."
+            }
+          ]
+        },
+        {
+          "title": "Die Tücken im Detail",
+          "subtitle": "Zwei Stolpersteine beim Join",
+          "content": [
+            {
+              "type": "contrasts",
+              "items": [
+                {
+                  "assumption": "Zwei Parquets mit datetime-Spalten joinen einfach",
+                  "finding": "Meteo via pl.from_pandas → datetime[ns], IST nativ datetime[us]. Polars wirft SchemaError beim Join auf den stundengerundeten Schlüssel. Fix: explizit auf pl.Datetime('us') casten."
+                },
+                {
+                  "assumption": "Stündliches Wetter passt direkt zu Tram-Zeitstempeln",
+                  "finding": "Tram-Halte sind sekundengenau, Wetter stündlich. floor(1h) auf beiden Seiten erzeugt den gemeinsamen Join-Schlüssel."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nav_label": "Resultat",
+      "slides": [
+        {
+          "title": "Der Master-Datensatz",
+          "subtitle": "Ein Datensatz, mit dem man wirklich arbeiten kann",
+          "content": [
+            {
+              "type": "figures",
+              "items": [
+                {
+                  "value": "94,4 M",
+                  "label": "Halt-Ereignisse",
+                  "sentiment": "neutral"
+                },
+                {
+                  "value": "26",
+                  "label": "Spalten aus 5 Quellen",
+                  "sentiment": "positive"
+                },
+                {
+                  "value": "9",
+                  "label": "Notebooks, 00–08",
+                  "sentiment": "neutral"
+                },
+                {
+                  "value": "100 %",
+                  "label": "reproduzierbar",
+                  "sentiment": "positive"
+                }
+              ]
+            },
+            {
+              "type": "statement",
+              "sentiment": "neutral",
+              "text": "vbz_master.parquet — eine Zeile pro Halt (~230 je Fahrt), angereichert mit Fahrplan, Wetter, Events und Stadtkreis. 1:1 reproduzierbar über die 9 Notebooks, deckungsgleich mit dem Original aus sf_data-research."
+            }
+          ]
+        },
+        {
+          "title": "Data Dictionary — 26 Spalten",
+          "subtitle": "Zusammensetzung nach Quelle",
+          "content": [
+            {
+              "type": "comparison_table",
+              "columns": [
+                "Quelle",
+                "Spalten",
+                "Beispiele"
+              ],
+              "rows": [
+                {
+                  "cells": [
+                    "IST (Verkehr)",
+                    "10",
+                    "operating_date, trip_id, line_name, arrival_delay, canceled, stop_sequence"
+                  ],
+                  "highlight": false
+                },
+                {
+                  "cells": [
+                    "GTFS (Fahrplan)",
+                    "3",
+                    "stop_name, stop_lat, stop_lon"
+                  ],
+                  "highlight": false
+                },
+                {
+                  "cells": [
+                    "Geo (Stadtkreis)",
+                    "2",
+                    "district_nr, district_name"
+                  ],
+                  "highlight": false
+                },
+                {
+                  "cells": [
+                    "Meteo (Wetter)",
+                    "7",
+                    "temperature, precipitation, wind_speed, flood_intensity"
+                  ],
+                  "highlight": false
+                },
+                {
+                  "cells": [
+                    "Events",
+                    "4",
+                    "event_name, event_type, event_size, event_location"
+                  ],
+                  "highlight": false
+                },
+                {
+                  "cells": [
+                    "Master gesamt",
+                    "26",
+                    "eine Zeile pro Halt-Ereignis"
+                  ],
+                  "highlight": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Validierung",
+          "subtitle": "08_master-validation — die Qualitätsprüfung",
+          "content": [
+            {
+              "type": "steps",
+              "items": [
+                {
+                  "step": "1",
+                  "label": "Schema",
+                  "detail": "26 Spalten, erwartete Typen (date, timestamp[us], float, dictionary …)"
+                },
+                {
+                  "step": "2",
+                  "label": "Dimensionen",
+                  "detail": "94.358.531 Zeilen — deckungsgleich mit dem Original in sf_data-research"
+                },
+                {
+                  "step": "3",
+                  "label": "Null-Verteilung",
+                  "detail": "Left-Join-Nulls plausibel (z.B. event_* an event-freien Tagen)"
+                },
+                {
+                  "step": "4",
+                  "label": "Reproduzierbarkeit",
+                  "detail": "Voller Lauf 00–08 erzeugt denselben Master — idempotent, resume-fähig"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nav_label": "Grenzen & Ausblick",
+      "slides": [
+        {
+          "title": "Grenzen & bewusste Versäumnisse",
+          "subtitle": "Transparenz über Known Issues",
+          "content": [
+            {
+              "type": "recommendations",
+              "items": [
+                {
+                  "category": "Grenze 1 · Backlog #1",
+                  "title": "trip_id ↔ GTFS nicht direkt matchbar",
+                  "points": [
+                    "IST-FAHRT_BEZEICHNER (85:3849:…) und GTFS-trip_id (1.T0.1-10-…): 0 % Overlap",
+                    "Richtungsspezifische Analysen & Kaskadeneffekt bräuchten eine Umlauf-basierte Brücke"
+                  ]
+                },
+                {
+                  "category": "Grenze 2 · Backlog #2",
+                  "title": "UMLAUF_ID beim Reduktions-Schritt verworfen",
+                  "points": [
+                    "Wäre die direktere Brücke für Kaskadenanalyse als trip_id-Kontinuität",
+                    "Nachträglich = volles Reprocessing ab den Roh-ZIPs"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "statement",
+              "sentiment": "neutral",
+              "text": "Bewusst dokumentierte Grenzen, nicht übersehene Fehler. Transparenz über Known Issues gehört zu sauberem Data Engineering."
+            }
+          ]
+        },
+        {
+          "title": "Ausblick",
+          "subtitle": "Was eine nächste Iteration angeht",
+          "content": [
+            {
+              "type": "sequence",
+              "items": [
+                {
+                  "label": "Format v2",
+                  "text": "Ab Mitte 2025 wechselt opentransportdata.swiss auf v2 — Integration von 2026 + v2 in einer späteren Iteration."
+                },
+                {
+                  "label": "Mehr Meteo",
+                  "text": "Zwei Referenzstationen decken den MVP; weitere Stationen erhöhen die räumliche Auflösung."
+                },
+                {
+                  "label": "Reprocessing",
+                  "text": "Projektneuauflage mit UMLAUF_ID + trip_id-Brücke — Voraussetzung für richtungsspezifische Kaskadenanalyse."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

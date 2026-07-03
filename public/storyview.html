@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<!--
+  SLIDES TEMPLATE — Workspace Portfolio
+  ======================================
+  Basis für /project-case (generate_html_from_json.py).
+  Enthält NUR Gerüst: Reveal.js CDN · Slide-Theme-Link · JS-Navigation.
+  KEIN inline-CSS und KEIN Projektinhalt.
+
+  Single source of truth für das Slide-Design:
+    public/css/slides.css                              (Theme + alle Komponenten)
+    docs/portfolio/templates/styleguide.html           (visuelle Referenz aller Bausteine)
+
+  Platzhalter (vom Generator ersetzt): der Projekt-Titel im title-Tag
+  und der Slides-Platzhalter-Kommentar im body. (Token hier bewusst nicht
+  literal genannt, damit der naive String-Replace nur den body trifft.)
+-->
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zurich Tram Data</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+  <link rel="stylesheet" href="css/slides.css?v=1782924944">
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<!-- Chapter: Ausgangssituation -->
+<section class="title-slide" data-background="#1a3a5c" data-chapter="0" data-chapter-label="Ausgangssituation"><h1>Zurich Tram Data</h1><div class="sub">Vom Rohdaten-Archiv zum Master-Datensatz<br>Recherche · Reduktion · Anreicherung · Vereinigung</div><div class="kpi-row"><div class="kpi"><div class="v">38 GB</div><div class="l">IST-Rohdaten, schweizweit</div></div><div class="kpi"><div class="v">94,4 M</div><div class="l">Halt-Ereignisse im Master</div></div><div class="kpi green"><div class="v">26</div><div class="l">Spalten aus 5 Quellen</div></div><div class="kpi"><div class="v">9</div><div class="l">reproduzierbare Notebooks</div></div></div><div class="meta">github.com/kaywiegand/zh-tram-data</div></section><section data-chapter="0"><div class="agenda-cols"><div class="agenda-head"><span class="slide-kicker">Inhalt</span><h2>Inhalt</h2><p class="subline">Sechs Kapitel, ein durchgehender Datenpfad</p></div><div class="agenda-list"><div class="ag-item"><span class="ag-num">1</span><span class="ag-label">Ausgangssituation</span></div><div class="ag-item"><span class="ag-num">2</span><span class="ag-label">Reduktion — das Überwältigende bändigen</span></div><div class="ag-item"><span class="ag-num">3</span><span class="ag-label">Anreicherung — das Dünne aufwerten</span></div><div class="ag-item"><span class="ag-num">4</span><span class="ag-label">Vereinigung zum Master</span></div><div class="ag-item"><span class="ag-num">5</span><span class="ag-label">Das Resultat</span></div><div class="ag-item"><span class="ag-num">6</span><span class="ag-label">Grenzen & Ausblick</span></div></div></div></section><section data-chapter="0"><h2>Worum es geht</h2><p class="subline">Ziel, Fokus und Einordnung des Projekts</p><div class="pf-grid"><div class="pf-card"><div class="pf-title">Ziel</div><ul><li>Ein einziger, sauberer Master-Datensatz der realen VBZ-Tram-Halte</li><li>Angereichert mit Fahrplan, Wetter, Events und Geografie</li></ul></div><div class="pf-card"><div class="pf-title">Fokus</div><ul><li>Der Weg dorthin: Recherche · Filterung · Zusammenführung · Qualitätssicherung</li><li>Bewusst nicht Modellierung</li></ul></div><div class="pf-card"><div class="pf-title">Einordnung</div><ul><li>Data-Engineering-Grundlage für zh-tram-flow (Analyse & Verspätungsvorhersage)</li></ul></div></div></section><section data-chapter="0"><h2>Die These</h2><p class="subline">Ein Satz, der das Projekt trägt</p><blockquote class="statement">Reduzieren was da ist, anreichern was fehlt.</blockquote><blockquote class="statement">Aus 38 GB schweizweiten Rohdaten wird das Relevante herausgefiltert — und die für sich dünnen Tram-Halte durch gezielt recherchierte Zusatzquellen zu einem Datensatz vereint, mit dem man wirklich arbeiten kann.</blockquote></section><section data-chapter="0"><h2>Die Datenstrategie auf einen Blick</h2><p class="subline">Fünf Quellen, ein Weg zum Master</p><div class="chart-single"><a class="chart-tile" href="../img/vbz_strategy.svg" target="_blank"><img src="../img/vbz_strategy.svg" alt="Gesamte Datenpipeline"></a><div class="caption">IST · GTFS · Meteo · Events · Geo → Merge → vbz_master.parquet.</div></div></section><!-- Chapter: Reduktion -->
+<section data-chapter="1" data-chapter-label="Reduktion"><span class="slide-kicker">Reduktion</span><h2>Die Ausgangslage: das ganze Land</h2><p class="subline">38 GB, jede Fahrt der Schweiz</p><div class="metric-row"><div class="metric"><div class="val">38 GB</div><div class="lbl">komprimierte Archiv-ZIPs</div></div><div class="metric"><div class="val">~400</div><div class="lbl">Transportunternehmen CH</div></div><div class="metric"><div class="val">5</div><div class="lbl">Verkehrsmittel-Arten</div></div></div><blockquote class="statement">Die IST-Rohdaten beschreiben den gesamten öffentlichen Verkehr der Schweiz — jeder Zug, Bus, jedes Tram, Schiff, jede Seilbahn. Relevant ist ein schmaler Ausschnitt: VBZ Tram Zürich.</blockquote></section><section data-chapter="1"><h2>Werkzeugwahl: Polars statt Pandas</h2><p class="subline">Auf den echten Daten gemessen, nicht angenommen</p><table><thead><tr><th></th><th>Pandas</th><th>Polars</th><th>Faktor</th></tr></thead><tbody><tr><td>Ladezeit (alle Parquets)</td><td>25,7 s</td><td>6,6 s</td><td>~4×</td></tr><tr class="hl-green"><td>RAM-Verbrauch</td><td>6,1 GB</td><td>~1,4 GB</td><td>~4×</td></tr></tbody></table><blockquote class="statement">Entscheidung: Polars für alle großen Operationen (IST, Merge). Pandas bleibt für kleine Quellen (GTFS/Meteo/Events) und als Lernreferenz.</blockquote></section><section data-chapter="1"><h2>Von der Schweiz zu VBZ Tram</h2><p class="subline">Jede Filter-Entscheidung begründet</p><div class="steps"><div class="step"><div class="sn">1</div><span class="sl">Betreiber & Produkt</span><p>~400 CH-Unternehmen → BETREIBER_ID 85:3849 (VBZ), PRODUKT_ID = Tram</p></div><div class="step"><div class="sn">2</div><span class="sl">Zeitraum & Format</span><p>2023–2025, nur Format v1 (v2 ab Mitte 2025 ausgeklammert)</p></div><div class="step"><div class="sn">3</div><span class="sl">Messqualität</span><p>nur REAL-GPS-Messungen; Durchfahrten & Zusatzfahrten raus</p></div><div class="step"><div class="sn">4</div><span class="sl">Ausfälle behalten</span><p>FAELLT_AUS_TF = true bewusst drin — extremster Verspätungsfall</p></div><div class="step"><div class="sn">5</div><span class="sl">Spalten</span><p>21 Rohfelder → 10 (KEEP_COLS); Delays & stop_sequence abgeleitet</p></div></div><blockquote class="statement">~11 % der Zeilen entfernt — übrig bleiben echte, planmäßige Halte mit GPS-Zeitstempeln, plus alle Ausfälle.</blockquote></section><!-- Chapter: Anreicherung -->
+<section data-chapter="2" data-chapter-label="Anreicherung"><span class="slide-kicker">Anreicherung</span><h2>Tram-Halte allein erklären wenig</h2><p class="subline">Was macht Verspätung überhaupt nachvollziehbar?</p><blockquote class="statement">Ein Tram-Halt mit einer Verspätungszahl erklärt für sich genommen wenig. Erst der Kontext — Fahrplan, Wetter, Events, Geografie — macht Verspätung nachvollziehbar.</blockquote><blockquote class="statement">Also: vier gezielt recherchierte Zusatzquellen identifizieren und in den Master integrieren.</blockquote></section><section data-chapter="2"><h2>Anreicherung 1 — GTFS (Fahrplan)</h2><p class="subline">woher · was zu tun · wie übernommen</p><div class="pf-grid"><div class="pf-card"><div class="pf-title">Woher</div><ul><li>data.stadt-zuerich.ch · ZIP/TXT · CC0</li><li>3 Jahrgänge, gesamtes ZVV-Netz</li></ul></div><div class="pf-card"><div class="pf-title">Was zu tun</div><ul><li>Auf VBZ-Tram-Linien filtern, 2024 als Primärreferenz</li><li>10+ GTFS-Tabellen → 4 Parquets (routes, stops, shapes, trips)</li></ul></div><div class="pf-card"><div class="pf-title">Wie übernommen</div><ul><li>Join über bpuic (Haltestellen-ID) → stop_name, stop_lat, stop_lon</li><li>+3 Spalten im Master</li></ul></div></div></section><section data-chapter="2"><h2>Anreicherung 2 — Meteo (Wetter)</h2><p class="subline">woher · was zu tun · wie übernommen</p><div class="pf-grid"><div class="pf-card"><div class="pf-title">Woher</div><ul><li>data.stadt-zuerich.ch (UGZ, Wapo, ERZ) · CSV/Parquet · CC0</li><li>3 Quellen, unterschiedliche Auflösung</li></ul></div><div class="pf-card"><div class="pf-title">Was zu tun</div><ul><li>Auf ein stündliches Raster konsolidieren</li><li>2 Referenzstationen: Stampfenbachstrasse (Stadtlage) + Mythenquai (Seelage)</li></ul></div><div class="pf-card"><div class="pf-title">Wie übernommen</div><ul><li>floor(1h) als Join-Schlüssel zu den Tram-Zeitstempeln</li><li>+7 Spalten (u.a. temperature, precipitation, wind_speed, flood_intensity)</li></ul></div></div></section><section data-chapter="2"><h2>Anreicherung 3 — Events (der harte Fall)</h2><p class="subline">Kein Open Data — von Hand aufgebaut</p><div class="pf-grid"><div class="pf-card"><div class="pf-title">Woher</div><ul><li>Keine strukturierte Open-Data-Quelle verfügbar</li><li>Manueller Crawl: Gemini, Perplexity, Transfermarkt</li></ul></div><div class="pf-card"><div class="pf-title">Was zu tun</div><ul><li>Schwellenwert > 1.000 Besucher, Stadt Zürich, 2023–2025</li><li>FCZ/GC-Spiele, Street Parade, Züri Fäscht …</li></ul></div><div class="pf-card"><div class="pf-title">Wie übernommen</div><ul><li>Als CSV aufgebaut, Join über das Datum</li><li>+4 Spalten (event_name, event_type, event_size, event_location)</li></ul></div></div></section><section data-chapter="2"><h2>Anreicherung 4 — Geo (Stadtkreise)</h2><p class="subline">woher · was zu tun · wie übernommen</p><div class="pf-grid"><div class="pf-card"><div class="pf-title">Woher</div><ul><li>data.stadt-zuerich.ch · GeoJSON · CC0</li><li>Stadtkreis-Grenzen, sofort verwendbar</li></ul></div><div class="pf-card"><div class="pf-title">Was zu tun</div><ul><li>Jeder Haltestelle ihren Stadtkreis zuordnen</li></ul></div><div class="pf-card"><div class="pf-title">Wie übernommen</div><ul><li>Spatial Join (Punkt-in-Polygon) auf die GTFS-Stops → district_nr, district_name</li><li>+2 Spalten — bereits im Master, kein nachträglicher Join in der EDA nötig</li></ul></div></div></section><!-- Chapter: Vereinigung -->
+<section data-chapter="3" data-chapter-label="Vereinigung"><span class="slide-kicker">Vereinigung</span><h2>Die Join-Pipeline</h2><p class="subline">Vier Quellen, drei Joins, eine Qualitätsprüfung</p><div class="chart-single"><a class="chart-tile" href="../img/vbz_preparation.svg" target="_blank"><img src="../img/vbz_preparation.svg" alt="Master-Preparation Pipeline"></a><div class="caption">Vier Quellen → drei Joins → Qualitätsprüfung → vbz_master.parquet.</div></div></section><section data-chapter="3"><h2>Left Joins — kein Zeilenverlust</h2><p class="subline">Die wichtigste Join-Entscheidung</p><blockquote class="statement">Left Join überall: jede Tram-Fahrt bleibt erhalten. Fehlende Werte (Sensor-Ausfall, Event-freier Tag) werden null — statt die Zeile zu löschen.</blockquote><blockquote class="statement">Datenverlust durch Join ist der häufigste stille Bug in Merge-Pipelines. Left Join macht ihn unmöglich.</blockquote></section><section data-chapter="3"><h2>Die Tücken im Detail</h2><p class="subline">Zwei Stolpersteine beim Join</p><div class="myth-rows"><div class="myth-row-pair"><div class="myth-assume">Zwei Parquets mit datetime-Spalten joinen einfach</div><div class="myth-arrow">→</div><div class="myth-finding">Meteo via pl.from_pandas → datetime[ns], IST nativ datetime[us]. Polars wirft SchemaError beim Join auf den stundengerundeten Schlüssel. Fix: explizit auf pl.Datetime('us') casten.</div></div><div class="myth-row-pair"><div class="myth-assume">Stündliches Wetter passt direkt zu Tram-Zeitstempeln</div><div class="myth-arrow">→</div><div class="myth-finding">Tram-Halte sind sekundengenau, Wetter stündlich. floor(1h) auf beiden Seiten erzeugt den gemeinsamen Join-Schlüssel.</div></div></div></section><!-- Chapter: Resultat -->
+<section data-chapter="4" data-chapter-label="Resultat"><span class="slide-kicker">Resultat</span><h2>Der Master-Datensatz</h2><p class="subline">Ein Datensatz, mit dem man wirklich arbeiten kann</p><div class="metric-row"><div class="metric"><div class="val">94,4 M</div><div class="lbl">Halt-Ereignisse</div></div><div class="metric good"><div class="val">26</div><div class="lbl">Spalten aus 5 Quellen</div></div><div class="metric"><div class="val">9</div><div class="lbl">Notebooks, 00–08</div></div><div class="metric good"><div class="val">100 %</div><div class="lbl">reproduzierbar</div></div></div><blockquote class="statement">vbz_master.parquet — eine Zeile pro Halt (~230 je Fahrt), angereichert mit Fahrplan, Wetter, Events und Stadtkreis. 1:1 reproduzierbar über die 9 Notebooks, deckungsgleich mit dem Original aus sf_data-research.</blockquote></section><!-- Chapter: Grenzen & Ausblick -->
+<section data-chapter="5" data-chapter-label="Grenzen & Ausblick"><span class="slide-kicker">Grenzen & Ausblick</span><h2>Grenzen & bewusste Versäumnisse</h2><p class="subline">Transparenz über Known Issues</p><div class="reco-grid"><div class="reco"><div class="rn">Grenze 1 · Backlog #1</div><strong>trip_id ↔ GTFS nicht direkt matchbar</strong><ul><li>IST-FAHRT_BEZEICHNER (85:3849:…) und GTFS-trip_id (1.T0.1-10-…): 0 % Overlap</li><li>Richtungsspezifische Analysen & Kaskadeneffekt bräuchten eine Umlauf-basierte Brücke</li></ul></div><div class="reco"><div class="rn">Grenze 2 · Backlog #2</div><strong>UMLAUF_ID beim Reduktions-Schritt verworfen</strong><ul><li>Wäre die direktere Brücke für Kaskadenanalyse als trip_id-Kontinuität</li><li>Nachträglich = volles Reprocessing ab den Roh-ZIPs</li></ul></div></div><blockquote class="statement">Bewusst dokumentierte Grenzen, nicht übersehene Fehler. Transparenz über Known Issues gehört zu sauberem Data Engineering.</blockquote></section><section data-chapter="5"><h2>Ausblick</h2><p class="subline">Was eine nächste Iteration angeht</p><div class="ev-chain"><div class="ev-step"><div class="ev-circle">1</div><div class="ev-body"><strong>Format v2</strong><span>Ab Mitte 2025 wechselt opentransportdata.swiss auf v2 — Integration von 2026 + v2 in einer späteren Iteration.</span></div></div><div class="ev-arrow">↓</div><div class="ev-step"><div class="ev-circle">2</div><div class="ev-body"><strong>Mehr Meteo</strong><span>Zwei Referenzstationen decken den MVP; weitere Stationen erhöhen die räumliche Auflösung.</span></div></div><div class="ev-arrow">↓</div><div class="ev-step climax"><div class="ev-circle">3</div><div class="ev-body"><strong>Reprocessing</strong><span>Projektneuauflage mit UMLAUF_ID + trip_id-Brücke — Voraussetzung für richtungsspezifische Kaskadenanalyse.</span></div></div></div></section><section data-chapter="5"><h2>Einordnung</h2><p class="subline">Das Fundament und der Aufbau</p><blockquote class="statement">zh-tram-data ist das Data-Engineering-Fundament: der saubere, reproduzierbare Master-Datensatz.</blockquote><blockquote class="statement">Analyse, Modellierung und Vorhersage bauen darauf auf — in zh-tram-flow. Zusammen der volle Data-Cycle, sauber in Fundament und Aufbau getrennt.</blockquote></section>
+</div><!-- /slides -->
+</div><!-- /reveal -->
+
+<div id="nav-prev" class="nav-arrow" title="Zurück">←</div>
+<div id="slideticks"></div>
+<div id="nav-next" class="nav-arrow" title="Weiter">→</div>
+<div id="progress-track"><div id="progress-fill"></div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script>
+Reveal.initialize({
+  hash: true,
+  controls: false,
+  progress: false,
+  transition: 'slide',
+  transitionSpeed: 'fast',
+  margin: 0.07,
+  width: 1280,
+  height: 720
+});
+
+// Custom bottom navigation: slide ticks + progress bar
+const slides = Array.from(document.querySelectorAll('.reveal .slides > section'));
+const total = slides.length;
+const progressFill = document.getElementById('progress-fill');
+const tickContainer = document.getElementById('slideticks');
+
+// Detect chapter-start slides via data-chapter-label attribute
+const chapterStarts = {};
+slides.forEach((section, i) => {
+  if (section.hasAttribute('data-chapter-label')) {
+    chapterStarts[i] = i === 0 ? 'Titel' : section.dataset.chapterLabel;
+  }
+});
+
+// Build tick elements
+for (let i = 0; i < total; i++) {
+  const wrap = document.createElement('div');
+  wrap.className = 'stk-wrap';
+  if (chapterStarts.hasOwnProperty(i)) {
+    wrap.classList.add('stk-chapter');
+    const lbl = document.createElement('span');
+    lbl.className = 'stk-ch-label';
+    lbl.textContent = chapterStarts[i];
+    wrap.appendChild(lbl);
+  }
+  const line = document.createElement('span');
+  line.className = 'stk';
+  const num = document.createElement('span');
+  num.className = 'stk-num';
+  num.textContent = i + 1;
+  wrap.appendChild(line);
+  wrap.appendChild(num);
+  tickContainer.appendChild(wrap);
+}
+
+const ticks = tickContainer.querySelectorAll('.stk-wrap');
+
+// Click a tick (or its number) to jump straight to that slide
+ticks.forEach((t, i) => t.addEventListener('click', () => Reveal.slide(i)));
+
+// Prev / next arrows flanking the tick bar
+const prevArrow = document.getElementById('nav-prev');
+const nextArrow = document.getElementById('nav-next');
+prevArrow.addEventListener('click', () => Reveal.prev());
+nextArrow.addEventListener('click', () => Reveal.next());
+
+function updateNav() {
+  const idx = Reveal.getState().indexh;
+  ticks.forEach((t, i) => {
+    t.classList.remove('stk-past', 'stk-current');
+    if (i === idx) t.classList.add('stk-current');
+    else if (i < idx) t.classList.add('stk-past');
+  });
+  // Invert nav colors on dark title / closing slides
+  const current = slides[idx];
+  document.body.classList.toggle('nav-invert', !!current && current.classList.contains('title-slide'));
+  // Only show the arrow that can actually navigate
+  prevArrow.classList.toggle('nav-hidden', idx === 0);
+  nextArrow.classList.toggle('nav-hidden', idx === total - 1);
+  requestAnimationFrame(() => {
+    const track = document.getElementById('progress-track');
+    const tick = ticks[idx];
+    if (!track || !tick) return;
+    const stkLine = tick.querySelector('.stk');
+    if (!stkLine) return;
+    const trackRect = track.getBoundingClientRect();
+    const stkRect = stkLine.getBoundingClientRect();
+    const centerX = stkRect.left + stkRect.width / 2;
+    const pct = trackRect.width > 0
+      ? Math.max(0, Math.min(100, (centerX - trackRect.left) / trackRect.width * 100))
+      : 0;
+    progressFill.style.width = pct + '%';
+  });
+}
+
+Reveal.on('slidechanged', updateNav);
+Reveal.on('ready', updateNav);
+updateNav();
+</script>
+</body>
+</html>

@@ -1,72 +1,236 @@
 <!DOCTYPE html>
+<!--
+  ⚙️  GENERIERT von scripts/generate_index_from_portfolio.py aus public/md/portfolio.md.
+  NICHT public/index.html direkt editieren — wird beim nächsten Lauf überschrieben.
+  Layout + kuratierte Hub-Copy hier im Template ändern.
+  Dynamische Werte ({{...}}) kommen aus portfolio.md (Name, Zeitraum, URLs).
+-->
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zurich Tram Data – Data Engineering Case</title>
-    <style>
-        body { font-family: -apple-system, sans-serif; max-width: 900px;
-               margin: 40px auto; padding: 0 20px; color: #333; }
-        h1   { color: #2E86AB; border-bottom: 2px solid #2E86AB; padding-bottom: 8px; }
-        h2   { color: #555; margin-top: 32px; }
-        .placeholder { background: #f5f5f5; border-left: 4px solid #2E86AB;
-                        padding: 12px 16px; margin: 16px 0; border-radius: 0 4px 4px 0; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zurich Tram Data — Portfolio</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #2d3748; line-height: 1.6; background: #f8fafc;
+    }
+
+    /* ─── Header ─────────────────────────────── */
+    header {
+      background: #1a3a5c;
+      color: white; padding: 4rem 2rem 3.5rem;
+    }
+    .header-inner { max-width: 900px; margin: 0 auto; }
+    header h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 0.35rem; }
+    header .tagline  { font-size: 1rem; opacity: 0.85; margin-bottom: 0.15rem; }
+    header .subtitle { font-size: 1rem; opacity: 0.85; margin-bottom: 0; }
+
+    .kpi-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 1.6rem; }
+    .kpi { background: #fff; border: 1px solid #dde8f0;
+           border-radius: 5px; padding: 10px 18px; text-align: center; min-width: 110px; }
+    .kpi .v { font-size: 1.5rem; font-weight: 700; color: #1a3a5c; }
+    .kpi .l { font-size: 0.68rem; color: #888; letter-spacing: 0.04em; margin-top: 2px; }
+    .kpi.positive .v { color: #27ae60; }
+    .kpi.negative .v { color: #c0392b; }
+    .kpi.warning .v { color: #e67e22; }
+
+    /* ─── Main rhythm ────────────────────────────
+       First block ↔ header  ==  block ↔ block  ==  last block ↔ footer  ==  4rem */
+    main { max-width: 900px; margin: 0 auto; padding: 4rem 0 0; }
+    section { margin-bottom: 4rem; }
+
+    .section-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.02em;
+      color: #2E86AB; margin-bottom: 0.5rem;
+    }
+    h2 { font-size: 1.35rem; font-weight: 700; color: #1a3a5c; margin-bottom: 0.5rem; }
+    .section-intro { font-size: 0.92rem; color: #555; margin-bottom: 0.5rem; line-height: 1.6; }
+
+    /* ─── View Cards Grid (3 columns) ─────────────── */
+    .view-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-top: 1.2rem;
+    }
+    @media (max-width: 760px) {
+      .view-grid { grid-template-columns: 1fr; }
+    }
+
+    .view-card {
+      background: #fff; border: 1px solid #dde8f0;
+      padding: 22px; border-top: 4px solid #2E86AB;
+      border-radius: 5px;
+      text-decoration: none; color: inherit;
+      transition: box-shadow 0.18s, transform 0.18s;
+      display: flex; flex-direction: column;
+    }
+    .view-card:hover { box-shadow: 0 4px 24px rgba(46,134,171,0.2); transform: translateY(-2px); }
+
+    .view-label {
+      font-size: 0.74rem; font-weight: 700; letter-spacing: 0.02em; margin-bottom: 8px;
+      color: #2E86AB;
+    }
+
+    .view-card h3 { font-size: 1.15rem; color: #1a3a5c; margin-bottom: 6px; }
+    .view-card .view-desc { font-size: 0.85rem; color: #555; margin-bottom: 14px; line-height: 1.5; flex-grow: 1; }
+    .view-meta { display: flex; gap: 12px; align-items: center; margin-top: 12px; flex-wrap: wrap; }
+    .view-time { font-size: 0.75rem; color: #888; font-weight: 500; }
+    .view-badge {
+      font-size: 0.7rem; font-weight: 600; padding: 3px 9px; border-radius: 5px;
+      background: #e6f3ff; color: #0066cc;
+    }
+
+    /* ─── Quick Links ─────────────────────────── */
+    .links-section {
+      padding: 0; margin-top: 1.2rem;
+    }
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .quick-link {
+      display: flex; align-items: center; gap: 10px;
+      padding: 12px 14px; border-radius: 5px;
+      text-decoration: none; color: #2E86AB;
+      background: #f0f7fb; border: 1px solid #c8e0ef;
+      transition: background 0.15s, color 0.15s;
+      font-size: 0.9rem; font-weight: 500;
+    }
+    .quick-link:hover { background: #dde8f0; color: #1a3a5c; }
+    .quick-link::before { content: "→"; font-weight: 700; }
+
+    /* ─── Footer ─────────────────────────── */
+    footer {
+      background: #f0f5f9; border-top: 1px solid #dde8f0;
+      padding: 2rem; text-align: center; color: #888; font-size: 0.85rem;
+      margin-top: 4rem;
+    }
+    footer a { color: #2E86AB; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
 </head>
 <body>
+
+<header>
+  <div class="header-inner">
     <h1>Zurich Tram Data</h1>
-    <p>Sammlung und Anreicherung von Daten des Zürcher Tram-Netzes der VBZ — die
-       Data-Engineering-Grundlage für
-       <a href="https://github.com/kaywiegand/zh-tram-flow">zh-tram-flow</a>
-       (Analyse &amp; Verspätungsvorhersage).</p>
+    <p class="tagline">Vom Rohdaten-Archiv zum Master-Datensatz</p>
+    <p class="subtitle">Data-Engineering-Pipeline für das Zürcher Tramnetz (VBZ) | 2023–2025 (IST-Format v1)</p>
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="v">38 GB</div>
+        <div class="l">IST-Rohdaten, schweizweit</div>
+      </div>
+      <div class="kpi">
+        <div class="v">94,4 M</div>
+        <div class="l">Halt-Ereignisse im Master</div>
+      </div>
+      <div class="kpi positive">
+        <div class="v">26</div>
+        <div class="l">Spalten aus 5 Quellen</div>
+      </div>
+      <div class="kpi">
+        <div class="v">9</div>
+        <div class="l">reproduzierbare Notebooks</div>
+      </div>
+    </div>
+  </div>
+</header>
 
-    <h2>Motivation</h2>
-    <p>Entstanden als Abschlussarbeit einer Data-Science-Fortbildung. Die Ausgangsfrage war
-       nicht "welches Modell", sondern "welches Thema" — eines, an dem sich Data Science nicht
-       abstrakt anfühlt, sondern nachvollziehbar an einem Alltagsbeispiel mit echtem Impact: auf
-       den Alltag, die Lebensqualität, im besten Fall auch auf Nachhaltigkeit.</p>
-    <p>Die Recherche führte über den ÖPNV nach Zürich: Die Stadt betreibt eine außergewöhnlich
-       gute Open-Data-Landschaft für ihr Tramnetz (VBZ) — frei zugänglich, gut dokumentiert,
-       granular genug für echte Analyse. Ein Musterbeispiel dafür, wie Daten sinnstiftend
-       eingesetzt werden können — nicht als Übung, sondern mit greifbarem Bezug zum Alltag der
-       Stadt.</p>
+<main>
 
-    <h2>Beschreibung</h2>
-    <p>Ziel ist ein einziger, sauberer Master-Datensatz, der die tatsächlichen Tram-Halte der
-       VBZ mit Fahrplan, Wetter und Stadt-Events verknüpft. Fokus liegt bewusst auf dem Weg
-       dorthin — Recherche, Filterung, Zusammenführung, Qualitätssicherung — nicht auf
-       Modellierung. Jede Filter-Entscheidung ist dokumentiert (siehe
-       <code>notebooks/00_introduction.ipynb</code>): warum von ~400 Schweizer
-       Transportunternehmen nur VBZ Tram übrig bleibt, warum 21 Rohspalten auf 10 reduziert
-       wurden, warum Polars statt Pandas.</p>
+  <!-- ─── Project Context ─────────────────────── -->
+  <section>
+    <div class="section-label">Motivation & Ansatz</div>
+    <h2>Das Projekt</h2>
+    <p class="section-intro">
+      <strong>Ziel:</strong> Ein einziger, sauberer Master-Datensatz der realen VBZ-Tram-Halte — angereichert mit Fahrplan, Wetter, Events und Geografie. Die Data-Engineering-Grundlage für zh-tram-flow.
+    </p>
+    <p class="section-intro">
+      <strong>These:</strong> Reduzieren was da ist, anreichern was fehlt. Aus 38 GB schweizweiten Rohdaten wird das Relevante herausgefiltert und durch gezielt recherchierte Zusatzquellen zu einem Datensatz vereint, mit dem man wirklich arbeiten kann.
+    </p>
+    <p class="section-intro">
+      <strong>Reduktion:</strong> ~400 Transportunternehmen → VBZ Tram, Polars statt Pandas (~4× schneller und sparsamer, per Benchmark belegt), 21 → 10 Spalten, ~11 % Zeilen entfernt.
+    </p>
+    <p class="section-intro">
+      <strong>Anreicherung:</strong> Vier Kontextquellen recherchiert und integriert — GTFS, Meteo, Events (kein Open Data → Handaufbau), Geo. 10 → 26 Spalten über Left- und Spatial-Joins.
+    </p>
+    <p class="section-intro">
+      <strong>Resultat:</strong> vbz_master.parquet — 94,4 M Halt-Ereignisse × 26 Spalten, 1:1 reproduzierbar über 9 Notebooks, validiert und deckungsgleich mit dem Original.
+    </p>
+  </section>
 
-    <h2>Datenquellen</h2>
-    <table>
-        <tr><th>Schicht</th><th>Quelle</th><th>Format</th><th>Herausforderung</th></tr>
-        <tr><td><strong>IST-Daten</strong> (Verkehr)</td><td>archive.opentransportdata.swiss</td><td>ZIP/CSV</td><td>38 GB komprimiert, schweizweit</td></tr>
-        <tr><td><strong>GTFS</strong> (Fahrplan)</td><td>data.stadt-zuerich.ch</td><td>ZIP/TXT</td><td>3 Jahrgänge, gesamtes ZVV-Netz</td></tr>
-        <tr><td><strong>Meteo</strong> (Wetter)</td><td>data.stadt-zuerich.ch (UGZ, Wapo, ERZ)</td><td>CSV/Parquet</td><td>3 Quellen, unterschiedliche Auflösung</td></tr>
-        <tr><td><strong>Events</strong> (Kalender)</td><td>Manueller Crawl (Gemini, Perplexity, Transfermarkt)</td><td>CSV</td><td>Keine strukturierte Quelle verfügbar</td></tr>
-        <tr><td><strong>Geo</strong> (Stadtkreise)</td><td>data.stadt-zuerich.ch</td><td>GeoJSON</td><td>Sofort verwendbar</td></tr>
-    </table>
+  <!-- ─── Drei Portfolio-Views ─────────────────────── -->
+  <section>
+    <div class="section-label">Wähle deine Perspektive</div>
+    <h2>Detaillierte Projekt Präsentationen</h2>
+    <p class="section-intro">
+      Das Projekt in drei kuratierten Ansichten für verschiedene Zielgruppen und Zeitbudgets.<br>
+      Jede Präsentation nutzt die gleichen Daten — andere Dramaturgie und Fokus.
+    </p>
 
-    <h2>Prozess</h2>
-    <p>Zum Vergrößern anklicken.</p>
-    <table>
-    <tr>
-    <td valign="top"><a href="img/vbz_strategy.svg" target="_blank"><img src="img/vbz_strategy.svg" alt="Gesamte Datenpipeline: IST-Daten, GTFS, Meteo, Events -> Merge -> vbz_master.parquet" height="480"></a></td>
-    <td valign="top"><a href="img/vbz_preparation.svg" target="_blank"><img src="img/vbz_preparation.svg" alt="Master-Preparation Join-Pipeline: vier Quellen -> drei Joins -> Qualitätsprüfung -> vbz_master.parquet" height="480"></a></td>
-    </tr>
-    </table>
+    <div class="view-grid">
+      <a href="overview.html" class="view-card overview">
+        <div class="view-label">Overview</div>
+        <h3>Business & Ergebnis</h3>
+        <p class="view-desc">Der Datensatz und der Weg dorthin, verdichtet für Stakeholder und Recruiter. Fokus auf Reduktion, Anreicherung und Resultat.</p>
+        <div class="view-meta">
+          <span class="view-time">⏱️ 8 Min</span>
+          <span class="view-badge blue">HR · Business</span>
+        </div>
+      </a>
+      <a href="techview.html" class="view-card techview">
+        <div class="view-label">Tech View</div>
+        <h3>Engineering Deep-Dive</h3>
+        <p class="view-desc">Werkzeugwahl, Join-Mechanik, Schema und Validierung im Detail. Für Data Engineers und Tech Leads.</p>
+        <div class="view-meta">
+          <span class="view-time">⏱️ 15 Min</span>
+          <span class="view-badge dark">Data Engineering</span>
+        </div>
+      </a>
+      <a href="storyview.html" class="view-card storyview">
+        <div class="view-label">Story View</div>
+        <h3>Der ganze Weg</h3>
+        <p class="view-desc">Von 38 GB Rohdaten zum Master: Reduktion, Anreicherung, Vereinigung — vollständig erzählt. Portfolio-Vollansicht.</p>
+        <div class="view-meta">
+          <span class="view-time">⏱️ 20 Min</span>
+          <span class="view-badge purple">Portfolio</span>
+        </div>
+      </a>
+    </div>
+  </section>
 
-    <h2>Ergebnis</h2>
-    <p><code>data/interim/vbz_master.parquet</code> — <strong>94.358.531 Zeilen × 26 Spalten</strong>:
-       jeder reale VBZ-Tram-Halt 2023–2025 (eine Zeile pro Halt, nicht pro Fahrt — ~230 Halte je
-       Fahrt im Schnitt), angereichert mit Fahrplan (inkl. Stadtkreis via Spatial Join), Wetter
-       (stündlich) und Event-Kalender. Reproduzierbar über die 9 nummerierten Notebooks
-       (<code>00</code>–<code>08</code>), siehe <code>notebooks/00_introduction.ipynb</code> für
-       die vollständige Strategie.</p>
-    <p>Weiterverwendet in <a href="https://github.com/kaywiegand/zh-tram-flow">zh-tram-flow</a>
-       für Analyse, Modellierung und Dashboard.</p>
+  <!-- ─── Quick Links ─────────────────────── -->
+  <section>
+    <div class="section-label">Schneller Zugriff</div>
+    <h2>Weitere Ressourcen</h2>
+
+    <div class="links-section">
+      <div class="links-grid">
+        <a href="https://github.com/kaywiegand/zh-tram-data" class="quick-link">GitHub-Repo</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>
+    Zurich Tram Data — Data-Engineering-Grundlage für zh-tram-flow<br>
+    <a href="https://github.com/kaywiegand">Kay Wiegand</a> |
+    <a href="https://github.com/kaywiegand/zh-tram-data">GitHub</a> |
+    2023–2025 (IST-Format v1)
+  </p>
+  <p style="margin-top: 1rem; font-size: 0.75rem; opacity: 0.7;">
+    Portfolio-Pipeline mechanisiert (2026-06-19) ·
+    <a href="md/portfolio.md">Single Source of Truth</a>
+  </p>
+</footer>
+
 </body>
 </html>
