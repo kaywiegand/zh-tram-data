@@ -9,13 +9,13 @@
 
 setup: ## Virtuelle Umgebung erstellen + Dependencies installieren
 	uv venv
-	. .venv/bin/activate && uv pip install -e ".[dan,dev]"
+	. .venv/bin/activate && uv pip install -e ".[da,dev]"
 	@echo ""
 	@echo "✅ Setup fertig. Umgebung aktivieren mit:"
 	@echo "   source .venv/bin/activate"
 
 install: ## Dependencies (neu) installieren
-	. .venv/bin/activate && uv pip install -e ".[dan,dev]"
+	. .venv/bin/activate && uv pip install -e ".[da,dev]"
 
 kernel: ## Jupyter Kernel registrieren
 	. .venv/bin/activate && python -m ipykernel install --user --name zh_tram_data --display-name "Python (zh_tram_data)"

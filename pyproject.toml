@@ -7,11 +7,11 @@
 #   uv venv                          → erstellt .venv/
 #   .venv\Scripts\activate           → Umgebung aktivieren (Windows)
 #   source .venv/bin/activate        → Umgebung aktivieren (Mac/Linux)
-#   uv pip install -e ".[dan]"  → installiert alle Dependencies + dieses Paket
+#   uv pip install -e ".[da]"  → installiert alle Dependencies + dieses Paket
 #
 # Neue Pakete hinzufügen:
 #   Eintrag in dependencies[] unten ergänzen, dann:
-#   uv pip install -e ".[dan]"  → erneut ausführen
+#   uv pip install -e ".[da]"  → erneut ausführen
 
 [build-system]
 requires      = ["setuptools>=68", "wheel"]
@@ -45,12 +45,9 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dsc = [
-  "xgboost>=2.0",
-  "shap>=0.43",
-  "optuna>=3.0",
-]
-dan = [
+# DE-Projekt erbt die DA-Struktur → Extra heißt `da` (Viz-Stack für Notebooks/Reports).
+# Kein ML-Extra (`dsc`) — dieses Projekt modelliert nicht.
+da = [
   "plotly>=5.0",
   "folium>=0.15",
 ]

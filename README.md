@@ -102,7 +102,7 @@ source .venv/bin/activate   # Mac/Linux
 ### 2. Dependencies + Projektpaket installieren
 
 ```bash
-uv pip install -e ".[dan]"
+uv pip install -e ".[da]"
 ```
 
 ### 3. Jupyter Kernel registrieren
