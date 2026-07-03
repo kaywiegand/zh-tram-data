@@ -46,6 +46,9 @@ build/
 # Lokal behalten, aber nicht im öffentlichen Repo (folium/plotly ~11 MB Blobs).
 notebooks/appendix/
 
+# ── Explorations-PDFs (geopandas-Maps) — lokal behalten, nicht im Repo ──────
+public/img/*.pdf
+
 # ── IDE & OS ───────────────────────────────────────────────────────────────
 .vscode/settings.json
 .idea/

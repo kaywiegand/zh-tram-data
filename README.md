@@ -4,6 +4,19 @@
 
 ---
 
+## TL;DR
+
+- **94.358.531 Halt-Ereignisse × 26 Spalten** — ein sauberer Master-Datensatz aller realen
+  VBZ-Tram-Halte 2023–2025 (eine Zeile pro Halt).
+- **Fünf Datenquellen zusammengeführt** — IST-Verkehr, GTFS-Fahrplan, Meteo, Event-Kalender und
+  Geo (Stadtkreis-Zuordnung via Spatial Join).
+- **Von ~400 Schweizer Transportunternehmen auf VBZ-Tram gefiltert** — aus 38 GB komprimierten
+  IST-Rohdaten, jede Filter-Entscheidung dokumentiert.
+- **21 Rohspalten bewusst auf 10 reduziert**, Polars statt Pandas als begründete Werkzeugwahl.
+- **Reproduzierbar** über neun nummerierte Notebooks (`00`–`08`).
+
+---
+
 ## Projekt
 
 Sammlung und Anreicherung von Daten des Zürcher Tram-Netzes der VBZ — die
@@ -56,8 +69,8 @@ Zum Vergrößern anklicken.
 
 <table>
 <tr>
-<td valign="top"><a href="assets/vbz_strategy.svg" target="_blank"><img src="assets/vbz_strategy.svg" alt="Gesamte Datenpipeline: IST-Daten, GTFS, Meteo, Events -> Merge -> vbz_master.parquet" height="480"></a></td>
-<td valign="top"><a href="assets/vbz_preparation.svg" target="_blank"><img src="assets/vbz_preparation.svg" alt="Master-Preparation Join-Pipeline: vier Quellen -> drei Joins -> Qualitätsprüfung -> vbz_master.parquet" height="480"></a></td>
+<td valign="top"><a href="public/img/vbz_strategy.svg" target="_blank"><img src="public/img/vbz_strategy.svg" alt="Gesamte Datenpipeline: IST-Daten, GTFS, Meteo, Events -> Merge -> vbz_master.parquet" height="480"></a></td>
+<td valign="top"><a href="public/img/vbz_preparation.svg" target="_blank"><img src="public/img/vbz_preparation.svg" alt="Master-Preparation Join-Pipeline: vier Quellen -> drei Joins -> Qualitätsprüfung -> vbz_master.parquet" height="480"></a></td>
 </tr>
 </table>
 

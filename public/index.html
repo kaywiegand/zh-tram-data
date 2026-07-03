@@ -15,21 +15,58 @@
 </head>
 <body>
     <h1>Zurich Tram Data</h1>
-    <p><em>Executive Summary Report – generiert aus public/</em></p>
+    <p>Sammlung und Anreicherung von Daten des Zürcher Tram-Netzes der VBZ — die
+       Data-Engineering-Grundlage für
+       <a href="https://github.com/kaywiegand/zh-tram-flow">zh-tram-flow</a>
+       (Analyse &amp; Verspätungsvorhersage).</p>
 
-    <h2>🎯 Problem Statement</h2>
-    <div class="placeholder">Platzhalter – hier das Business-Problem beschreiben.</div>
+    <h2>Motivation</h2>
+    <p>Entstanden als Abschlussarbeit einer Data-Science-Fortbildung. Die Ausgangsfrage war
+       nicht "welches Modell", sondern "welches Thema" — eines, an dem sich Data Science nicht
+       abstrakt anfühlt, sondern nachvollziehbar an einem Alltagsbeispiel mit echtem Impact: auf
+       den Alltag, die Lebensqualität, im besten Fall auch auf Nachhaltigkeit.</p>
+    <p>Die Recherche führte über den ÖPNV nach Zürich: Die Stadt betreibt eine außergewöhnlich
+       gute Open-Data-Landschaft für ihr Tramnetz (VBZ) — frei zugänglich, gut dokumentiert,
+       granular genug für echte Analyse. Ein Musterbeispiel dafür, wie Daten sinnstiftend
+       eingesetzt werden können — nicht als Übung, sondern mit greifbarem Bezug zum Alltag der
+       Stadt.</p>
 
-    <h2>📊 Key Findings</h2>
-    <div class="placeholder">Platzhalter – die 3 wichtigsten Erkenntnisse.</div>
+    <h2>Beschreibung</h2>
+    <p>Ziel ist ein einziger, sauberer Master-Datensatz, der die tatsächlichen Tram-Halte der
+       VBZ mit Fahrplan, Wetter und Stadt-Events verknüpft. Fokus liegt bewusst auf dem Weg
+       dorthin — Recherche, Filterung, Zusammenführung, Qualitätssicherung — nicht auf
+       Modellierung. Jede Filter-Entscheidung ist dokumentiert (siehe
+       <code>notebooks/00_introduction.ipynb</code>): warum von ~400 Schweizer
+       Transportunternehmen nur VBZ Tram übrig bleibt, warum 21 Rohspalten auf 10 reduziert
+       wurden, warum Polars statt Pandas.</p>
 
-    <h2>📈 Ergebnisse</h2>
-    <div class="placeholder">Platzhalter – Metriken, Modell-Performance oder Analyse-Resultate.</div>
+    <h2>Datenquellen</h2>
+    <table>
+        <tr><th>Schicht</th><th>Quelle</th><th>Format</th><th>Herausforderung</th></tr>
+        <tr><td><strong>IST-Daten</strong> (Verkehr)</td><td>archive.opentransportdata.swiss</td><td>ZIP/CSV</td><td>38 GB komprimiert, schweizweit</td></tr>
+        <tr><td><strong>GTFS</strong> (Fahrplan)</td><td>data.stadt-zuerich.ch</td><td>ZIP/TXT</td><td>3 Jahrgänge, gesamtes ZVV-Netz</td></tr>
+        <tr><td><strong>Meteo</strong> (Wetter)</td><td>data.stadt-zuerich.ch (UGZ, Wapo, ERZ)</td><td>CSV/Parquet</td><td>3 Quellen, unterschiedliche Auflösung</td></tr>
+        <tr><td><strong>Events</strong> (Kalender)</td><td>Manueller Crawl (Gemini, Perplexity, Transfermarkt)</td><td>CSV</td><td>Keine strukturierte Quelle verfügbar</td></tr>
+        <tr><td><strong>Geo</strong> (Stadtkreise)</td><td>data.stadt-zuerich.ch</td><td>GeoJSON</td><td>Sofort verwendbar</td></tr>
+    </table>
 
-    <h2>📋 Empfehlungen</h2>
-    <div class="placeholder">Platzhalter – konkrete nächste Schritte.</div>
+    <h2>Prozess</h2>
+    <p>Zum Vergrößern anklicken.</p>
+    <table>
+    <tr>
+    <td valign="top"><a href="img/vbz_strategy.svg" target="_blank"><img src="img/vbz_strategy.svg" alt="Gesamte Datenpipeline: IST-Daten, GTFS, Meteo, Events -> Merge -> vbz_master.parquet" height="480"></a></td>
+    <td valign="top"><a href="img/vbz_preparation.svg" target="_blank"><img src="img/vbz_preparation.svg" alt="Master-Preparation Join-Pipeline: vier Quellen -> drei Joins -> Qualitätsprüfung -> vbz_master.parquet" height="480"></a></td>
+    </tr>
+    </table>
 
-    <h2>🖼️ Visualisierungen</h2>
-    <div class="placeholder">Platzhalter – Plots aus public/img/ hier einbinden.</div>
+    <h2>Ergebnis</h2>
+    <p><code>data/interim/vbz_master.parquet</code> — <strong>94.358.531 Zeilen × 26 Spalten</strong>:
+       jeder reale VBZ-Tram-Halt 2023–2025 (eine Zeile pro Halt, nicht pro Fahrt — ~230 Halte je
+       Fahrt im Schnitt), angereichert mit Fahrplan (inkl. Stadtkreis via Spatial Join), Wetter
+       (stündlich) und Event-Kalender. Reproduzierbar über die 9 nummerierten Notebooks
+       (<code>00</code>–<code>08</code>), siehe <code>notebooks/00_introduction.ipynb</code> für
+       die vollständige Strategie.</p>
+    <p>Weiterverwendet in <a href="https://github.com/kaywiegand/zh-tram-flow">zh-tram-flow</a>
+       für Analyse, Modellierung und Dashboard.</p>
 </body>
 </html>
