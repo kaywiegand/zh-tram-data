@@ -76,8 +76,8 @@
       "nav_label": "Genese & Motivation",
       "slides": [
         {
-          "title": "Motivation",
-          "subtitle": "Der Grundgedanke",
+          "title": "Persönliche Motivation",
+          "subtitle": "Ein datengetriebenes Thema mit gesellschaftlicher Relevanz",
           "content": [
             {
               "type": "statement",
@@ -97,8 +97,8 @@
       "nav_label": "Ausgangssituation",
       "slides": [
         {
-          "title": "Worum es geht",
-          "subtitle": "Ziel, Fokus und Einordnung des Projekts",
+          "title": "Der Projektrahmen",
+          "subtitle": "Zielsetzung, Scope und Einordnung im Data-Lifecycle",
           "content": [
             {
               "type": "sections",
@@ -129,8 +129,8 @@
           ]
         },
         {
-          "title": "Die Datenstrategie auf einen Blick",
-          "subtitle": "Fünf Quellen, ein Weg zum Master",
+          "title": "Die Datenstrategie",
+          "subtitle": "Fünf Datenquellen, ein reproduzierbarer Master-Datensatz",
           "content": [
             {
               "type": "chart_refs",
@@ -212,7 +212,7 @@
       "slides": [
         {
           "title": "Die Join-Pipeline",
-          "subtitle": "Vier Quellen, drei Joins, eine Qualitätsprüfung",
+          "subtitle": "Vier Quellen über drei Joins zum validierten Master",
           "content": [
             {
               "type": "chart_refs",
@@ -233,7 +233,7 @@
       "slides": [
         {
           "title": "Der Master-Datensatz",
-          "subtitle": "Ein Datensatz, mit dem man wirklich arbeiten kann",
+          "subtitle": "Analysefertige, reproduzierbare Datengrundlage",
           "content": [
             {
               "type": "figures",
@@ -273,8 +273,8 @@
       "nav_label": "Grenzen & Ausblick",
       "slides": [
         {
-          "title": "Grenzen & bewusste Entscheidungen",
-          "subtitle": "Transparenz über die Scope-Grenzen dieser Auflage",
+          "title": "Bewusste Limitierung",
+          "subtitle": "Dokumentierte Scope-Entscheidungen dieser Ausbaustufe",
           "content": [
             {
               "type": "recommendations",
@@ -306,8 +306,8 @@
         },
         {
           "role": "closing",
-          "title": "Einordnung",
-          "subtitle": "Das Fundament und der Aufbau",
+          "title": "Fundament & Aufbau",
+          "subtitle": "Data-Engineering-Fundament für das Analyse-Projekt zh-tram-flow",
           "content": [
             {
               "type": "statement",

@@ -76,8 +76,8 @@
       "nav_label": "Ausgangssituation",
       "slides": [
         {
-          "title": "Die Datenstrategie auf einen Blick",
-          "subtitle": "Fünf Quellen, ein Weg zum Master",
+          "title": "Die Datenstrategie",
+          "subtitle": "Fünf Datenquellen, ein reproduzierbarer Master-Datensatz",
           "content": [
             {
               "type": "chart_refs",
@@ -98,7 +98,7 @@
       "slides": [
         {
           "title": "Schweiz ÖPNV IST-Daten",
-          "subtitle": "38 GB Daten für jede Fahrt (Halt) müssen reduziert werden",
+          "subtitle": "38 GB schweizweite Ist-Daten als Ausgangsvolumen",
           "content": [
             {
               "type": "figures",
@@ -129,7 +129,7 @@
         },
         {
           "title": "Polars statt Pandas",
-          "subtitle": "Vergleich und Entscheidung des passenden Werkzeugs",
+          "subtitle": "Werkzeugwahl per Benchmark auf dem realen Datenvolumen",
           "content": [
             {
               "type": "comparison_table",
@@ -199,8 +199,8 @@
           ]
         },
         {
-          "title": "Von der Schweiz zu VBZ Tram",
-          "subtitle": "Jede Filter-Entscheidung begründet",
+          "title": "Auf VBZ Tram",
+          "subtitle": "Regelbasierte Filterung von ~400 Betreibern auf das VBZ-Tramnetz",
           "content": [
             {
               "type": "steps",
@@ -245,8 +245,8 @@
       "nav_label": "Anreicherung",
       "slides": [
         {
-          "title": "Anreicherung 1 — GTFS (Fahrplan)",
-          "subtitle": "woher · was zu tun · wie übernommen",
+          "title": "Fahrplan (GTFS)",
+          "subtitle": "Soll-Fahrplan und Haltestellen-Stammdaten aus dem ZVV-Netz",
           "content": [
             {
               "type": "sections",
@@ -279,8 +279,8 @@
           ]
         },
         {
-          "title": "Anreicherung 2 — Meteo (Wetter)",
-          "subtitle": "woher · was zu tun · wie übernommen",
+          "title": "Wetter (Meteo)",
+          "subtitle": "Drei heterogene Quellen, konsolidiert auf Stundenbasis",
           "content": [
             {
               "type": "sections",
@@ -313,8 +313,8 @@
           ]
         },
         {
-          "title": "Anreicherung 3 — Events (der harte Fall)",
-          "subtitle": "Kein Open Data — von Hand aufgebaut",
+          "title": "Events nach Größe",
+          "subtitle": "Fehlende Open-Data-Quelle durch eigene Recherche geschlossen",
           "content": [
             {
               "type": "sections",
@@ -347,8 +347,8 @@
           ]
         },
         {
-          "title": "Anreicherung 4 — Geo (Stadtkreise)",
-          "subtitle": "woher · was zu tun · wie übernommen",
+          "title": "Stadtkreise (Geo)",
+          "subtitle": "Räumliche Zuordnung der Haltestellen per Spatial Join",
           "content": [
             {
               "type": "sections",
@@ -386,7 +386,7 @@
       "slides": [
         {
           "title": "Die Join-Pipeline",
-          "subtitle": "Vier Quellen, drei Joins, eine Qualitätsprüfung",
+          "subtitle": "Vier Quellen über drei Joins zum validierten Master",
           "content": [
             {
               "type": "chart_refs",
@@ -401,8 +401,8 @@
           ]
         },
         {
-          "title": "Left Joins — kein Zeilenverlust",
-          "subtitle": "Die wichtigste Join-Entscheidung",
+          "title": "Left Join als Standard",
+          "subtitle": "Vollständigkeitserhalt: Fehlwerte als null statt Zeilenverlust",
           "content": [
             {
               "type": "statement",
@@ -417,8 +417,8 @@
           ]
         },
         {
-          "title": "Die Tücken im Detail",
-          "subtitle": "Zwei Stolpersteine beim Join",
+          "title": "Zeitstempel als Herausforderung",
+          "subtitle": "Datentyp- und Zeitraster-Fallstricke beim Zusammenführen",
           "content": [
             {
               "type": "contrasts",
@@ -442,7 +442,7 @@
       "slides": [
         {
           "title": "Der Master-Datensatz",
-          "subtitle": "Ein Datensatz, mit dem man wirklich arbeiten kann",
+          "subtitle": "Analysefertige, reproduzierbare Datengrundlage",
           "content": [
             {
               "type": "figures",
@@ -577,8 +577,8 @@
       "nav_label": "Grenzen & Ausblick",
       "slides": [
         {
-          "title": "Grenzen & bewusste Entscheidungen",
-          "subtitle": "Transparenz über die Scope-Grenzen dieser Auflage",
+          "title": "Bewusste Limitierung",
+          "subtitle": "Dokumentierte Scope-Entscheidungen dieser Ausbaustufe",
           "content": [
             {
               "type": "recommendations",
@@ -609,8 +609,8 @@
           ]
         },
         {
-          "title": "Ausblick",
-          "subtitle": "Was eine nächste Iteration angeht",
+          "title": "Weitere Perspektiven",
+          "subtitle": "Erweiterungen für eine nächste Iteration",
           "content": [
             {
               "type": "sequence",

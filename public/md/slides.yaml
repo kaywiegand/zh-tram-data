@@ -37,7 +37,7 @@ chapters:
         role: title
         title: "Zurich Tram Data"
         subtitle:
-          - "Vom Rohdaten-Archiv zum Master-Datensatz"
+          - "Vom Rohdaten-Archiv zum reproduzierbaren Master-Datensatz"
           - "Recherche · Reduktion · Anreicherung · Vereinigung"
         content:
           - type: figures
@@ -79,7 +79,7 @@ chapters:
       - id: ausgangssituation-agenda-storyview
         views: [storyview]
         title: "Inhalt"
-        subtitle: "Sechs Kapitel, ein durchgehender Datenpfad"
+        subtitle: "Sieben Kapitel entlang des Data-Engineering-Zyklus"
         content:
           - type: agenda
             items:
@@ -111,8 +111,8 @@ chapters:
     slides:
       - id: genese-genese
         views: [storyview]
-        title: "Genese"
-        subtitle: "Wie das Projekt entstand"
+        title: "Die Genese"
+        subtitle: "Ausgangspunkt und Themenfindung des Projekts"
         content:
           - type: statement
             sentiment: neutral
@@ -123,8 +123,8 @@ chapters:
 
       - id: genese-motivation
         views: [storyview, overview]
-        title: "Motivation"
-        subtitle: "Der Grundgedanke"
+        title: "Persönliche Motivation"
+        subtitle: "Ein datengetriebenes Thema mit gesellschaftlicher Relevanz"
         content:
           - type: statement
             sentiment: neutral
@@ -139,8 +139,8 @@ chapters:
     slides:
       - id: ausgangssituation-start
         views: [storyview]
-        title: "Zürich bietet sich an"
-        subtitle: "Der Projektstart"
+        title: "Warum Zürich"
+        subtitle: "Zürichs Open-Data-Ökosystem als Grundlage für reproduzierbare Analysen"
         content:
           - type: statement
             sentiment: neutral
@@ -151,8 +151,8 @@ chapters:
 
       - id: ausgangssituation-summary
         views: [storyview, overview]
-        title: "Worum es geht"
-        subtitle: "Ziel, Fokus und Einordnung des Projekts"
+        title: "Der Projektrahmen"
+        subtitle: "Zielsetzung, Scope und Einordnung im Data-Lifecycle"
         content:
           - type: sections
             layout: columns
@@ -172,7 +172,7 @@ chapters:
       - id: ausgangssituation-aufgabe
         views: [storyview]
         title: "Die Aufgabe"
-        subtitle: "Worum es im Kern geht"
+        subtitle: "Aufbau einer integrierten, analysefähigen Datengrundlage"
         content:
           - type: statement
             sentiment: neutral
@@ -183,8 +183,8 @@ chapters:
 
       - id: ausgangssituation-strategie
         views: [storyview, overview, techview]
-        title: "Die Datenstrategie auf einen Blick"
-        subtitle: "Fünf Quellen, ein Weg zum Master"
+        title: "Die Datenstrategie"
+        subtitle: "Fünf Datenquellen, ein reproduzierbarer Master-Datensatz"
         content:
           - type: chart_refs
             items:
@@ -199,7 +199,7 @@ chapters:
       - id: reduktion-gesamtdaten
         views: [storyview, techview]
         title: "Schweiz ÖPNV IST-Daten"
-        subtitle: "38 GB Daten für jede Fahrt (Halt) müssen reduziert werden"
+        subtitle: "38 GB schweizweite Ist-Daten als Ausgangsvolumen"
         content:
           - type: figures
             items:
@@ -213,7 +213,7 @@ chapters:
       - id: reduktion-polars
         views: [storyview, techview]
         title: "Polars statt Pandas"
-        subtitle: "Vergleich und Entscheidung des passenden Werkzeugs"
+        subtitle: "Werkzeugwahl per Benchmark auf dem realen Datenvolumen"
         content:
           - type: comparison_table
             columns: ["", "Pandas", "Polars", "Faktor"]
@@ -238,8 +238,8 @@ chapters:
 
       - id: reduktion-reduzieren
         views: [storyview, techview]
-        title: "Von der Schweiz zu VBZ Tram"
-        subtitle: "Jede Filter-Entscheidung begründet"
+        title: "Auf VBZ Tram"
+        subtitle: "Regelbasierte Filterung von ~400 Betreibern auf das VBZ-Tramnetz"
         content:
           - type: steps
             items:
@@ -269,8 +269,8 @@ chapters:
     slides:
       - id: anreicherung-intro
         views: [storyview]
-        title: "Tram-Halte allein erklären wenig"
-        subtitle: "Was macht Verspätung überhaupt nachvollziehbar?"
+        title: "Warum anreichern"
+        subtitle: "Kontextdaten machen Verspätung erst erklärbar"
         content:
           - type: statement
             sentiment: neutral
@@ -281,8 +281,8 @@ chapters:
 
       - id: anreicherung-gtfs
         views: [storyview, techview]
-        title: "Anreicherung 1 — GTFS (Fahrplan)"
-        subtitle: "woher · was zu tun · wie übernommen"
+        title: "Fahrplan (GTFS)"
+        subtitle: "Soll-Fahrplan und Haltestellen-Stammdaten aus dem ZVV-Netz"
         content:
           - type: sections
             layout: columns
@@ -303,8 +303,8 @@ chapters:
 
       - id: anreicherung-meteo
         views: [storyview, techview]
-        title: "Anreicherung 2 — Meteo (Wetter)"
-        subtitle: "woher · was zu tun · wie übernommen"
+        title: "Wetter (Meteo)"
+        subtitle: "Drei heterogene Quellen, konsolidiert auf Stundenbasis"
         content:
           - type: sections
             layout: columns
@@ -325,8 +325,8 @@ chapters:
 
       - id: anreicherung-events
         views: [storyview, techview]
-        title: "Anreicherung 3 — Events (der harte Fall)"
-        subtitle: "Kein Open Data — von Hand aufgebaut"
+        title: "Events nach Größe"
+        subtitle: "Fehlende Open-Data-Quelle durch eigene Recherche geschlossen"
         content:
           - type: sections
             layout: columns
@@ -347,8 +347,8 @@ chapters:
 
       - id: anreicherung-geo
         views: [storyview, techview]
-        title: "Anreicherung 4 — Geo (Stadtkreise)"
-        subtitle: "woher · was zu tun · wie übernommen"
+        title: "Stadtkreise (Geo)"
+        subtitle: "Räumliche Zuordnung der Haltestellen per Spatial Join"
         content:
           - type: sections
             layout: columns
@@ -389,7 +389,7 @@ chapters:
       - id: vereinigung-grafik
         views: [storyview, overview, techview]
         title: "Die Join-Pipeline"
-        subtitle: "Vier Quellen, drei Joins, eine Qualitätsprüfung"
+        subtitle: "Vier Quellen über drei Joins zum validierten Master"
         content:
           - type: chart_refs
             items:
@@ -399,8 +399,8 @@ chapters:
 
       - id: vereinigung-leftjoins
         views: [storyview, techview]
-        title: "Left Joins — kein Zeilenverlust"
-        subtitle: "Die wichtigste Join-Entscheidung"
+        title: "Left Join als Standard"
+        subtitle: "Vollständigkeitserhalt: Fehlwerte als null statt Zeilenverlust"
         content:
           - type: statement
             sentiment: neutral
@@ -411,8 +411,8 @@ chapters:
 
       - id: vereinigung-schwierigkeiten
         views: [storyview, techview]
-        title: "Die Tücken im Detail"
-        subtitle: "Zwei Stolpersteine beim Join"
+        title: "Zeitstempel als Herausforderung"
+        subtitle: "Datentyp- und Zeitraster-Fallstricke beim Zusammenführen"
         content:
           - type: contrasts
             items:
@@ -428,7 +428,7 @@ chapters:
       - id: resultat-master
         views: [storyview, overview, techview]
         title: "Der Master-Datensatz"
-        subtitle: "Ein Datensatz, mit dem man wirklich arbeiten kann"
+        subtitle: "Analysefertige, reproduzierbare Datengrundlage"
         content:
           - type: figures
             items:
@@ -473,8 +473,8 @@ chapters:
     slides:
       - id: grenzen-grenzen
         views: [storyview, overview, techview]
-        title: "Grenzen & bewusste Entscheidungen"
-        subtitle: "Transparenz über die Scope-Grenzen dieser Auflage"
+        title: "Bewusste Limitierung"
+        subtitle: "Dokumentierte Scope-Entscheidungen dieser Ausbaustufe"
         content:
           - type: recommendations
             items:
@@ -494,8 +494,8 @@ chapters:
 
       - id: grenzen-ausblick
         views: [storyview, techview]
-        title: "Ausblick"
-        subtitle: "Was eine nächste Iteration angeht"
+        title: "Weitere Perspektiven"
+        subtitle: "Erweiterungen für eine nächste Iteration"
         content:
           - type: sequence
             items:
@@ -509,8 +509,8 @@ chapters:
       - id: grenzen-closing
         views: [storyview, overview]
         role: closing
-        title: "Einordnung"
-        subtitle: "Das Fundament und der Aufbau"
+        title: "Fundament & Aufbau"
+        subtitle: "Data-Engineering-Fundament für das Analyse-Projekt zh-tram-flow"
         content:
           - type: statement
             sentiment: neutral
