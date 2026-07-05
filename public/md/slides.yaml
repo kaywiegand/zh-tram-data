@@ -173,7 +173,7 @@ chapters:
             columns: ["", "Pandas", "Polars", "Faktor"]
             rows:
               - {cells: ["Ladezeit (alle Parquets)", "25,7 s", "6,6 s", "~4×"], highlight: false}
-              - {cells: ["RAM-Verbrauch", "6,1 GB", "~1,4 GB", "~4×"], highlight: true}
+              - {cells: ["RAM-Verbrauch", "6,1 GB", "~1,4 GB", "~4×"], highlight: false}
           - type: statement
             sentiment: positive
             text: "Entscheidung: Polars für alle großen Operationen (IST, Merge). Pandas bleibt für kleine Quellen (GTFS/Meteo/Events) und als Lernreferenz."
