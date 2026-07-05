@@ -103,18 +103,18 @@
           ]
         },
         {
-          "title": "Die These",
-          "subtitle": "Ein Satz, der das Projekt trägt",
+          "title": "Die Aufgabe",
+          "subtitle": "Worum es im Kern geht",
           "content": [
             {
               "type": "statement",
               "sentiment": "neutral",
-              "text": "Reduzieren was da ist, anreichern was fehlt."
+              "text": "Einen Datensatz bauen, mit dem eine sinnvolle, qualitativ belastbare Analyse des Zürcher Tramnetzes überhaupt erst möglich wird."
             },
             {
               "type": "statement",
               "sentiment": "positive",
-              "text": "Aus 38 GB schweizweiten Rohdaten wird das Relevante herausgefiltert — und die für sich dünnen Tram-Halte durch gezielt recherchierte Zusatzquellen zu einem Datensatz vereint, mit dem man wirklich arbeiten kann."
+              "text": "Der Leitgedanke dahinter: reduzieren was da ist, anreichern was fehlt."
             }
           ]
         },
@@ -140,8 +140,8 @@
       "nav_label": "Reduktion",
       "slides": [
         {
-          "title": "Die Ausgangslage: das ganze Land",
-          "subtitle": "38 GB, jede Fahrt der Schweiz",
+          "title": "Schweiz ÖPNV IST-Daten",
+          "subtitle": "38 GB Daten für jede Fahrt (Halt) müssen reduziert werden",
           "content": [
             {
               "type": "figures",
@@ -171,8 +171,8 @@
           ]
         },
         {
-          "title": "Werkzeugwahl: Polars statt Pandas",
-          "subtitle": "Auf den echten Daten gemessen, nicht angenommen",
+          "title": "Polars statt Pandas",
+          "subtitle": "Vergleich und Entscheidung des passenden Werkzeugs",
           "content": [
             {
               "type": "comparison_table",
@@ -510,8 +510,8 @@
       "nav_label": "Grenzen & Ausblick",
       "slides": [
         {
-          "title": "Grenzen & bewusste Versäumnisse",
-          "subtitle": "Transparenz über Known Issues",
+          "title": "Grenzen & bewusste Entscheidungen",
+          "subtitle": "Transparenz über die Scope-Grenzen dieser Auflage",
           "content": [
             {
               "type": "recommendations",
@@ -572,12 +572,12 @@
             {
               "type": "statement",
               "sentiment": "neutral",
-              "text": "zh-tram-data ist das Data-Engineering-Fundament: der saubere, reproduzierbare Master-Datensatz."
+              "text": "Das Ergebnis ist ein sauberer, reproduzierbarer Master-Datensatz — das Data-Engineering-Fundament dieses Vorhabens."
             },
             {
               "type": "statement",
-              "sentiment": "positive",
-              "text": "Analyse, Modellierung und Vorhersage bauen darauf auf — in zh-tram-flow. Zusammen der volle Data-Cycle, sauber in Fundament und Aufbau getrennt."
+              "sentiment": "neutral",
+              "text": "Darauf setzen Analyse, Modellierung und Verspätungsvorhersage auf — im Projekt zh-tram-flow. Engineering und Analyse bleiben sauber getrennt: Fundament und Aufbau."
             }
           ]
         }

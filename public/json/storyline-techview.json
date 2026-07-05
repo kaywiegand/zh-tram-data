@@ -92,8 +92,8 @@
       "nav_label": "Reduktion",
       "slides": [
         {
-          "title": "Die Ausgangslage: das ganze Land",
-          "subtitle": "38 GB, jede Fahrt der Schweiz",
+          "title": "Schweiz ÖPNV IST-Daten",
+          "subtitle": "38 GB Daten für jede Fahrt (Halt) müssen reduziert werden",
           "content": [
             {
               "type": "figures",
@@ -123,8 +123,8 @@
           ]
         },
         {
-          "title": "Werkzeugwahl: Polars statt Pandas",
-          "subtitle": "Auf den echten Daten gemessen, nicht angenommen",
+          "title": "Polars statt Pandas",
+          "subtitle": "Vergleich und Entscheidung des passenden Werkzeugs",
           "content": [
             {
               "type": "comparison_table",
@@ -572,8 +572,8 @@
       "nav_label": "Grenzen & Ausblick",
       "slides": [
         {
-          "title": "Grenzen & bewusste Versäumnisse",
-          "subtitle": "Transparenz über Known Issues",
+          "title": "Grenzen & bewusste Entscheidungen",
+          "subtitle": "Transparenz über die Scope-Grenzen dieser Auflage",
           "content": [
             {
               "type": "recommendations",
