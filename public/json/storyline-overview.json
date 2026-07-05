@@ -16,7 +16,7 @@
   },
   "chapters": [
     {
-      "nav_label": "Ausgangssituation",
+      "nav_label": "Einstieg",
       "slides": [
         {
           "role": "title",
@@ -60,6 +60,7 @@
             {
               "type": "agenda",
               "items": [
+                "Motivation",
                 "Das Projekt",
                 "Reduktion",
                 "Anreicherung",
@@ -68,7 +69,33 @@
               ]
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "nav_label": "Genese & Motivation",
+      "slides": [
+        {
+          "title": "Motivation",
+          "subtitle": "Der Grundgedanke",
+          "content": [
+            {
+              "type": "statement",
+              "sentiment": "neutral",
+              "text": "Daten sollen sinnstiftend eingesetzt werden — mit greifbarem Bezug zum Alltag, zur Lebensqualität, im besten Fall zur Nachhaltigkeit."
+            },
+            {
+              "type": "statement",
+              "sentiment": "positive",
+              "text": "Öffentlicher Verkehr trifft das genau: täglich erlebbar, gesellschaftlich relevant, datenreich. Die Recherche führte über den ÖPNV nach Zürich."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nav_label": "Ausgangssituation",
+      "slides": [
         {
           "title": "Worum es geht",
           "subtitle": "Ziel, Fokus und Einordnung des Projekts",

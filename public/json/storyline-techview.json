@@ -16,7 +16,7 @@
   },
   "chapters": [
     {
-      "nav_label": "Ausgangssituation",
+      "nav_label": "Einstieg",
       "slides": [
         {
           "role": "title",
@@ -69,7 +69,12 @@
               ]
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "nav_label": "Ausgangssituation",
+      "slides": [
         {
           "title": "Die Datenstrategie auf einen Blick",
           "subtitle": "Fünf Quellen, ein Weg zum Master",

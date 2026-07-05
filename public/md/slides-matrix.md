@@ -4,14 +4,17 @@ Automatisch generiert aus `public/md/slides.yaml` via `scripts/print_slide_matri
 
 | id | Kapitel | Inhalt | StoryView | TechView | Overview |
 |:---|:---|:---|:---:|:---:|:---:|
-| `ausgangssituation-title-overview` | Ausgangssituation | KPIs |  |  | ✅ |
-| `ausgangssituation-title-storyview` | Ausgangssituation | KPIs | ✅ |  |  |
-| `ausgangssituation-title-techview` | Ausgangssituation | KPIs |  | ✅ |  |
-| `ausgangssituation-agenda-overview` | Ausgangssituation | Agenda |  |  | ✅ |
-| `ausgangssituation-agenda-storyview` | Ausgangssituation | Agenda | ✅ |  |  |
-| `ausgangssituation-agenda-techview` | Ausgangssituation | Agenda |  | ✅ |  |
+| `ausgangssituation-title-overview` | Einstieg | KPIs |  |  | ✅ |
+| `ausgangssituation-title-storyview` | Einstieg | KPIs | ✅ |  |  |
+| `ausgangssituation-title-techview` | Einstieg | KPIs |  | ✅ |  |
+| `ausgangssituation-agenda-overview` | Einstieg | Agenda |  |  | ✅ |
+| `ausgangssituation-agenda-storyview` | Einstieg | Agenda | ✅ |  |  |
+| `ausgangssituation-agenda-techview` | Einstieg | Agenda |  | ✅ |  |
+| `genese-genese` | Genese & Motivation | Statement + Statement | ✅ |  |  |
+| `genese-motivation` | Genese & Motivation | Statement + Statement | ✅ |  | ✅ |
+| `ausgangssituation-start` | Ausgangssituation | Statement + Statement | ✅ |  |  |
 | `ausgangssituation-summary` | Ausgangssituation | Abschnitte | ✅ |  | ✅ |
-| `ausgangssituation-these` | Ausgangssituation | Statement + Statement | ✅ |  |  |
+| `ausgangssituation-aufgabe` | Ausgangssituation | Statement + Statement | ✅ |  |  |
 | `ausgangssituation-strategie` | Ausgangssituation | Chart | ✅ | ✅ | ✅ |
 | `reduktion-gesamtdaten` | Reduktion | KPIs + Statement | ✅ | ✅ |  |
 | `reduktion-polars` | Reduktion | Vergleichstabelle + Statement | ✅ | ✅ |  |
@@ -34,4 +37,4 @@ Automatisch generiert aus `public/md/slides.yaml` via `scripts/print_slide_matri
 | `grenzen-ausblick` | Grenzen & Ausblick | Beweiskette | ✅ | ✅ |  |
 | `grenzen-closing` | Grenzen & Ausblick | Statement + Statement | ✅ |  | ✅ |
 
-**29 Slide-Einträge total · 16 davon in mehr als 1 View wiederverwendet.**
+**32 Slide-Einträge total · 17 davon in mehr als 1 View wiederverwendet.**
