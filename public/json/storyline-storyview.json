@@ -6,7 +6,13 @@
     "github": "kaywiegand/zh-tram-data",
     "presentation_title": "Vom Rohdaten-Archiv zum Master",
     "audience": "Portfolio · Vollbild",
-    "duration_minutes": 20
+    "duration_minutes": 20,
+    "closing_links": [
+      {
+        "href": "https://github.com/kaywiegand/zh-tram-flow",
+        "label": "GitHub Repo zum Analyse- und Vorhersage-Projekt"
+      }
+    ]
   },
   "chapters": [
     {
@@ -485,7 +491,7 @@
             {
               "type": "statement",
               "sentiment": "neutral",
-              "text": "vbz_master.parquet — eine Zeile pro Halt (~230 je Fahrt), angereichert mit Fahrplan, Wetter, Events und Stadtkreis. 1:1 reproduzierbar über die 9 Notebooks, deckungsgleich mit dem Original aus sf_data-research."
+              "text": "vbz_master.parquet — eine Zeile pro Halt (~230 je Fahrt), angereichert mit Fahrplan, Wetter, Events und Stadtkreis. 1:1 reproduzierbar über die 9 Notebooks."
             }
           ]
         }
