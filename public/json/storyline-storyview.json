@@ -76,6 +76,7 @@
           "content": [
             {
               "type": "sections",
+              "layout": "columns",
               "items": [
                 {
                   "label": "Ziel",
@@ -277,6 +278,8 @@
           "content": [
             {
               "type": "sections",
+              "layout": "columns",
+              "numbered": true,
               "items": [
                 {
                   "label": "Woher",
@@ -309,6 +312,8 @@
           "content": [
             {
               "type": "sections",
+              "layout": "columns",
+              "numbered": true,
               "items": [
                 {
                   "label": "Woher",
@@ -341,6 +346,8 @@
           "content": [
             {
               "type": "sections",
+              "layout": "columns",
+              "numbered": true,
               "items": [
                 {
                   "label": "Woher",
@@ -373,6 +380,8 @@
           "content": [
             {
               "type": "sections",
+              "layout": "columns",
+              "numbered": true,
               "items": [
                 {
                   "label": "Woher",

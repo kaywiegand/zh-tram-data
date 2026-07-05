@@ -109,6 +109,7 @@ chapters:
         subtitle: "Ziel, Fokus und Einordnung des Projekts"
         content:
           - type: sections
+            layout: columns
             items:
               - label: "Ziel"
                 points:
@@ -238,6 +239,8 @@ chapters:
         subtitle: "woher · was zu tun · wie übernommen"
         content:
           - type: sections
+            layout: columns
+            numbered: true
             items:
               - label: "Woher"
                 points:
@@ -258,6 +261,8 @@ chapters:
         subtitle: "woher · was zu tun · wie übernommen"
         content:
           - type: sections
+            layout: columns
+            numbered: true
             items:
               - label: "Woher"
                 points:
@@ -278,6 +283,8 @@ chapters:
         subtitle: "Kein Open Data — von Hand aufgebaut"
         content:
           - type: sections
+            layout: columns
+            numbered: true
             items:
               - label: "Woher"
                 points:
@@ -298,6 +305,8 @@ chapters:
         subtitle: "woher · was zu tun · wie übernommen"
         content:
           - type: sections
+            layout: columns
+            numbered: true
             items:
               - label: "Woher"
                 points:

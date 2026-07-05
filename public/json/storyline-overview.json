@@ -75,6 +75,7 @@
           "content": [
             {
               "type": "sections",
+              "layout": "columns",
               "items": [
                 {
                   "label": "Ziel",
