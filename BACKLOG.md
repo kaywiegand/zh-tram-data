@@ -7,7 +7,31 @@ Prio: `1` = hoch · `2` = mittel · `3` = niedrig
 
 ---
 
-| # | Beschreibung | Prio | Entdeckt in |
-| :--- | :--- | :--- | :--- |
-| 1 | **trip_id zwischen IST-Daten und GTFS ist nicht direkt matchbar** — IST-`FAHRT_BEZEICHNER` hat Format `85:3849:…`, GTFS-`trip_id` hat Format `1.T0.1-10-P-j23-…` → 0% String-Overlap, kein direkter Join. War Grund für die Entfernung des Fahrtrichtungs-Filters im zh-tram-flow-Dashboard (#67b). Prüfen: gibt es eine Umlauf-/Fahrplan-basierte Brücke (z.B. über `LINIEN_TEXT` + `ANKUNFTSZEIT` + `BPUIC`-Sequenz) um beide Systeme zu verknüpfen? Wäre Voraussetzung für richtungsspezifische Analysen und für `prev_trip_delay`/Kaskadeneffekt (F-NET-07, bisher unanalysiert). | 1 | zh-tram-flow `PROCESS_LOG.md:1727`, 2026-06-25 |
-| 2 | **Zu viele Rohspalten beim IST-Daten-Processing verworfen** — `KEEP_COLS` in `02_ingestion-ist.ipynb` behält nur 10 von ursprünglich ~20+ Spalten. Dauerhaft verloren (nicht mal transient genutzt): `UMLAUF_ID` (Fahrzeug-/Umlauf-Kennung — könnte die eigentliche Brücke für Kaskadeneffekt-Analyse sein, direkter als trip_id-Kontinuität), `AN_PROGNOSE_STATUS`/`AB_PROGNOSE_STATUS` (Datenqualitäts-Flag, nur für Filter genutzt dann verworfen), `VERKEHRSMITTEL_TEXT`, `HALTESTELLEN_NAME` (Rohname vor GTFS-Join), `BETREIBER_ABK`/`BETREIBER_NAME`. Nachträgliches Hinzufügen bedeutet volles Reprocessing ab den Roh-ZIPs (liegen nur auf externer Platte, nicht im Repo) — vor `02_ingestion-ist` prüfen, ob `UMLAUF_ID` mit aufgenommen werden soll, bevor die Parquets erneut geschrieben werden. | 2 | `src/zh_tram_data/process_ist_daten.py` + `02_ingestion-ist.ipynb`, Migrations-Session 2026-07-02 |
+## Aktive Tasks
+
+| # | Beschreibung | Prio |
+| :--- | :--- | :--: |
+| A | **Public-Inhalte kontrollieren + abstimmen (Portfolio-Layer)** — die generierten `public/`-Views (`index.html`, `overview`/`storyview`/`techview`) inhaltlich und gestalterisch durchgehen. Ziel: `zh-tram-data` soll gleichwertig neben `zh-tram-flow` als Portfolio-Projekt stehen. **Noch offen:** einige inhaltliche und gestalterische Punkte sind ungeklärt und abzustimmen — Review vor dem Deployment. Änderungen immer an der Quelle (`public/md/slides.yaml` / `portfolio.md`), dann `make portfolio`. | 1 |
+
+> Die früheren Migrations-Findings #1 (trip_id-Brücke) und #2 (`UMLAUF_ID`) sind keine offenen
+> Tasks, sondern Scope-Grenzen dieser Auflage — nach unten in die OP-Sektion umgezogen (siehe unten).
+
+---
+
+## 🔬 Research Opportunities & Future Reprocessing (OP)
+
+Systematische Erweiterungsmöglichkeiten, die **nicht** in dieser Auflage umgesetzt werden.
+Gemeinsame Klammer: alle setzen ein **volles Reprocessing ab den Roh-ZIPs** voraus (liegen nur
+auf externer Platte, nicht im Repo). Sie sind bewusste Scope-Grenzen der v1 — kein offener
+Task, kein Blocker. Erst bei einer Neuauflage / v2 relevant, dann gesammelt vor dem
+Neu-Schreiben der IST-Parquets entscheiden.
+
+| OP # | Beobachtung | Prio | Voraussetzung | Entdeckt in |
+| :--- | :--- | :--: | :--- | :--- |
+| **OP-1** | **trip_id IST↔GTFS nicht direkt matchbar** — IST-`FAHRT_BEZEICHNER` (`85:3849:…`) vs. GTFS-`trip_id` (`1.T0.1-10-P-j23-…`) → 0 % String-Overlap. War Grund für die Entfernung des Fahrtrichtungs-Filters im zh-tram-flow-Dashboard (#67b). Voraussetzung für richtungsspezifische Analysen und für `prev_trip_delay`/Kaskadeneffekt (F-NET-07). Prüfrichtung: fahrplanbasierte Brücke über `LINIEN_TEXT` + `ANKUNFTSZEIT` + `BPUIC`-Sequenz. | 1 | Fachplan-Bridge, kein Reprocessing zwingend — aber gemeinsam mit OP-2 zu klären | zh-tram-flow `PROCESS_LOG.md:1727`, 2026-06-25 |
+| **OP-2** | **Verworfene Rohspalten beim IST-Processing** — `KEEP_COLS` in `02_ingestion-ist.ipynb` behält 10 Spalten. Dauerhaft verloren: `UMLAUF_ID` (Fahrzeug-/Umlauf-Kennung — evtl. die *direktere* Brücke für Kaskaden-Analyse als trip_id-Kontinuität), `AN_PROGNOSE_STATUS`/`AB_PROGNOSE_STATUS` (nur als Filter genutzt), `VERKEHRSMITTEL_TEXT`, `HALTESTELLEN_NAME`, `BETREIBER_ABK`/`BETREIBER_NAME`. | 2 | Volles Reprocessing ab Roh-ZIPs — vor Neu-Schreiben der Parquets entscheiden, ob `UMLAUF_ID` mitkommt | `process_ist_daten.py` + `02_ingestion-ist.ipynb`, Migration 2026-07-02 |
+
+> **Zusammenhang OP-1 ↔ OP-2:** Beide zielen auf denselben blinden Fleck — die fehlende
+> Fahrt-/Umlauf-Kontinuität für Kaskadeneffekte. OP-2 (`UMLAUF_ID` aus den Rohdaten) könnte OP-1
+> (fahrplanbasierte Brücke) überflüssig machen. Bei einer Neuauflage zuerst OP-2 klären, dann
+> entscheiden, ob OP-1 überhaupt noch nötig ist.

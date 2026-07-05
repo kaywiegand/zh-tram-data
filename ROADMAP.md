@@ -1,15 +1,15 @@
 # ROADMAP.md – Zurich Tram Data
 
 > Data-Engineering-Pipeline für VBZ-Tramdaten — Ausgangslage → Phasen → Ziel.
-> Zürich-Teil aus `sf_data-research` isoliert (das Projekt hatte zusätzlich einen
-> Berlin/VBB-Vergleichsabstecher, der hier bewusst nicht mitkommt).
+> Zürich-Teil aus einem vorangegangenen, breiter angelegten Data-Research-Projekt isoliert
+> (das zusätzlich einen Berlin/VBB-Vergleichsabstecher hatte, der hier bewusst nicht mitkommt).
 
 ---
 
 ## Ausgangslage
 
-`sf_data-research` hatte die Data-Engineering-Phase bereits abgeschlossen (Download, Filter,
-Join, Validierung — siehe dortiges `ROADMAP.md`, Phase 0 ✅). Dieses Projekt migriert den
+Die Data-Engineering-Phase (Download, Filter, Join, Validierung) war in einem vorangegangenen,
+breiter angelegten Research-Projekt bereits abgeschlossen. Dieses Projekt isoliert den
 Zürich-Teil in eine eigenständige, portfolio-fähige Struktur und macht ihn erneut lauffähig —
 zugleich der erste echte Testlauf von `wgnd-ai-dev-toolchain`.
 
@@ -18,7 +18,7 @@ zugleich der erste echte Testlauf von `wgnd-ai-dev-toolchain`.
 ## Phase 0 — Setup & Migration ✅ ABGESCHLOSSEN
 
 - [x] Projektstruktur mit `wgnd-scaffolding` generiert (Typ DAN)
-- [x] Notebook-Migration aus `sf_data-research/notebooks/vbz/`: 17 Quell-Notebooks →
+- [x] Notebook-Migration aus dem Vorgänger-Repo (`notebooks/vbz/`): 17 Quell-Notebooks →
       9 nummerierte (`00`–`08`) + `notebooks/appendix/` für Explorationsmaterial
 - [x] `src/` migriert (`doc_loader.py`, `process_ist_daten.py`), Pfade angepasst
 - [x] Daten kopiert (`data/raw/` 2.3 GB, `data/interim/` 1.9 GB), `vbz/`-Zwischenordner entfernt
@@ -44,17 +44,21 @@ zugleich der erste echte Testlauf von `wgnd-ai-dev-toolchain`.
 - [x] `08_master-validation` — Validierung
 
 **Ergebnis:** `vbz_master.parquet` — 94.358.531 Zeilen × 26 Spalten, deckungsgleich mit dem
-Original in `sf_data-research`.
+ursprünglich erzeugten Referenz-Datensatz (validiert in `08_master-validation`).
 
 ---
 
 ## Phase 2 — Qualitätssicherung
 
-- [ ] Offene Backlog-Punkte aus der Migration prüfen (trip_id-Mismatch, fehlende Spalten —
-      siehe `BACKLOG.md`)
+- [x] Offene Migrations-Findings entschieden: trip_id-Mismatch + verworfene Rohspalten sind
+      **keine offenen Tasks**, sondern Scope-Grenzen dieser Auflage (Reprocessing ab Roh-ZIPs
+      nötig) → als **OP-1/OP-2** in die „Future / Opportunities"-Sektion umgewidmet (siehe unten
+      + `BACKLOG.md`)
 - [x] `/project-review` als Audit-Loop — zweiter echter Test von `wgnd-ai-dev-toolchain`
       (2026-07-03: kein blockierender Fehler, Konsistenz-Fixes umgesetzt — siehe `PROCESS_LOG.md`)
-- [ ] README, CLAUDE.md, Stack-Angaben finalisieren
+- [x] README auf Englisch + an `zh-tram-flow`-Struktur angeglichen (TL;DR, Where-to-start, TOC,
+      Author) — 2026-07-04
+- [ ] CLAUDE.md-Stack-Angabe (Polars · Plotly · Jupyter) um GeoPandas/Shapely ergänzen (minor)
 
 ---
 
@@ -63,7 +67,24 @@ Original in `sf_data-research`.
 - [x] `/project-case` — Engineering-Case gebaut (engineering-first, 6 Kapitel: Reduktion + Anreicherung
       als zwei Bögen; Hub + overview/storyview/techview aus `slides.yaml` generiert). 2026-07-03.
 - [ ] Deployment (`public/` → GitHub Pages)
-- [ ] `00_introduction`: stale IST-Reduktion „21 → 8" → „21 → 10" korrigieren (NotebookEdit)
+- [x] `00_introduction`: stale IST-Reduktion „21 → 8" → „21 → 10" korrigiert; zusätzlich
+      `FAHRT_BEZEICHNER` aus der „Entfernte Spalten"-Tabelle entfernt (wird als `trip_id`
+      behalten — Widerspruch zu `KEEP_COLS` aufgelöst). 2026-07-04.
+
+---
+
+## Future / Opportunities (OP) — bewusst nicht in v1
+
+Erweiterungen, die ein **volles Reprocessing ab den Roh-ZIPs** voraussetzen (liegen nur auf
+externer Platte, nicht im Repo). Bewusste Scope-Grenzen dieser Auflage — kein offener Task,
+kein Blocker. Erst bei einer Neuauflage / v2 relevant. Gegenstück zu `zh-tram-flow`s Phase 6.
+
+| OP # | Thema | Prio | Nächster Schritt bei v2 |
+| :--- | :--- | :--: | :--- |
+| **OP-1** | trip_id-Brücke IST↔GTFS (Voraussetzung für Richtungs- + Kaskaden-Analyse) | 1 | Fahrplanbasierte Brücke über `LINIEN_TEXT`+`ANKUNFTSZEIT`+`BPUIC` prüfen |
+| **OP-2** | `UMLAUF_ID` + weitere Rohspalten beim IST-Processing behalten | 2 | Vor Neu-Schreiben der IST-Parquets `KEEP_COLS` erweitern |
+
+→ **Detailliert:** `BACKLOG.md` — Sektion „🔬 Research Opportunities & Future Reprocessing (OP)"
 
 ---
 

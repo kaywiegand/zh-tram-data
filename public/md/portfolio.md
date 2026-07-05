@@ -140,8 +140,8 @@ master_file:    data/interim/vbz_master.parquet
 rows:           94.358.531 Halt-Ereignisse (eine Zeile pro Halt, ~230 Halte je Fahrt)
 columns:        26 (verifiziert am Parquet-Schema)
 composition:    10 IST · 3 GTFS · 2 Geo · 7 Meteo · 4 Events (Geo = Stadtkreis via Spatial Join)
-reproducible:   1:1 über 9 nummerierte Notebooks (00–08), deckungsgleich mit dem Original
-                aus sf_data-research
+reproducible:   1:1 über 9 nummerierte Notebooks (00–08), deckungsgleich mit dem
+                ursprünglichen Referenz-Datensatz
 join_strategy:  Left Join (kein Zeilenverlust) + Spatial Join (Stadtkreis)
 validation:     08_master-validation — Zeilen-/Spaltenzahl, Schema, Null-Verteilung geprüft
 ```

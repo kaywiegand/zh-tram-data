@@ -383,7 +383,7 @@ chapters:
               - {value: "100 %", label: "reproduzierbar", sentiment: positive}
           - type: statement
             sentiment: neutral
-            text: "vbz_master.parquet — eine Zeile pro Halt (~230 je Fahrt), angereichert mit Fahrplan, Wetter, Events und Stadtkreis. 1:1 reproduzierbar über die 9 Notebooks, deckungsgleich mit dem Original aus sf_data-research."
+            text: "vbz_master.parquet — eine Zeile pro Halt (~230 je Fahrt), angereichert mit Fahrplan, Wetter, Events und Stadtkreis. 1:1 reproduzierbar über die 9 Notebooks."
 
       - id: resultat-dictionary
         views: [techview]
@@ -408,7 +408,7 @@ chapters:
           - type: steps
             items:
               - {step: "1", label: "Schema", detail: "26 Spalten, erwartete Typen (date, timestamp[us], float, dictionary …)"}
-              - {step: "2", label: "Dimensionen", detail: "94.358.531 Zeilen — deckungsgleich mit dem Original in sf_data-research"}
+              - {step: "2", label: "Dimensionen", detail: "94.358.531 Zeilen — deckungsgleich mit dem ursprünglichen Referenz-Datensatz"}
               - {step: "3", label: "Null-Verteilung", detail: "Left-Join-Nulls plausibel (z.B. event_* an event-freien Tagen)"}
               - {step: "4", label: "Reproduzierbarkeit", detail: "Voller Lauf 00–08 erzeugt denselben Master — idempotent, resume-fähig"}
 
