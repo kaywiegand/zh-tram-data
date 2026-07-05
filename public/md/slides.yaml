@@ -498,12 +498,13 @@ hub:
   headline_kpis_from: ausgangssituation-title-overview
   tagline: "Vom Rohdaten-Archiv zum Master-Datensatz"
   subtitle: "Data-Engineering-Pipeline für das Zürcher Tramnetz (VBZ)"
-  footer_tagline: "Data-Engineering-Grundlage für zh-tram-flow"
+  footer_tagline: "Data-Engineering-Grundlage für das Analyse- und Vorhersage-Projekt zh-tram-flow"
+  repo_link_label: "GitHub Repo zum Projekt"
   about:
-    - label: "Ziel"
-      text: "Ein einziger, sauberer Master-Datensatz der realen VBZ-Tram-Halte — angereichert mit Fahrplan, Wetter, Events und Geografie. Die Data-Engineering-Grundlage für zh-tram-flow."
-    - label: "These"
-      text: "Reduzieren was da ist, anreichern was fehlt. Aus 38 GB schweizweiten Rohdaten wird das Relevante herausgefiltert und durch gezielt recherchierte Zusatzquellen zu einem Datensatz vereint, mit dem man wirklich arbeiten kann."
+    - label: "Motivation"
+      text: "Entstanden als Abschlussarbeit einer Data-Science-Fortbildung — mit dem Anspruch, Data Science nicht abstrakt, sondern an einem Alltagsbeispiel mit echtem Impact zu zeigen. Die Recherche führte über den ÖPNV nach Zürich mit seiner herausragend guten Open-Data-Landschaft."
+    - label: "Aufgabe"
+      text: "Einen sauberen Master-Datensatz der realen VBZ-Tram-Halte bauen, mit dem eine qualitativ belastbare Analyse überhaupt erst möglich wird — die Data-Engineering-Grundlage für zh-tram-flow, dem Analyse- und Vorhersage-Projekt zu Zürich Tram. Leitgedanke: reduzieren was da ist, anreichern was fehlt."
     - label: "Reduktion"
       text: "~400 Transportunternehmen → VBZ Tram, Polars statt Pandas (~4× schneller und sparsamer, per Benchmark belegt), 21 → 10 Spalten, ~11 % Zeilen entfernt."
     - label: "Anreicherung"
@@ -511,7 +512,7 @@ hub:
     - label: "Resultat"
       text: "vbz_master.parquet — 94,4 M Halt-Ereignisse × 26 Spalten, 1:1 reproduzierbar über 9 Notebooks, validiert und deckungsgleich mit dem Original."
   quick_links:
-    - {href: "https://github.com/kaywiegand/zh-tram-flow", label: "zh-tram-flow (Analyse & Vorhersage)"}
+    - {href: "https://github.com/kaywiegand/zh-tram-flow", label: "GitHub Repo zum Analyse- und Vorhersage-Projekt"}
   view_order: [overview, techview, storyview]
   view_cards:
     overview:
@@ -529,7 +530,7 @@ hub:
     storyview:
       kicker: "Story View"
       label: "Der ganze Weg"
-      description: "Von 38 GB Rohdaten zum Master: Reduktion, Anreicherung, Vereinigung — vollständig erzählt. Portfolio-Vollansicht."
+      description: "Von 38 GB Rohdaten zum Master: Genese, Motivation, Reduktion, Anreicherung, Vereinigung — vollständig erzählt. Portfolio-Vollansicht."
       badge: "Portfolio"
       badge_class: purple
 
