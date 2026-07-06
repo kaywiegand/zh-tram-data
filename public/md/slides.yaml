@@ -14,8 +14,8 @@
 chapters:
 
   # =====================================================================
-  - id: einstieg
-    nav_label: Einstieg
+  - id: title
+    nav_label: Title
     slides:
       - id: ausgangssituation-title-overview
         views: [overview]
@@ -62,6 +62,10 @@ chapters:
               - {value: "10 → 26", label: "Spalten nach Anreicherung", sentiment: positive}
               - {value: "94,4 M", label: "Zeilen, validiert", sentiment: neutral}
 
+  # =====================================================================
+  - id: inhalt
+    nav_label: Inhalt
+    slides:
       - id: ausgangssituation-agenda-overview
         views: [overview]
         title: "Inhalt"
@@ -187,6 +191,7 @@ chapters:
         subtitle: "Fünf Datenquellen, ein reproduzierbarer Master-Datensatz"
         content:
           - type: chart_refs
+            layout: image_right
             items:
               - label: "Gesamte Datenpipeline"
                 source: "vbz_strategy.svg"
@@ -194,7 +199,7 @@ chapters:
 
   # =====================================================================
   - id: reduktion
-    nav_label: Reduktion
+    nav_label: Daten Reduktion
     slides:
       - id: reduktion-gesamtdaten
         views: [storyview, techview]
@@ -265,7 +270,7 @@ chapters:
 
   # =====================================================================
   - id: anreicherung
-    nav_label: Anreicherung
+    nav_label: Daten Anreicherung
     slides:
       - id: anreicherung-intro
         views: [storyview]
@@ -384,7 +389,7 @@ chapters:
 
   # =====================================================================
   - id: vereinigung
-    nav_label: Vereinigung
+    nav_label: Daten Zusammenführung
     slides:
       - id: vereinigung-grafik
         views: [storyview, overview, techview]
@@ -392,6 +397,7 @@ chapters:
         subtitle: "Vier Quellen über drei Joins zum validierten Master"
         content:
           - type: chart_refs
+            layout: image_right
             items:
               - label: "Master-Preparation Pipeline"
                 source: "vbz_preparation.svg"
@@ -423,7 +429,7 @@ chapters:
 
   # =====================================================================
   - id: resultat
-    nav_label: Resultat
+    nav_label: Masterdatensatz als Resultat
     slides:
       - id: resultat-master
         views: [storyview, overview, techview]
@@ -468,8 +474,8 @@ chapters:
               - {step: "4", label: "Reproduzierbarkeit", detail: "Voller Lauf 00–08 erzeugt denselben Master — idempotent, resume-fähig"}
 
   # =====================================================================
-  - id: grenzen-ausblick
-    nav_label: Grenzen & Ausblick
+  - id: limitierungen
+    nav_label: Limitierungen
     slides:
       - id: grenzen-grenzen
         views: [storyview, overview, techview]
@@ -492,6 +498,10 @@ chapters:
             sentiment: neutral
             text: "Bewusst dokumentierte Grenzen, nicht übersehene Fehler. Transparenz über Known Issues gehört zu sauberem Data Engineering."
 
+  # =====================================================================
+  - id: ausblick
+    nav_label: Ausblick
+    slides:
       - id: grenzen-ausblick
         views: [storyview, techview]
         title: "Weitere Perspektiven"
@@ -500,24 +510,27 @@ chapters:
           - type: sequence
             items:
               - label: "Format v2"
-                text: "Ab Mitte 2025 wechselt opentransportdata.swiss auf v2 — Integration von 2026 + v2 in einer späteren Iteration."
-              - label: "Mehr Meteo"
-                text: "Zwei Referenzstationen decken den MVP; weitere Stationen erhöhen die räumliche Auflösung."
-              - label: "Reprocessing"
-                text: "Projektneuauflage mit UMLAUF_ID + trip_id-Brücke — Voraussetzung für richtungsspezifische Kaskadenanalyse."
+                text: "Ab Ende 2025 wechselt opentransportdata.swiss auf Format v2 (großer VBZ-Fahrplanwechsel Dez 2025) — Integration in einer späteren Iteration."
+              - label: "trip_id / UMLAUF_ID-Brücke"
+                text: "Durchgängige Fahrt-Identität herstellen — Voraussetzung für richtungsspezifische und Kaskadenanalysen."
+              - label: "Feature-Anreicherung"
+                text: "Weitere abgeleitete Merkmale aus dem Master (z.B. Standzeit/Puffer je Halt) als Modellierungsgrundlage."
+              - label: "Reprocessing v2"
+                text: "Das Resultat: ein neu prozessierter Master v2 ab den Roh-ZIPs mit den erweiterten Feldern."
 
+  # =====================================================================
+  - id: ende
+    nav_label: Ende
+    slides:
       - id: grenzen-closing
         views: [storyview, overview]
         role: closing
-        title: "Fundament & Aufbau"
+        title: "Zurich Tram Data"
         subtitle: "Data-Engineering-Fundament für das Analyse-Projekt zh-tram-flow"
         content:
           - type: statement
             sentiment: neutral
             text: "Das Ergebnis ist ein sauberer, reproduzierbarer Master-Datensatz — das Data-Engineering-Fundament dieses Vorhabens."
-          - type: statement
-            sentiment: neutral
-            text: "Darauf setzen Analyse, Modellierung und Verspätungsvorhersage auf — im Projekt zh-tram-flow. Engineering und Analyse bleiben sauber getrennt: Fundament und Aufbau."
 
 # ===========================================================================
 view_meta:
@@ -525,6 +538,7 @@ view_meta:
     project: "Zurich Tram Data"
     period: "2023–2025"
     author: "Kay Wiegand"
+    linkedin: "https://www.linkedin.com/in/kaywiegand/"
     github: "kaywiegand/zh-tram-data"
     presentation_title: "Der Datensatz & sein Weg"
     audience: "HR · Business · Hiring Manager"
@@ -533,6 +547,7 @@ view_meta:
     project: "Zurich Tram Data"
     period: "2023–2025"
     author: "Kay Wiegand"
+    linkedin: "https://www.linkedin.com/in/kaywiegand/"
     github: "kaywiegand/zh-tram-data"
     presentation_title: "Vom Rohdaten-Archiv zum Master"
     audience: "Portfolio · Vollbild"
@@ -541,6 +556,7 @@ view_meta:
     project: "Zurich Tram Data"
     period: "2023–2025"
     author: "Kay Wiegand"
+    linkedin: "https://www.linkedin.com/in/kaywiegand/"
     github: "kaywiegand/zh-tram-data"
     presentation_title: "Engineering Deep-Dive"
     audience: "Data Engineers · Tech Leads · Interviewer"
@@ -591,30 +607,37 @@ hub:
 
 view_composition:
   overview:
-    - einstieg
+    - title
+    - inhalt
     - genese
     - ausgangssituation
     - reduktion
     - anreicherung
     - vereinigung
     - resultat
-    - grenzen-ausblick
+    - limitierungen
+    - ende
 
   storyview:
-    - einstieg
+    - title
+    - inhalt
     - genese
     - ausgangssituation
     - reduktion
     - anreicherung
     - vereinigung
     - resultat
-    - grenzen-ausblick
+    - limitierungen
+    - ausblick
+    - ende
 
   techview:
-    - einstieg
+    - title
+    - inhalt
     - ausgangssituation
     - reduktion
     - anreicherung
     - vereinigung
     - resultat
-    - grenzen-ausblick
+    - limitierungen
+    - ausblick

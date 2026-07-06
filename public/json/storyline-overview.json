@@ -3,20 +3,21 @@
     "project": "Zurich Tram Data",
     "period": "2023–2025",
     "author": "Kay Wiegand",
+    "linkedin": "https://www.linkedin.com/in/kaywiegand/",
     "github": "kaywiegand/zh-tram-data",
     "presentation_title": "Der Datensatz & sein Weg",
     "audience": "HR · Business · Hiring Manager",
     "duration_minutes": 8,
     "closing_links": [
       {
-        "href": "https://github.com/kaywiegand/zh-tram-flow",
-        "label": "GitHub Repo zum Analyse- und Vorhersage-Projekt"
+        "label": "LinkedIn-Profil",
+        "href": "https://www.linkedin.com/in/kaywiegand/"
       }
     ]
   },
   "chapters": [
     {
-      "nav_label": "Einstieg",
+      "nav_label": "Title",
       "slides": [
         {
           "role": "title",
@@ -52,7 +53,12 @@
               ]
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "nav_label": "Inhalt",
+      "slides": [
         {
           "title": "Inhalt",
           "subtitle": "Diese Präsentation auf einen Blick",
@@ -134,6 +140,7 @@
           "content": [
             {
               "type": "chart_refs",
+              "layout": "image_right",
               "items": [
                 {
                   "label": "Gesamte Datenpipeline",
@@ -147,7 +154,7 @@
       ]
     },
     {
-      "nav_label": "Reduktion",
+      "nav_label": "Daten Reduktion",
       "slides": [
         {
           "title": "Das Überwältigende bändigen",
@@ -178,7 +185,7 @@
       ]
     },
     {
-      "nav_label": "Anreicherung",
+      "nav_label": "Daten Anreicherung",
       "slides": [
         {
           "title": "Das Dünne aufwerten",
@@ -208,7 +215,7 @@
       ]
     },
     {
-      "nav_label": "Vereinigung",
+      "nav_label": "Daten Zusammenführung",
       "slides": [
         {
           "title": "Die Join-Pipeline",
@@ -216,6 +223,7 @@
           "content": [
             {
               "type": "chart_refs",
+              "layout": "image_right",
               "items": [
                 {
                   "label": "Master-Preparation Pipeline",
@@ -229,7 +237,7 @@
       ]
     },
     {
-      "nav_label": "Resultat",
+      "nav_label": "Masterdatensatz als Resultat",
       "slides": [
         {
           "title": "Der Master-Datensatz",
@@ -270,7 +278,7 @@
       ]
     },
     {
-      "nav_label": "Grenzen & Ausblick",
+      "nav_label": "Limitierungen",
       "slides": [
         {
           "title": "Bewusste Limitierung",
@@ -303,21 +311,21 @@
               "text": "Bewusst dokumentierte Grenzen, nicht übersehene Fehler. Transparenz über Known Issues gehört zu sauberem Data Engineering."
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "nav_label": "Ende",
+      "slides": [
         {
           "role": "closing",
-          "title": "Fundament & Aufbau",
+          "title": "Zurich Tram Data",
           "subtitle": "Data-Engineering-Fundament für das Analyse-Projekt zh-tram-flow",
           "content": [
             {
               "type": "statement",
               "sentiment": "neutral",
               "text": "Das Ergebnis ist ein sauberer, reproduzierbarer Master-Datensatz — das Data-Engineering-Fundament dieses Vorhabens."
-            },
-            {
-              "type": "statement",
-              "sentiment": "neutral",
-              "text": "Darauf setzen Analyse, Modellierung und Verspätungsvorhersage auf — im Projekt zh-tram-flow. Engineering und Analyse bleiben sauber getrennt: Fundament und Aufbau."
             }
           ]
         }

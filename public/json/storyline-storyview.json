@@ -3,20 +3,21 @@
     "project": "Zurich Tram Data",
     "period": "2023–2025",
     "author": "Kay Wiegand",
+    "linkedin": "https://www.linkedin.com/in/kaywiegand/",
     "github": "kaywiegand/zh-tram-data",
     "presentation_title": "Vom Rohdaten-Archiv zum Master",
     "audience": "Portfolio · Vollbild",
     "duration_minutes": 20,
     "closing_links": [
       {
-        "href": "https://github.com/kaywiegand/zh-tram-flow",
-        "label": "GitHub Repo zum Analyse- und Vorhersage-Projekt"
+        "label": "LinkedIn-Profil",
+        "href": "https://www.linkedin.com/in/kaywiegand/"
       }
     ]
   },
   "chapters": [
     {
-      "nav_label": "Einstieg",
+      "nav_label": "Title",
       "slides": [
         {
           "role": "title",
@@ -52,7 +53,12 @@
               ]
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "nav_label": "Inhalt",
+      "slides": [
         {
           "title": "Inhalt",
           "subtitle": "Sieben Kapitel entlang des Data-Engineering-Zyklus",
@@ -183,6 +189,7 @@
           "content": [
             {
               "type": "chart_refs",
+              "layout": "image_right",
               "items": [
                 {
                   "label": "Gesamte Datenpipeline",
@@ -196,7 +203,7 @@
       ]
     },
     {
-      "nav_label": "Reduktion",
+      "nav_label": "Daten Reduktion",
       "slides": [
         {
           "title": "Schweiz ÖPNV IST-Daten",
@@ -313,7 +320,7 @@
       ]
     },
     {
-      "nav_label": "Anreicherung",
+      "nav_label": "Daten Anreicherung",
       "slides": [
         {
           "title": "Warum anreichern",
@@ -469,7 +476,7 @@
       ]
     },
     {
-      "nav_label": "Vereinigung",
+      "nav_label": "Daten Zusammenführung",
       "slides": [
         {
           "title": "Die Join-Pipeline",
@@ -477,6 +484,7 @@
           "content": [
             {
               "type": "chart_refs",
+              "layout": "image_right",
               "items": [
                 {
                   "label": "Master-Preparation Pipeline",
@@ -525,7 +533,7 @@
       ]
     },
     {
-      "nav_label": "Resultat",
+      "nav_label": "Masterdatensatz als Resultat",
       "slides": [
         {
           "title": "Der Master-Datensatz",
@@ -566,7 +574,7 @@
       ]
     },
     {
-      "nav_label": "Grenzen & Ausblick",
+      "nav_label": "Limitierungen",
       "slides": [
         {
           "title": "Bewusste Limitierung",
@@ -599,7 +607,12 @@
               "text": "Bewusst dokumentierte Grenzen, nicht übersehene Fehler. Transparenz über Known Issues gehört zu sauberem Data Engineering."
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "nav_label": "Ausblick",
+      "slides": [
         {
           "title": "Weitere Perspektiven",
           "subtitle": "Erweiterungen für eine nächste Iteration",
@@ -609,34 +622,38 @@
               "items": [
                 {
                   "label": "Format v2",
-                  "text": "Ab Mitte 2025 wechselt opentransportdata.swiss auf v2 — Integration von 2026 + v2 in einer späteren Iteration."
+                  "text": "Ab Ende 2025 wechselt opentransportdata.swiss auf Format v2 (großer VBZ-Fahrplanwechsel Dez 2025) — Integration in einer späteren Iteration."
                 },
                 {
-                  "label": "Mehr Meteo",
-                  "text": "Zwei Referenzstationen decken den MVP; weitere Stationen erhöhen die räumliche Auflösung."
+                  "label": "trip_id / UMLAUF_ID-Brücke",
+                  "text": "Durchgängige Fahrt-Identität herstellen — Voraussetzung für richtungsspezifische und Kaskadenanalysen."
                 },
                 {
-                  "label": "Reprocessing",
-                  "text": "Projektneuauflage mit UMLAUF_ID + trip_id-Brücke — Voraussetzung für richtungsspezifische Kaskadenanalyse."
+                  "label": "Feature-Anreicherung",
+                  "text": "Weitere abgeleitete Merkmale aus dem Master (z.B. Standzeit/Puffer je Halt) als Modellierungsgrundlage."
+                },
+                {
+                  "label": "Reprocessing v2",
+                  "text": "Das Resultat: ein neu prozessierter Master v2 ab den Roh-ZIPs mit den erweiterten Feldern."
                 }
               ]
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "nav_label": "Ende",
+      "slides": [
         {
           "role": "closing",
-          "title": "Fundament & Aufbau",
+          "title": "Zurich Tram Data",
           "subtitle": "Data-Engineering-Fundament für das Analyse-Projekt zh-tram-flow",
           "content": [
             {
               "type": "statement",
               "sentiment": "neutral",
               "text": "Das Ergebnis ist ein sauberer, reproduzierbarer Master-Datensatz — das Data-Engineering-Fundament dieses Vorhabens."
-            },
-            {
-              "type": "statement",
-              "sentiment": "neutral",
-              "text": "Darauf setzen Analyse, Modellierung und Verspätungsvorhersage auf — im Projekt zh-tram-flow. Engineering und Analyse bleiben sauber getrennt: Fundament und Aufbau."
             }
           ]
         }
