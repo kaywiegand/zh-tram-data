@@ -259,7 +259,6 @@
             {
               "type": "sections",
               "layout": "columns",
-              "numbered": true,
               "items": [
                 {
                   "label": "Woher",
@@ -293,7 +292,6 @@
             {
               "type": "sections",
               "layout": "columns",
-              "numbered": true,
               "items": [
                 {
                   "label": "Woher",
@@ -327,7 +325,6 @@
             {
               "type": "sections",
               "layout": "columns",
-              "numbered": true,
               "items": [
                 {
                   "label": "Woher",
@@ -361,7 +358,6 @@
             {
               "type": "sections",
               "layout": "columns",
-              "numbered": true,
               "items": [
                 {
                   "label": "Woher",

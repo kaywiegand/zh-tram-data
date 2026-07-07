@@ -294,7 +294,6 @@ chapters:
         content:
           - type: sections
             layout: columns
-            numbered: true
             items:
               - label: "Woher"
                 points:
@@ -316,7 +315,6 @@ chapters:
         content:
           - type: sections
             layout: columns
-            numbered: true
             items:
               - label: "Woher"
                 points:
@@ -338,7 +336,6 @@ chapters:
         content:
           - type: sections
             layout: columns
-            numbered: true
             items:
               - label: "Woher"
                 points:
@@ -360,7 +357,6 @@ chapters:
         content:
           - type: sections
             layout: columns
-            numbered: true
             items:
               - label: "Woher"
                 points:
