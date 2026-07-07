@@ -66,12 +66,13 @@
             {
               "type": "agenda",
               "items": [
-                "Rohdaten & Werkzeugwahl",
-                "Reduktion",
-                "Anreicherung (4 Quellen)",
-                "Join-Mechanik",
-                "Master, Dictionary & Validierung",
-                "Grenzen"
+                "Ausgangssituation",
+                "Daten Reduktion",
+                "Daten Anreicherung",
+                "Daten Zusammenführung",
+                "Masterdatensatz als Resultat",
+                "Limitierungen",
+                "Ausblick"
               ]
             }
           ]

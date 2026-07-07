@@ -68,11 +68,12 @@
               "items": [
                 "Genese & Motivation",
                 "Ausgangssituation",
-                "Reduktion — das Überwältigende bändigen",
-                "Anreicherung — das Dünne aufwerten",
-                "Vereinigung zum Master",
-                "Das Resultat",
-                "Grenzen & Ausblick"
+                "Daten Reduktion",
+                "Daten Anreicherung",
+                "Daten Zusammenführung",
+                "Masterdatensatz als Resultat",
+                "Limitierungen",
+                "Ausblick"
               ]
             }
           ]
@@ -648,12 +649,12 @@
         {
           "role": "closing",
           "title": "Zurich Tram Data",
-          "subtitle": "Data-Engineering-Fundament für das Analyse-Projekt zh-tram-flow",
+          "subtitle": "Recherche · Reduktion · Anreicherung · Vereinigung",
           "content": [
             {
               "type": "statement",
               "sentiment": "neutral",
-              "text": "Das Ergebnis ist ein sauberer, reproduzierbarer Master-Datensatz — das Data-Engineering-Fundament dieses Vorhabens."
+              "text": "Data-Engineering-Fundament für das Analyse-Projekt zh-tram-flow"
             }
           ]
         }

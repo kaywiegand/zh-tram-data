@@ -73,12 +73,13 @@ chapters:
         content:
           - type: agenda
             items:
-              - "Motivation"
-              - "Das Projekt"
-              - "Reduktion"
-              - "Anreicherung"
-              - "Der Master"
-              - "Grenzen & Einordnung"
+              - "Genese & Motivation"
+              - "Ausgangssituation"
+              - "Daten Reduktion"
+              - "Daten Anreicherung"
+              - "Daten Zusammenführung"
+              - "Masterdatensatz als Resultat"
+              - "Limitierungen"
 
       - id: ausgangssituation-agenda-storyview
         views: [storyview]
@@ -89,11 +90,12 @@ chapters:
             items:
               - "Genese & Motivation"
               - "Ausgangssituation"
-              - "Reduktion — das Überwältigende bändigen"
-              - "Anreicherung — das Dünne aufwerten"
-              - "Vereinigung zum Master"
-              - "Das Resultat"
-              - "Grenzen & Ausblick"
+              - "Daten Reduktion"
+              - "Daten Anreicherung"
+              - "Daten Zusammenführung"
+              - "Masterdatensatz als Resultat"
+              - "Limitierungen"
+              - "Ausblick"
 
       - id: ausgangssituation-agenda-techview
         views: [techview]
@@ -102,12 +104,13 @@ chapters:
         content:
           - type: agenda
             items:
-              - "Rohdaten & Werkzeugwahl"
-              - "Reduktion"
-              - "Anreicherung (4 Quellen)"
-              - "Join-Mechanik"
-              - "Master, Dictionary & Validierung"
-              - "Grenzen"
+              - "Ausgangssituation"
+              - "Daten Reduktion"
+              - "Daten Anreicherung"
+              - "Daten Zusammenführung"
+              - "Masterdatensatz als Resultat"
+              - "Limitierungen"
+              - "Ausblick"
 
   # =====================================================================
   - id: genese
@@ -526,11 +529,11 @@ chapters:
         views: [storyview, overview]
         role: closing
         title: "Zurich Tram Data"
-        subtitle: "Data-Engineering-Fundament für das Analyse-Projekt zh-tram-flow"
+        subtitle: "Recherche · Reduktion · Anreicherung · Vereinigung"
         content:
           - type: statement
             sentiment: neutral
-            text: "Das Ergebnis ist ein sauberer, reproduzierbarer Master-Datensatz — das Data-Engineering-Fundament dieses Vorhabens."
+            text: "Data-Engineering-Fundament für das Analyse-Projekt zh-tram-flow"
 
 # ===========================================================================
 view_meta:
