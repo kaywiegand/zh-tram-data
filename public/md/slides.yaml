@@ -580,7 +580,7 @@ hub:
     - label: "Anreicherung"
       text: "Vier Kontextquellen recherchiert und integriert — GTFS, Meteo, Events (kein Open Data → Handaufbau), Geo. 10 → 26 Spalten über Left- und Spatial-Joins."
     - label: "Resultat"
-      text: "vbz_master.parquet — 94,4 M Halt-Ereignisse × 26 Spalten, 1:1 reproduzierbar über 9 Notebooks, validiert und deckungsgleich mit dem Original."
+      text: "vbz_master.parquet — 94,4 M Halt-Ereignisse × 26 Spalten, 1:1 reproduzierbar über 9 Notebooks, systematisch validiert: Schema, Wertebereiche, Join-Qualität, Stichproben gegen die Rohdaten."
   quick_links:
     - {href: "https://github.com/kaywiegand/zh-tram-flow", label: "GitHub Repo zum Analyse- und Vorhersage-Projekt"}
   view_order: [overview, techview, storyview]
