@@ -13,7 +13,7 @@
 
 ---
 
-### Ausgangssituation
+### Title
 
 # Zurich Tram Data
 
@@ -25,35 +25,46 @@
 * **10 → 26** — Spalten nach Anreicherung
 * **94,4 M** — Zeilen, validiert
 
+
+---
+
+### Inhalt
+
 ## Inhalt
 *Der technische Weg durch die Pipeline*
 
-1. Rohdaten & Werkzeugwahl
-2. Reduktion
-3. Anreicherung (4 Quellen)
-4. Join-Mechanik
-5. Master, Dictionary & Validierung
-6. Grenzen
+1. Ausgangssituation
+2. Daten Reduktion
+3. Daten Anreicherung
+4. Daten Zusammenführung
+5. Masterdatensatz als Resultat
+6. Limitierungen
+7. Ausblick
 
-## Die Datenstrategie auf einen Blick
-*Fünf Quellen, ein Weg zum Master*
+
+---
+
+### Ausgangssituation
+
+## Die Datenstrategie
+*Fünf Datenquellen, ein reproduzierbarer Master-Datensatz*
 
 
 
 ---
 
-### Reduktion
+### Daten Reduktion
 
-## Die Ausgangslage: das ganze Land
-*38 GB, jede Fahrt der Schweiz*
+## Schweiz ÖPNV IST-Daten
+*38 GB schweizweite Ist-Daten als Ausgangsvolumen*
 
 * **38 GB** — komprimierte Archiv-ZIPs
 * **~400** — Transportunternehmen CH
 * **5** — Verkehrsmittel-Arten
 > Die IST-Rohdaten beschreiben den gesamten öffentlichen Verkehr der Schweiz — jeder Zug, Bus, jedes Tram, Schiff, jede Seilbahn. Relevant ist ein schmaler Ausschnitt: VBZ Tram Zürich.
 
-## Werkzeugwahl: Polars statt Pandas
-*Auf den echten Daten gemessen, nicht angenommen*
+## Polars statt Pandas
+*Werkzeugwahl per Benchmark auf dem realen Datenvolumen*
 
 > Entscheidung: Polars für alle großen Operationen (IST, Merge). Pandas bleibt für kleine Quellen (GTFS/Meteo/Events) und als Lernreferenz.
 
@@ -61,18 +72,18 @@
 *Warum Polars — und wie der Wechsel funktioniert*
 
 
-## Von der Schweiz zu VBZ Tram
-*Jede Filter-Entscheidung begründet*
+## Auf VBZ Tram
+*Regelbasierte Filterung von ~400 Betreibern auf das VBZ-Tramnetz*
 
 > ~11 % der Zeilen entfernt — übrig bleiben echte, planmäßige Halte mit GPS-Zeitstempeln, plus alle Ausfälle.
 
 
 ---
 
-### Anreicherung
+### Daten Anreicherung
 
-## Anreicherung 1 — GTFS (Fahrplan)
-*woher · was zu tun · wie übernommen*
+## Fahrplan (GTFS)
+*Soll-Fahrplan und Haltestellen-Stammdaten aus dem ZVV-Netz*
 
 * **Woher**
   - data.stadt-zuerich.ch · ZIP/TXT · CC0
@@ -84,8 +95,8 @@
   - Join über bpuic (Haltestellen-ID) → stop_name, stop_lat, stop_lon
   - +3 Spalten im Master
 
-## Anreicherung 2 — Meteo (Wetter)
-*woher · was zu tun · wie übernommen*
+## Wetter (Meteo)
+*Drei heterogene Quellen, konsolidiert auf Stundenbasis*
 
 * **Woher**
   - data.stadt-zuerich.ch (UGZ, Wapo, ERZ) · CSV/Parquet · CC0
@@ -97,8 +108,8 @@
   - floor(1h) als Join-Schlüssel zu den Tram-Zeitstempeln
   - +7 Spalten (u.a. temperature, precipitation, wind_speed, flood_intensity)
 
-## Anreicherung 3 — Events (der harte Fall)
-*Kein Open Data — von Hand aufgebaut*
+## Events nach Größe
+*Fehlende Open-Data-Quelle durch eigene Recherche geschlossen*
 
 * **Woher**
   - Keine strukturierte Open-Data-Quelle verfügbar
@@ -110,8 +121,8 @@
   - Als CSV aufgebaut, Join über das Datum
   - +4 Spalten (event_name, event_type, event_size, event_location)
 
-## Anreicherung 4 — Geo (Stadtkreise)
-*woher · was zu tun · wie übernommen*
+## Stadtkreise (Geo)
+*Räumliche Zuordnung der Haltestellen per Spatial Join*
 
 * **Woher**
   - data.stadt-zuerich.ch · GeoJSON · CC0
@@ -125,35 +136,35 @@
 
 ---
 
-### Vereinigung
+### Daten Zusammenführung
 
 ## Die Join-Pipeline
-*Vier Quellen, drei Joins, eine Qualitätsprüfung*
+*Vier Quellen über drei Joins zum validierten Master*
 
 
-## Left Joins — kein Zeilenverlust
-*Die wichtigste Join-Entscheidung*
+## Left Join als Standard
+*Vollständigkeitserhalt: Fehlwerte als null statt Zeilenverlust*
 
 > Left Join überall: jede Tram-Fahrt bleibt erhalten. Fehlende Werte (Sensor-Ausfall, Event-freier Tag) werden null — statt die Zeile zu löschen.
 > Datenverlust durch Join ist der häufigste stille Bug in Merge-Pipelines. Left Join macht ihn unmöglich.
 
-## Die Tücken im Detail
-*Zwei Stolpersteine beim Join*
+## Zeitstempel als Herausforderung
+*Datentyp- und Zeitraster-Fallstricke beim Zusammenführen*
 
 
 
 ---
 
-### Resultat
+### Masterdatensatz als Resultat
 
 ## Der Master-Datensatz
-*Ein Datensatz, mit dem man wirklich arbeiten kann*
+*Analysefertige, reproduzierbare Datengrundlage*
 
 * **94,4 M** — Halt-Ereignisse
 * **26** — Spalten aus 5 Quellen
 * **9** — Notebooks, 00–08
 * **100 %** — reproduzierbar
-> vbz_master.parquet — eine Zeile pro Halt (~230 je Fahrt), angereichert mit Fahrplan, Wetter, Events und Stadtkreis. 1:1 reproduzierbar über die 9 Notebooks, deckungsgleich mit dem Original aus sf_data-research.
+> vbz_master.parquet — eine Zeile pro Halt (~230 je Fahrt), angereichert mit Fahrplan, Wetter, Events und Stadtkreis. 1:1 reproduzierbar über die 9 Notebooks.
 
 ## Data Dictionary — 26 Spalten
 *Zusammensetzung nach Quelle*
@@ -166,13 +177,18 @@
 
 ---
 
-### Grenzen & Ausblick
+### Limitierungen
 
-## Grenzen & bewusste Versäumnisse
-*Transparenz über Known Issues*
+## Bewusste Limitierung
+*Dokumentierte Scope-Entscheidungen dieser Ausbaustufe*
 
 > Bewusst dokumentierte Grenzen, nicht übersehene Fehler. Transparenz über Known Issues gehört zu sauberem Data Engineering.
 
-## Ausblick
-*Was eine nächste Iteration angeht*
+
+---
+
+### Ausblick
+
+## Weitere Perspektiven
+*Erweiterungen für eine nächste Iteration*
 

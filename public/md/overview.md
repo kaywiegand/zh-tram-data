@@ -13,7 +13,7 @@
 
 ---
 
-### Ausgangssituation
+### Title
 
 # Zurich Tram Data
 
@@ -25,17 +25,40 @@
 * **26** — Spalten aus 5 Quellen
 * **9** — reproduzierbare Notebooks
 
+
+---
+
+### Inhalt
+
 ## Inhalt
 *Diese Präsentation auf einen Blick*
 
-1. Das Projekt
-2. Reduktion
-3. Anreicherung
-4. Der Master
-5. Grenzen & Einordnung
+1. Genese & Motivation
+2. Ausgangssituation
+3. Daten Reduktion
+4. Daten Anreicherung
+5. Daten Zusammenführung
+6. Masterdatensatz als Resultat
+7. Limitierungen
 
-## Worum es geht
-*Ziel, Fokus und Einordnung des Projekts*
+
+---
+
+### Genese & Motivation
+
+## Persönliche Motivation
+*Ein datengetriebenes Thema mit gesellschaftlicher Relevanz*
+
+> Daten sollen sinnstiftend eingesetzt werden — mit greifbarem Bezug zum Alltag, zur Lebensqualität, im besten Fall zur Nachhaltigkeit.
+> Öffentlicher Verkehr trifft das genau: täglich erlebbar, gesellschaftlich relevant, datenreich. Die Recherche führte über den ÖPNV nach Zürich.
+
+
+---
+
+### Ausgangssituation
+
+## Der Projektrahmen
+*Zielsetzung, Scope und Einordnung im Data-Lifecycle*
 
 * **Ziel**
   - Ein einziger, sauberer Master-Datensatz der realen VBZ-Tram-Halte
@@ -46,14 +69,14 @@
 * **Einordnung**
   - Data-Engineering-Grundlage für zh-tram-flow (Analyse & Verspätungsvorhersage)
 
-## Die Datenstrategie auf einen Blick
-*Fünf Quellen, ein Weg zum Master*
+## Die Datenstrategie
+*Fünf Datenquellen, ein reproduzierbarer Master-Datensatz*
 
 
 
 ---
 
-### Reduktion
+### Daten Reduktion
 
 ## Das Überwältigende bändigen
 *Reduktion in drei Schritten*
@@ -62,7 +85,7 @@
 
 ---
 
-### Anreicherung
+### Daten Anreicherung
 
 ## Das Dünne aufwerten
 *Vier Quellen, ein bemerkenswerter Sonderfall*
@@ -77,38 +100,42 @@
 
 ---
 
-### Vereinigung
+### Daten Zusammenführung
 
 ## Die Join-Pipeline
-*Vier Quellen, drei Joins, eine Qualitätsprüfung*
+*Vier Quellen über drei Joins zum validierten Master*
 
 
 
 ---
 
-### Resultat
+### Masterdatensatz als Resultat
 
 ## Der Master-Datensatz
-*Ein Datensatz, mit dem man wirklich arbeiten kann*
+*Analysefertige, reproduzierbare Datengrundlage*
 
 * **94,4 M** — Halt-Ereignisse
 * **26** — Spalten aus 5 Quellen
 * **9** — Notebooks, 00–08
 * **100 %** — reproduzierbar
-> vbz_master.parquet — eine Zeile pro Halt (~230 je Fahrt), angereichert mit Fahrplan, Wetter, Events und Stadtkreis. 1:1 reproduzierbar über die 9 Notebooks, deckungsgleich mit dem Original aus sf_data-research.
+> vbz_master.parquet — eine Zeile pro Halt (~230 je Fahrt), angereichert mit Fahrplan, Wetter, Events und Stadtkreis. 1:1 reproduzierbar über die 9 Notebooks.
 
 
 ---
 
-### Grenzen & Ausblick
+### Limitierungen
 
-## Grenzen & bewusste Versäumnisse
-*Transparenz über Known Issues*
+## Bewusste Limitierung
+*Dokumentierte Scope-Entscheidungen dieser Ausbaustufe*
 
 > Bewusst dokumentierte Grenzen, nicht übersehene Fehler. Transparenz über Known Issues gehört zu sauberem Data Engineering.
 
-## Einordnung
-*Das Fundament und der Aufbau*
 
-> zh-tram-data ist das Data-Engineering-Fundament: der saubere, reproduzierbare Master-Datensatz.
-> Analyse, Modellierung und Vorhersage bauen darauf auf — in zh-tram-flow. Zusammen der volle Data-Cycle, sauber in Fundament und Aufbau getrennt.
+---
+
+### Ende
+
+## Zurich Tram Data
+*Recherche · Reduktion · Anreicherung · Vereinigung*
+
+> Data-Engineering-Fundament für das Analyse-Projekt zh-tram-flow
