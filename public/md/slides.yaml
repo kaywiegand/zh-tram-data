@@ -63,6 +63,7 @@ chapters:
   # =====================================================================
   - id: inhalt
     nav_label: Inhalt
+    nav_label_by_view: {storyview: "Agenda"}
     slides:
       - id: ausgangssituation-agenda-overview
         views: [overview]
@@ -81,8 +82,8 @@ chapters:
 
       - id: ausgangssituation-agenda-storyview
         views: [storyview]
-        title: "Übersicht"
-        subtitle: "Alles auf einen Blick"
+        title: "Inhaltsübersicht"
+        subtitle: "Von der Projektgenese bis zum Ausblick"
         layout: L1
         content:
           - type: agenda
@@ -527,9 +528,12 @@ chapters:
       - id: grenzen-closing
         views: [storyview, overview]
         role: closing
-        # title/subtitle/content werden komplett aus hub generiert (title_from_hub) —
-        # identisch zur Opening-Titel-Slide, kein eigener Wortlaut (Kay-Feedback 2026-07-13).
-        title_from_hub: true
+        title: "Zurich Tram Data"
+        subtitle: "Recherche · Reduktion · Anreicherung · Vereinigung"
+        content:
+          - type: statement
+            sentiment: neutral
+            text: "Master-Datensatz als Data-Engineering-Fundament für das Analyse-Projekt zh-tram-flow"
 
 # ===========================================================================
 view_meta:

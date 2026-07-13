@@ -64,11 +64,11 @@
       ]
     },
     {
-      "nav_label": "Inhalt",
+      "nav_label": "Agenda",
       "slides": [
         {
-          "title": "Übersicht",
-          "subtitle": "Alles auf einen Blick",
+          "title": "Inhaltsübersicht",
+          "subtitle": "Von der Projektgenese bis zum Ausblick",
           "layout": "L1",
           "content": [
             {
@@ -656,17 +656,13 @@
       "slides": [
         {
           "role": "closing",
-          "title_from_hub": true,
           "title": "Zurich Tram Data",
-          "subtitle": [
-            "Vom Rohdaten-Archiv zum Master-Datensatz",
-            "Data-Engineering-Pipeline für das Zürcher Tramnetz (VBZ) | 2023–2025"
-          ],
+          "subtitle": "Recherche · Reduktion · Anreicherung · Vereinigung",
           "content": [
             {
               "type": "statement",
               "sentiment": "neutral",
-              "text": "Data-Engineering-Grundlage für das Analyse- und Vorhersage-Projekt zh-tram-flow"
+              "text": "Master-Datensatz als Data-Engineering-Fundament für das Analyse-Projekt zh-tram-flow"
             }
           ]
         }
