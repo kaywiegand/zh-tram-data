@@ -70,6 +70,8 @@ ursprünglich erzeugten Referenz-Datensatz (validiert in `08_master-validation`)
 - [x] `00_introduction`: stale IST-Reduktion „21 → 8" → „21 → 10" korrigiert; zusätzlich
       `FAHRT_BEZEICHNER` aus der „Entfernte Spalten"-Tabelle entfernt (wird als `trip_id`
       behalten — Widerspruch zu `KEEP_COLS` aufgelöst). 2026-07-04.
+- [x] Styleguide v2 ausgerollt + alle 3 Views (storyview/overview/techview) komplett
+      Folie für Folie reviewed und freigegeben — siehe `PROCESS_LOG.md`. 2026-07-13.
 
 ---
 

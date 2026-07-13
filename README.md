@@ -5,7 +5,7 @@
 ![Python](https://img.shields.io/badge/Python-3.10-blue)
 ![Polars](https://img.shields.io/badge/Polars-0.20+-orange)
 ![Type](https://img.shields.io/badge/Type-Data%20Engineering-lightgrey)
-![Status](https://img.shields.io/badge/Status-Phase%201%20complete-brightgreen)
+![Status](https://img.shields.io/badge/Status-Phase%202%20complete-brightgreen)
 
 ---
 

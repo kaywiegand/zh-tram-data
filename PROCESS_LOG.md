@@ -11,8 +11,8 @@
 | :--- | :--- |
 | Projektname | Zurich Tram Data |
 | Erstellt | 2026-05-07 |
-| Status | 🟢 Phase 1 abgeschlossen, Portfolio-Layer in Arbeit — Styleguide v2 ausgerollt, Storyview komplett reviewed |
-| Nächster Schritt | Kay reviewed overview + techview eigenständig, dann Merge-Entscheidung für `wgnd-skills`-Branch `feature/styleguide-v2` |
+| Status | 🟢 Phase 2 abgeschlossen, Phase 3 in Arbeit — Styleguide v2 ausgerollt, alle 3 Views komplett reviewed |
+| Nächster Schritt | `wgnd-skills`-Branch `feature/styleguide-v2` mergen, dann Deployment (`public/` → GitHub Pages) |
 
 ---
 
@@ -261,5 +261,41 @@ die anderen beiden Views haben viele Fixes über geteilte Slide-IDs und globales
 automatisch geerbt, aber noch keinen eigenen dedizierten Blick bekommen). Danach Entscheidung,
 ob `wgnd-skills`-Branch `feature/styleguide-v2` nach `main` gemerged wird (betrifft auch
 zh-tram-flow, das dieselben globalen Fixes bereits übernommen hat).
+
+---
+
+### 2026-07-13 (Fortsetzung) — Overview + Techview reviewed, Review-Zyklus abgeschlossen
+
+Kay hat overview und techview ebenfalls Folie für Folie durchgesehen und freigegeben ("für
+mich ist das fein") — damit sind alle 3 Views vollständig reviewed. Wesentliche Ergänzungen
+gegenüber der Storyview (Details siehe Git-Log, nicht hier dupliziert): Titel-Slide-L6 auch für
+overview/techview aktiviert; Genese-Einstiegsslide ("Data Science Abschlussarbeit") war in
+overview komplett übersprungen worden — nachgezogen; die fehlende Zürich-Begründung (storyview
+hat dafür eine eigene Slide, overview nicht) als vierter Abschnitt in "Der Projektrahmen"
+eingefaltet statt eines zusätzlichen Slides (bewusste Entscheidung: overview soll knapp bei
+8 Minuten Laufzeit bleiben); techview hatte gar kein Closing (kein "ende"-Kapitel in der
+View-Komposition) — ergänzt; Agenda-Titel über alle 3 Views auf "Inhaltsübersicht"
+vereinheitlicht.
+
+**Zwei weitere reale Bugs gefunden:** (1) Titel-Slide-KPI-Row brach bei 4 Werten mit langen
+Labels "greedy" um (3 in Zeile 1, 1 in Zeile 2 statt sauberem 2×2) — von Flex-Wrap auf CSS-Grid
+mit `auto-fit`/`minmax` umgestellt, dabei zusätzlich `width:100%` nötig (der Grid-Container hatte
+als Flex-Kind sonst keine echte Breite, gegen die `auto-fit` rechnen konnte). (2) `.pf-grid`
+(Karten-Reihe) gefolgt von Fließtext hatte nicht die sonst übliche 3em-Abstandsregel — ergänzt.
+
+`templates/styleguide.html` (wgnd-skills) im gleichen Zug vervollständigt: Titel-L6-Variante,
+beide Agenda-Varianten (L1/L6), gestapelte Statement-Callouts, Process-Arrows-Hervorhebung,
+und die Abstände-Tabelle korrigiert (die pauschale "40px"-Zeile war seit dem 3em-Fix falsch).
+
+**Aufräum-Pass:** README-Status-Badge war stale ("Phase 1 complete" trotz Phase-3-Arbeit) →
+"Phase 2 complete" (Phase 3 hat mit Deployment noch einen echten offenen Punkt). Reports-&-
+Artifacts-Sektion im README war bereits korrekt (alle 4 Views verlinkt), keine Änderung nötig.
+`public/archive/` ist bereits gitignored (rein lokale Snapshots vom `archive_portfolio_artifacts.py`-
+Schritt) — kein Repo-Hygiene-Thema.
+
+**Nächster Schritt:** `wgnd-skills`-Branch `feature/styleguide-v2` (46 Commits vor `main`) mergen
+— danach Deployment (`public/` → GitHub Pages, letzter offener Punkt in Phase 3) und/oder
+Styleguide-v2-Retrofit auf zh-tram-flow (bestehende Story bleibt, gezielt neue Elemente wie
+`box_grid`/`process_arrows`/`layout: callout` dort ergänzen wo passend).
 
 ---
