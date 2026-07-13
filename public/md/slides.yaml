@@ -281,8 +281,13 @@ chapters:
         views: [storyview]
         title: "Warum anreichern"
         subtitle: "Kontextdaten machen Verspätung erst erklärbar"
-        layout: callout
         content:
+          - type: process_arrows
+            items:
+              - "Fahrplan (GTFS)"
+              - "Wetter (Meteo)"
+              - "Events"
+              - "Stadtkreise (Geo)"
           - type: statement
             sentiment: neutral
             text: "Ein Tram-Halt mit einer Verspätungszahl erklärt für sich genommen wenig. Erst der Kontext — Fahrplan, Wetter, Events, Geografie — macht Verspätung nachvollziehbar."

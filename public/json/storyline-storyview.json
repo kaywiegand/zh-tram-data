@@ -336,8 +336,16 @@
         {
           "title": "Warum anreichern",
           "subtitle": "Kontextdaten machen Verspätung erst erklärbar",
-          "layout": "callout",
           "content": [
+            {
+              "type": "process_arrows",
+              "items": [
+                "Fahrplan (GTFS)",
+                "Wetter (Meteo)",
+                "Events",
+                "Stadtkreise (Geo)"
+              ]
+            },
             {
               "type": "statement",
               "sentiment": "neutral",
