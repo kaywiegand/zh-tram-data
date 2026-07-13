@@ -260,6 +260,18 @@
           "subtitle": "Soll-Fahrplan und Haltestellen-Stammdaten aus dem ZVV-Netz",
           "content": [
             {
+              "type": "process_arrows",
+              "items": [
+                {
+                  "text": "Fahrplan (GTFS)",
+                  "current": true
+                },
+                "Wetter (Meteo)",
+                "Events",
+                "Stadtkreise (Geo)"
+              ]
+            },
+            {
               "type": "sections",
               "layout": "columns",
               "items": [
@@ -292,6 +304,18 @@
           "title": "Wetter (Meteo)",
           "subtitle": "Drei heterogene Quellen, konsolidiert auf Stundenbasis",
           "content": [
+            {
+              "type": "process_arrows",
+              "items": [
+                "Fahrplan (GTFS)",
+                {
+                  "text": "Wetter (Meteo)",
+                  "current": true
+                },
+                "Events",
+                "Stadtkreise (Geo)"
+              ]
+            },
             {
               "type": "sections",
               "layout": "columns",
@@ -326,6 +350,18 @@
           "subtitle": "Fehlende Open-Data-Quelle durch eigene Recherche geschlossen",
           "content": [
             {
+              "type": "process_arrows",
+              "items": [
+                "Fahrplan (GTFS)",
+                "Wetter (Meteo)",
+                {
+                  "text": "Events",
+                  "current": true
+                },
+                "Stadtkreise (Geo)"
+              ]
+            },
+            {
               "type": "sections",
               "layout": "columns",
               "items": [
@@ -358,6 +394,18 @@
           "title": "Stadtkreise (Geo)",
           "subtitle": "Räumliche Zuordnung der Haltestellen per Spatial Join",
           "content": [
+            {
+              "type": "process_arrows",
+              "items": [
+                "Fahrplan (GTFS)",
+                "Wetter (Meteo)",
+                "Events",
+                {
+                  "text": "Stadtkreise (Geo)",
+                  "current": true
+                }
+              ]
+            },
             {
               "type": "sections",
               "layout": "columns",
