@@ -50,7 +50,6 @@
             {
               "type": "view_teaser",
               "label": "Business & Ergebnis",
-              "badge": "HR · Business",
               "description": "Der Datensatz und der Weg dorthin, verdichtet für Stakeholder und Recruiter. Fokus auf Reduktion, Anreicherung und Resultat."
             }
           ],
@@ -325,14 +324,23 @@
       "slides": [
         {
           "role": "closing",
-          "title": "Zurich Tram Data",
-          "subtitle": "Recherche · Reduktion · Anreicherung · Vereinigung",
+          "title_from_hub": true,
           "content": [
+            {
+              "type": "statement",
+              "sentiment": "neutral",
+              "text": "Recherche · Reduktion · Anreicherung · Vereinigung"
+            },
             {
               "type": "statement",
               "sentiment": "neutral",
               "text": "Master-Datensatz als Data-Engineering-Fundament für das Analyse-Projekt zh-tram-flow"
             }
+          ],
+          "title": "Zurich Tram Data",
+          "subtitle": [
+            "Vom Rohdaten-Archiv zum Master-Datensatz",
+            "Data-Engineering-Pipeline für das Zürcher Tramnetz (VBZ) | 2023–2025"
           ]
         }
       ]

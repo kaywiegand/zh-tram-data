@@ -50,7 +50,6 @@
             {
               "type": "view_teaser",
               "label": "Engineering Deep-Dive",
-              "badge": "Data Engineering",
               "description": "Werkzeugwahl, Join-Mechanik, Schema und Validierung im Detail. Für Data Engineers und Tech Leads."
             }
           ],

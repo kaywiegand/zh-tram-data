@@ -533,9 +533,14 @@ chapters:
       - id: grenzen-closing
         views: [storyview, overview]
         role: closing
-        title: "Zurich Tram Data"
-        subtitle: "Recherche · Reduktion · Anreicherung · Vereinigung"
+        # title/subtitle automatisch aus hub (title_from_hub) — identisch zur
+        # Opening-Titel-Slide. Der Content-Text bleibt eigener Wortlaut (zwei
+        # Absätze), nicht aus dem Hub (Kay-Feedback 2026-07-13).
+        title_from_hub: true
         content:
+          - type: statement
+            sentiment: neutral
+            text: "Recherche · Reduktion · Anreicherung · Vereinigung"
           - type: statement
             sentiment: neutral
             text: "Master-Datensatz als Data-Engineering-Fundament für das Analyse-Projekt zh-tram-flow"
