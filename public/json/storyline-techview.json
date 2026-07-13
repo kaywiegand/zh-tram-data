@@ -21,6 +21,7 @@
       "slides": [
         {
           "role": "title",
+          "layout": "L6",
           "content": [
             {
               "type": "figures",
@@ -90,7 +91,7 @@
       "slides": [
         {
           "title": "Die Datenstrategie",
-          "subtitle": "Fünf Datenquellen, ein reproduzierbarer Master-Datensatz",
+          "subtitle": "Zusammenführung der fünf Datenquellen zu einem reproduzierbaren Master-Datensatz",
           "content": [
             {
               "type": "chart_refs",
@@ -600,7 +601,7 @@
         },
         {
           "title": "Validierung",
-          "subtitle": "08_master-validation — die Qualitätsprüfung",
+          "subtitle": "Validation Notebook — die Qualitätsprüfung",
           "content": [
             {
               "type": "steps",
@@ -696,6 +697,32 @@
                 }
               ]
             }
+          ]
+        }
+      ]
+    },
+    {
+      "nav_label": "Ende",
+      "slides": [
+        {
+          "role": "closing",
+          "title_from_hub": true,
+          "content": [
+            {
+              "type": "statement",
+              "sentiment": "neutral",
+              "text": "Recherche · Reduktion · Anreicherung · Vereinigung"
+            },
+            {
+              "type": "statement",
+              "sentiment": "neutral",
+              "text": "Master-Datensatz als Data-Engineering-Fundament für das Analyse-Projekt zh-tram-flow"
+            }
+          ],
+          "title": "Zurich Tram Data",
+          "subtitle": [
+            "Vom Rohdaten-Archiv zum Master-Datensatz",
+            "Data-Engineering-Pipeline für das Zürcher Tramnetz (VBZ) | 2023–2025"
           ]
         }
       ]

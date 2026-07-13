@@ -53,6 +53,7 @@ chapters:
         views: [techview]
         role: title
         # title/subtitle automatisch aus hub (siehe Kommentar oben)
+        layout: L6
         content:
           - type: figures
             items:
@@ -224,7 +225,7 @@ chapters:
       - id: ausgangssituation-strategie
         views: [storyview, overview, techview]
         title: "Die Datenstrategie"
-        subtitle: "Fünf Datenquellen, ein reproduzierbarer Master-Datensatz"
+        subtitle: "Zusammenführung der fünf Datenquellen zu einem reproduzierbaren Master-Datensatz"
         content:
           - type: chart_refs
             items:
@@ -524,7 +525,7 @@ chapters:
       - id: resultat-validierung
         views: [techview]
         title: "Validierung"
-        subtitle: "08_master-validation — die Qualitätsprüfung"
+        subtitle: "Validation Notebook — die Qualitätsprüfung"
         content:
           - type: steps
             items:
@@ -583,7 +584,7 @@ chapters:
     nav_label: Ende
     slides:
       - id: grenzen-closing
-        views: [storyview, overview]
+        views: [storyview, overview, techview]
         role: closing
         # title/subtitle automatisch aus hub (title_from_hub) — identisch zur
         # Opening-Titel-Slide. Der Content-Text bleibt eigener Wortlaut (zwei
@@ -706,3 +707,4 @@ view_composition:
     - resultat
     - limitierungen
     - ausblick
+    - ende

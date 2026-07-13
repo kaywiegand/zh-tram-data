@@ -168,7 +168,7 @@
         },
         {
           "title": "Die Datenstrategie",
-          "subtitle": "Fünf Datenquellen, ein reproduzierbarer Master-Datensatz",
+          "subtitle": "Zusammenführung der fünf Datenquellen zu einem reproduzierbaren Master-Datensatz",
           "content": [
             {
               "type": "chart_refs",

@@ -362,6 +362,10 @@ body.nav-invert #progress-fill                    { background: #fff; }
 .title-split-left .view-teaser-desc { margin: 0; max-width: none; }
 .title-split-left .closing-links { justify-content: flex-start; }
 .title-split-right { flex: 1; display: flex; align-items: center; justify-content: center; }
+/* Bei 4 KPIs mit längeren Labels reicht die Breite der rechten Spalte nicht immer für
+   eine Reihe — nowrap (Standard bei .kpi-row) hätte den Wert selbst mitten im Text
+   umgebrochen. Wrap erlauben, dann geht's als 2×2 auf statt Text zu quetschen. */
+.title-split-right .kpi-row { flex-wrap: wrap; row-gap: 1.6em; }
 
 /* ── Layout ───────────────────────────────────── */
 .cols { display: flex; gap: 26px; align-items: flex-start; }
@@ -567,7 +571,8 @@ body.nav-invert #progress-fill                    { background: #fff; }
 .reveal table + blockquote.statement,
 .reveal .steps + blockquote.statement,
 .reveal .reco-grid + blockquote.statement,
-.reveal .arrows + blockquote.statement { margin-top: 3em; }
+.reveal .arrows + blockquote.statement,
+.reveal .arrows + .pf-grid { margin-top: 3em; }
 .reveal blockquote.statement::before,
 .reveal blockquote.statement::after { content: none; }
 /* In a two-column layout the statement reads as left-aligned body text */
