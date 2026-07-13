@@ -11,7 +11,7 @@ Prio: `1` = hoch · `2` = mittel · `3` = niedrig
 
 | # | Beschreibung | Prio |
 | :--- | :--- | :--: |
-| A | **Public-Inhalte kontrollieren + abstimmen (Portfolio-Layer)** — die generierten `public/`-Views (`index.html`, `overview`/`storyview`/`techview`) inhaltlich und gestalterisch durchgehen. Ziel: `zh-tram-data` soll gleichwertig neben `zh-tram-flow` als Portfolio-Projekt stehen. **Noch offen:** einige inhaltliche und gestalterische Punkte sind ungeklärt und abzustimmen — Review vor dem Deployment. Änderungen immer an der Quelle (`public/md/slides.yaml` / `portfolio.md`), dann `make portfolio`. | 1 |
+| A | **Public-Inhalte kontrollieren + abstimmen (Portfolio-Layer)** — die generierten `public/`-Views (`index.html`, `overview`/`storyview`/`techview`) inhaltlich und gestalterisch durchgehen. Ziel: `zh-tram-data` soll gleichwertig neben `zh-tram-flow` als Portfolio-Projekt stehen. **Storyview vollständig reviewed und freigegeben (2026-07-13, Styleguide v2).** **Noch offen:** overview + techview eigenständig durchsehen (haben viele Fixes über geteilte Slides/globales CSS automatisch geerbt, aber keinen eigenen dedizierten Review-Pass). Änderungen immer an der Quelle (`public/md/slides.yaml` / `portfolio.md`), dann `make portfolio`. | 1 |
 
 > Die früheren Migrations-Findings #1 (trip_id-Brücke) und #2 (`UMLAUF_ID`) sind keine offenen
 > Tasks, sondern Scope-Grenzen dieser Auflage — nach unten in die OP-Sektion umgezogen (siehe unten).

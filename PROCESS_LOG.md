@@ -11,8 +11,8 @@
 | :--- | :--- |
 | Projektname | Zurich Tram Data |
 | Erstellt | 2026-05-07 |
-| Status | 🟢 Phase 1 abgeschlossen — alle 9 Notebooks laufen fehlerfrei, `vbz_master.parquet` reproduziert (94.358.531 Zeilen × 26 Spalten, deckungsgleich mit Original) |
-| Nächster Schritt | Backlog-Punkte (trip_id-Mismatch, fehlende Spalten) sichten, dann `/project-review` als Audit-Loop |
+| Status | 🟢 Phase 1 abgeschlossen, Portfolio-Layer in Arbeit — Styleguide v2 ausgerollt, Storyview komplett reviewed |
+| Nächster Schritt | Kay reviewed overview + techview eigenständig, dann Merge-Entscheidung für `wgnd-skills`-Branch `feature/styleguide-v2` |
 
 ---
 
@@ -217,5 +217,49 @@ Zwei neue Findings ins `docs/BACKLOG.md` (nicht gefixt): CLI akzeptiert kein `DE
 
 **Nächster Schritt:** unverändert — Phase 2 Backlog-Entscheidung (#1/#2, trip_id-Brücke / `UMLAUF_ID`)
 vor Phase-3-Ausbau. README-Restpunkte offen: Author-Section, Sprach-Entscheidung DE/EN.
+
+---
+
+### 2026-07-13 — Styleguide v2 ausgerollt + vollständiger Storyview-Review
+
+Design-Overhaul der Präsentationen (Skill-seitig in `wgnd-skills/project-case`, Branch
+`feature/styleguide-v2`, noch **nicht** nach `main` gemerged/gepusht): 12-Spalten-Raster,
+L1–L7-Layouts, E1–E17-Elemente, fixe Kopf-/Content-Zone pro Slide (behebt "Content springt
+je Slide"). Titel-Slide-Typografie an den Hub angeglichen (Font/Größe wie `index.html`
+Header), Titel/Subline werden jetzt automatisch aus `hub.tagline`/`hub.subtitle` generiert
+statt pro View von Hand gepflegt (view-übergreifender Text-Drift damit strukturell
+ausgeschlossen).
+
+**Kay hat die Storyview komplett Folie für Folie durchgesehen** (23 Slides) und Design +
+Inhalt freigegeben ("für mich sind wir einen richtigen Schritt nach vorn"). Umgesetzte
+Änderungen (alle in `public/md/slides.yaml`, Details siehe Git-Log):
+- Titel-Slide: L6-Layout-Experiment (zweispaltig: Titel/Subline/Teaser/Start links, KPI-Row
+  rechts) — bewusst nur hier aktiv, nicht global ausgerollt.
+- Sechs Text-Slides (Genese/Motivation/Ausgangssituation/Aufgabe/Anreicherung/Left-Join) auf
+  `layout: callout` umgestellt — volle Breite statt zweispaltigem Fließtext, neue Titel/Texte
+  auf 3 davon.
+- Datenstrategie-Slide: Bild großformatig zentriert statt Bild-rechts-Layout.
+- KPI-Reihen zentrieren jetzt korrekt auch bei <4 Werten (war strukturell links-lastig).
+- Closing-Slide: Titel/Subline identisch zur Opening-Titel-Slide (aus Hub generiert), eigener
+  Content-Text bleibt handgepflegt (zwei Absätze).
+- Vier Anreicherungs-Quellen-Slides (GTFS/Meteo/Events/Geo) zeigen jetzt eine Prozesspfeil-
+  Navigationsleiste mit dem jeweils aktuellen Schritt hervorgehoben.
+- Agenda-Slide (alle 3 Views einheitlich): Kicker "Agenda", Titel "Übersicht", Liste horizontal
+  + vertikal zentriert (`layout: L1`).
+
+**Reale Bugs gefunden und gefixt** (nicht nur Geschmacksfragen): `.reveal` erbte nie die
+System-Font — Reveal.js' Theme setzte eine spezifischere Regel direkt auf die Heading-Tags,
+wodurch `font-weight:100` zwar im CSS stand, aber mangels geladenem Thin-Schnitt optisch
+wirkungslos blieb. Blockquote-Abstand nach KPI-Row/Tabelle/Steps/Empfehlungen: `.content-zone`
+ist ein Flex-Container, dort kollabieren Nachbar-Margins nicht wie im normalen Blockfluss —
+naive Fixes summierten sich, korrekte Lösung ist eine gezielte Vorgänger-Selektor-Liste.
+`--bg-table-alt` war beim früheren Beige→Blau-Grau-Theme-Wechsel übersehen worden (Tabellen
+liefen weiter beige).
+
+**Nächster Schritt:** Kay reviewed overview + techview eigenständig (storyview ist fertig,
+die anderen beiden Views haben viele Fixes über geteilte Slide-IDs und globales CSS bereits
+automatisch geerbt, aber noch keinen eigenen dedizierten Blick bekommen). Danach Entscheidung,
+ob `wgnd-skills`-Branch `feature/styleguide-v2` nach `main` gemerged wird (betrifft auch
+zh-tram-flow, das dieselben globalen Fixes bereits übernommen hat).
 
 ---
