@@ -68,8 +68,8 @@ chapters:
     slides:
       - id: ausgangssituation-agenda-overview
         views: [overview]
-        title: "Übersicht"
-        subtitle: "Diese Präsentation auf einen Blick"
+        title: "Inhaltsübersicht"
+        subtitle: "Der Datensatz und der Weg dorthin, verdichtet für Stakeholder und Recruiter."
         layout: L1
         content:
           - type: agenda
@@ -101,7 +101,7 @@ chapters:
 
       - id: ausgangssituation-agenda-techview
         views: [techview]
-        title: "Übersicht"
+        title: "Inhaltsübersicht"
         subtitle: "Der technische Weg durch die Pipeline"
         layout: L1
         content:
@@ -205,9 +205,12 @@ chapters:
               - label: "Einordnung"
                 points:
                   - "Data-Engineering-Grundlage für zh-tram-flow (Analyse & Verspätungsvorhersage)"
+          - type: sections
+            layout: text
+            items:
               - label: "Warum Zürich"
                 points:
-                  - "Außergewöhnlich gute Open-Data-Landschaft fürs Tramnetz (VBZ) — frei zugänglich, gut dokumentiert, granular genug für echte Analyse"
+                  - "Außergewöhnlich gute Open-Data-Landschaft fürs Tramnetz (VBZ) — frei zugänglich, gut dokumentiert, granular genug für echte Analyse."
 
       - id: ausgangssituation-aufgabe
         views: [storyview]
@@ -445,7 +448,7 @@ chapters:
               - {text: "Events · +4 Spalten (von Hand recherchiert)", highlight: true}
           - type: statement
             sentiment: neutral
-            text: "10 → 26 Spalten — vier gezielt recherchierte Kontextquellen, integriert in den Master."
+            text: "10 → 26 Spalten — vier gezielt recherchierte Kontextquellen, integriert in den Master-Datensatz."
 
   # =====================================================================
   - id: vereinigung
