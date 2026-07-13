@@ -69,7 +69,7 @@ chapters:
       - id: ausgangssituation-agenda-overview
         views: [overview]
         title: "Inhaltsübersicht"
-        subtitle: "Der Datensatz und der Weg dorthin, verdichtet für Stakeholder und Recruiter."
+        subtitle: "Die wichtigsten Fakten auf dem Weg zum Master-Datensatz"
         layout: L1
         content:
           - type: agenda
