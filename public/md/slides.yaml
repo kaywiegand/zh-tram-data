@@ -162,7 +162,7 @@ chapters:
             text: "Auch die Recherche nach ergänzenden Zürcher Datenquellen (Wetter, Events, Geografie) war vielversprechend. Das war der Startpunkt des Projekts."
 
       - id: ausgangssituation-summary
-        views: [storyview, overview]
+        views: [storyview]
         title: "Der Projektrahmen"
         subtitle: "Zielsetzung, Scope und Einordnung im Data-Lifecycle"
         content:
@@ -180,6 +180,33 @@ chapters:
               - label: "Einordnung"
                 points:
                   - "Data-Engineering-Grundlage für zh-tram-flow (Analyse & Verspätungsvorhersage)"
+
+      # overview hat keine eigene "Warum Zürich"-Slide (anders als storyview) — die
+      # Begründung ist hier als vierter Abschnitt eingefaltet statt eine eigene Slide
+      # zu bekommen, damit die knappe 8-Minuten-Taktung der Overview erhalten bleibt
+      # (Kay-Entscheidung 2026-07-13).
+      - id: ausgangssituation-summary-overview
+        views: [overview]
+        title: "Der Projektrahmen"
+        subtitle: "Zielsetzung, Scope und Einordnung im Data-Lifecycle"
+        content:
+          - type: sections
+            layout: columns
+            items:
+              - label: "Ziel"
+                points:
+                  - "Ein einziger, sauberer Master-Datensatz der realen VBZ-Tram-Halte"
+                  - "Angereichert mit Fahrplan, Wetter, Events und Geografie"
+              - label: "Fokus"
+                points:
+                  - "Der Weg dorthin: Recherche · Filterung · Zusammenführung · Qualitätssicherung"
+                  - "Bewusst nicht Modellierung"
+              - label: "Einordnung"
+                points:
+                  - "Data-Engineering-Grundlage für zh-tram-flow (Analyse & Verspätungsvorhersage)"
+              - label: "Warum Zürich"
+                points:
+                  - "Außergewöhnlich gute Open-Data-Landschaft fürs Tramnetz (VBZ) — frei zugänglich, gut dokumentiert, granular genug für echte Analyse"
 
       - id: ausgangssituation-aufgabe
         views: [storyview]

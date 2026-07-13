@@ -155,6 +155,12 @@
                   "points": [
                     "Data-Engineering-Grundlage für zh-tram-flow (Analyse & Verspätungsvorhersage)"
                   ]
+                },
+                {
+                  "label": "Warum Zürich",
+                  "points": [
+                    "Außergewöhnlich gute Open-Data-Landschaft fürs Tramnetz (VBZ) — frei zugänglich, gut dokumentiert, granular genug für echte Analyse"
+                  ]
                 }
               ]
             }
