@@ -493,7 +493,7 @@ chapters:
 
   # =====================================================================
   - id: resultat
-    nav_label: Masterdatensatz als Resultat
+    nav_label: Resultat
     slides:
       - id: resultat-master
         views: [storyview, overview, techview]
