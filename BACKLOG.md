@@ -9,12 +9,9 @@ Prio: `1` = hoch · `2` = mittel · `3` = niedrig
 
 ## Aktive Tasks
 
-| # | Beschreibung | Prio |
-| :--- | :--- | :--: |
-| B | **Deployment** (`public/` → GitHub Pages) — letzter offene Punkt in Phase 3, siehe `ROADMAP.md`. | 1 |
-
-> Die früheren Migrations-Findings #1 (trip_id-Brücke) und #2 (`UMLAUF_ID`) sind keine offenen
-> Tasks, sondern Scope-Grenzen dieser Auflage — nach unten in die OP-Sektion umgezogen (siehe unten).
+_Keine offenen Tasks._ Die früheren Migrations-Findings #1 (trip_id-Brücke) und #2
+(`UMLAUF_ID`) sind keine offenen Tasks, sondern Scope-Grenzen dieser Auflage — siehe die
+OP-Sektion unten.
 
 ---
 
@@ -23,6 +20,7 @@ Prio: `1` = hoch · `2` = mittel · `3` = niedrig
 | # | Beschreibung | Erledigt |
 | :--- | :--- | :--- |
 | A | Public-Inhalte kontrollieren + abstimmen (Portfolio-Layer) — alle 3 Views (`overview`/`storyview`/`techview`) Folie für Folie durchgesehen und freigegeben. | ✅ 2026-07-13 — Styleguide v2, siehe `PROCESS_LOG.md` |
+| B | Deployment (`public/` → GitHub Pages) | ✅ 2026-07-13 — GitHub-Actions-Workflow statt Deploy-from-branch (kein `/public` wählbar), live: [kaywiegand.github.io/zh-tram-data](https://kaywiegand.github.io/zh-tram-data/) |
 
 ---
 
