@@ -62,11 +62,12 @@
       ]
     },
     {
-      "nav_label": "Inhalt",
+      "nav_label": "Agenda",
       "slides": [
         {
-          "title": "Inhalt",
+          "title": "Übersicht",
           "subtitle": "Der technische Weg durch die Pipeline",
+          "layout": "L1",
           "content": [
             {
               "type": "agenda",

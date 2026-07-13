@@ -62,13 +62,13 @@ chapters:
 
   # =====================================================================
   - id: inhalt
-    nav_label: Inhalt
-    nav_label_by_view: {storyview: "Agenda"}
+    nav_label: Agenda
     slides:
       - id: ausgangssituation-agenda-overview
         views: [overview]
-        title: "Inhalt"
+        title: "Übersicht"
         subtitle: "Diese Präsentation auf einen Blick"
+        layout: L1
         content:
           - type: agenda
             items:
@@ -99,8 +99,9 @@ chapters:
 
       - id: ausgangssituation-agenda-techview
         views: [techview]
-        title: "Inhalt"
+        title: "Übersicht"
         subtitle: "Der technische Weg durch die Pipeline"
+        layout: L1
         content:
           - type: agenda
             items:

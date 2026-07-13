@@ -62,11 +62,12 @@
       ]
     },
     {
-      "nav_label": "Inhalt",
+      "nav_label": "Agenda",
       "slides": [
         {
-          "title": "Inhalt",
+          "title": "Übersicht",
           "subtitle": "Diese Präsentation auf einen Blick",
+          "layout": "L1",
           "content": [
             {
               "type": "agenda",
