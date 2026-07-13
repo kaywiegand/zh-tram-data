@@ -94,12 +94,10 @@
           "content": [
             {
               "type": "chart_refs",
-              "layout": "image_right",
               "items": [
                 {
                   "label": "Gesamte Datenpipeline",
-                  "source": "vbz_strategy.svg",
-                  "caption": "IST · GTFS · Meteo · Events · Geo → Merge → vbz_master.parquet."
+                  "source": "vbz_strategy.svg"
                 }
               ]
             }
@@ -414,6 +412,7 @@
         {
           "title": "Left Join als Standard",
           "subtitle": "Vollständigkeitserhalt: Fehlwerte als null statt Zeilenverlust",
+          "layout": "callout",
           "content": [
             {
               "type": "statement",

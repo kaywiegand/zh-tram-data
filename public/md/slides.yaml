@@ -36,6 +36,10 @@ chapters:
         views: [storyview]
         role: title
         # title/subtitle automatisch aus hub (siehe Kommentar oben)
+        # layout: L6 — Versuch (Kay-Review 2026-07-13), nur diese eine Slide: zweispaltig
+        # (links Titel/Subline/Teaser/Start, rechts KPI-Row) statt der Standard-Kopf-/
+        # Content-Zone. Siehe .title-split in slides.css.
+        layout: L6
         content:
           - type: figures
             items:
@@ -77,8 +81,9 @@ chapters:
 
       - id: ausgangssituation-agenda-storyview
         views: [storyview]
-        title: "Inhalt"
-        subtitle: "Sieben Kapitel entlang des Data-Engineering-Zyklus"
+        title: "Übersicht"
+        subtitle: "Alles auf einen Blick"
+        layout: L1
         content:
           - type: agenda
             items:
@@ -112,20 +117,22 @@ chapters:
     slides:
       - id: genese-genese
         views: [storyview]
-        title: "Die Genese"
-        subtitle: "Ausgangspunkt und Themenfindung des Projekts"
+        title: "Data Science Abschlussarbeit"
+        subtitle: "Projektsuche zum Ende der Fortbildung"
+        layout: callout
         content:
           - type: statement
             sentiment: neutral
-            text: 'Entstanden als Abschlussarbeit einer Data-Science-Fortbildung — der Rahmen war bewusst offen: nicht welches Modell, sondern welches Thema.'
+            text: 'Dieses Projekt entstand als Abschlussarbeit einer Data-Science-Fortbildung — der Rahmen war bewusst offen: nicht welches Modell, sondern welches Thema war die große Herausforderung.'
           - type: statement
             sentiment: neutral
-            text: "Gesucht war ein Gegenstand, an dem sich Data Science nicht abstrakt anfühlt, sondern an einem Alltagsbeispiel mit echtem Impact nachvollziehbar wird."
+            text: "Gesucht war ein Thema, an dem sich Data Science nicht abstrakt anfühlt, sondern an einem Alltagsbeispiel mit echtem Impact nachvollziehbar wird."
 
       - id: genese-motivation
         views: [storyview, overview]
         title: "Persönliche Motivation"
         subtitle: "Ein datengetriebenes Thema mit gesellschaftlicher Relevanz"
+        layout: callout
         content:
           - type: statement
             sentiment: neutral
@@ -140,8 +147,9 @@ chapters:
     slides:
       - id: ausgangssituation-start
         views: [storyview]
-        title: "Warum Zürich"
+        title: "Warum ÖPNV in Zürich"
         subtitle: "Zürichs Open-Data-Ökosystem als Grundlage für reproduzierbare Analysen"
+        layout: callout
         content:
           - type: statement
             sentiment: neutral
@@ -172,8 +180,9 @@ chapters:
 
       - id: ausgangssituation-aufgabe
         views: [storyview]
-        title: "Die Aufgabe"
+        title: "Vom Ziel zur Aufgabe"
         subtitle: "Aufbau einer integrierten, analysefähigen Datengrundlage"
+        layout: callout
         content:
           - type: statement
             sentiment: neutral
@@ -188,11 +197,9 @@ chapters:
         subtitle: "Fünf Datenquellen, ein reproduzierbarer Master-Datensatz"
         content:
           - type: chart_refs
-            layout: image_right
             items:
               - label: "Gesamte Datenpipeline"
                 source: "vbz_strategy.svg"
-                caption: "IST · GTFS · Meteo · Events · Geo → Merge → vbz_master.parquet."
 
   # =====================================================================
   - id: reduktion
@@ -273,6 +280,7 @@ chapters:
         views: [storyview]
         title: "Warum anreichern"
         subtitle: "Kontextdaten machen Verspätung erst erklärbar"
+        layout: callout
         content:
           - type: statement
             sentiment: neutral
@@ -400,6 +408,7 @@ chapters:
         views: [storyview, techview]
         title: "Left Join als Standard"
         subtitle: "Vollständigkeitserhalt: Fehlwerte als null statt Zeilenverlust"
+        layout: callout
         content:
           - type: statement
             sentiment: neutral
@@ -518,12 +527,9 @@ chapters:
       - id: grenzen-closing
         views: [storyview, overview]
         role: closing
-        title: "Zurich Tram Data"
-        subtitle: "Recherche · Reduktion · Anreicherung · Vereinigung"
-        content:
-          - type: statement
-            sentiment: neutral
-            text: "Data-Engineering-Fundament für das Analyse-Projekt zh-tram-flow"
+        # title/subtitle/content werden komplett aus hub generiert (title_from_hub) —
+        # identisch zur Opening-Titel-Slide, kein eigener Wortlaut (Kay-Feedback 2026-07-13).
+        title_from_hub: true
 
 # ===========================================================================
 view_meta:

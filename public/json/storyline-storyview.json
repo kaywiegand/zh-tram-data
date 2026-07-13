@@ -21,6 +21,7 @@
       "slides": [
         {
           "role": "title",
+          "layout": "L6",
           "content": [
             {
               "type": "figures",
@@ -66,8 +67,9 @@
       "nav_label": "Inhalt",
       "slides": [
         {
-          "title": "Inhalt",
-          "subtitle": "Sieben Kapitel entlang des Data-Engineering-Zyklus",
+          "title": "Übersicht",
+          "subtitle": "Alles auf einen Blick",
+          "layout": "L1",
           "content": [
             {
               "type": "agenda",
@@ -90,24 +92,26 @@
       "nav_label": "Genese & Motivation",
       "slides": [
         {
-          "title": "Die Genese",
-          "subtitle": "Ausgangspunkt und Themenfindung des Projekts",
+          "title": "Data Science Abschlussarbeit",
+          "subtitle": "Projektsuche zum Ende der Fortbildung",
+          "layout": "callout",
           "content": [
             {
               "type": "statement",
               "sentiment": "neutral",
-              "text": "Entstanden als Abschlussarbeit einer Data-Science-Fortbildung — der Rahmen war bewusst offen: nicht welches Modell, sondern welches Thema."
+              "text": "Dieses Projekt entstand als Abschlussarbeit einer Data-Science-Fortbildung — der Rahmen war bewusst offen: nicht welches Modell, sondern welches Thema war die große Herausforderung."
             },
             {
               "type": "statement",
               "sentiment": "neutral",
-              "text": "Gesucht war ein Gegenstand, an dem sich Data Science nicht abstrakt anfühlt, sondern an einem Alltagsbeispiel mit echtem Impact nachvollziehbar wird."
+              "text": "Gesucht war ein Thema, an dem sich Data Science nicht abstrakt anfühlt, sondern an einem Alltagsbeispiel mit echtem Impact nachvollziehbar wird."
             }
           ]
         },
         {
           "title": "Persönliche Motivation",
           "subtitle": "Ein datengetriebenes Thema mit gesellschaftlicher Relevanz",
+          "layout": "callout",
           "content": [
             {
               "type": "statement",
@@ -127,8 +131,9 @@
       "nav_label": "Ausgangssituation",
       "slides": [
         {
-          "title": "Warum Zürich",
+          "title": "Warum ÖPNV in Zürich",
           "subtitle": "Zürichs Open-Data-Ökosystem als Grundlage für reproduzierbare Analysen",
+          "layout": "callout",
           "content": [
             {
               "type": "statement",
@@ -175,8 +180,9 @@
           ]
         },
         {
-          "title": "Die Aufgabe",
+          "title": "Vom Ziel zur Aufgabe",
           "subtitle": "Aufbau einer integrierten, analysefähigen Datengrundlage",
+          "layout": "callout",
           "content": [
             {
               "type": "statement",
@@ -196,12 +202,10 @@
           "content": [
             {
               "type": "chart_refs",
-              "layout": "image_right",
               "items": [
                 {
                   "label": "Gesamte Datenpipeline",
-                  "source": "vbz_strategy.svg",
-                  "caption": "IST · GTFS · Meteo · Events · Geo → Merge → vbz_master.parquet."
+                  "source": "vbz_strategy.svg"
                 }
               ]
             }
@@ -332,6 +336,7 @@
         {
           "title": "Warum anreichern",
           "subtitle": "Kontextdaten machen Verspätung erst erklärbar",
+          "layout": "callout",
           "content": [
             {
               "type": "statement",
@@ -501,6 +506,7 @@
         {
           "title": "Left Join als Standard",
           "subtitle": "Vollständigkeitserhalt: Fehlwerte als null statt Zeilenverlust",
+          "layout": "callout",
           "content": [
             {
               "type": "statement",
@@ -650,13 +656,17 @@
       "slides": [
         {
           "role": "closing",
+          "title_from_hub": true,
           "title": "Zurich Tram Data",
-          "subtitle": "Recherche · Reduktion · Anreicherung · Vereinigung",
+          "subtitle": [
+            "Vom Rohdaten-Archiv zum Master-Datensatz",
+            "Data-Engineering-Pipeline für das Zürcher Tramnetz (VBZ) | 2023–2025"
+          ],
           "content": [
             {
               "type": "statement",
               "sentiment": "neutral",
-              "text": "Data-Engineering-Fundament für das Analyse-Projekt zh-tram-flow"
+              "text": "Data-Engineering-Grundlage für das Analyse- und Vorhersage-Projekt zh-tram-flow"
             }
           ]
         }

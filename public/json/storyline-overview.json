@@ -91,6 +91,7 @@
         {
           "title": "Persönliche Motivation",
           "subtitle": "Ein datengetriebenes Thema mit gesellschaftlicher Relevanz",
+          "layout": "callout",
           "content": [
             {
               "type": "statement",
@@ -147,12 +148,10 @@
           "content": [
             {
               "type": "chart_refs",
-              "layout": "image_right",
               "items": [
                 {
                   "label": "Gesamte Datenpipeline",
-                  "source": "vbz_strategy.svg",
-                  "caption": "IST · GTFS · Meteo · Events · Geo → Merge → vbz_master.parquet."
+                  "source": "vbz_strategy.svg"
                 }
               ]
             }
@@ -326,13 +325,17 @@
       "slides": [
         {
           "role": "closing",
+          "title_from_hub": true,
           "title": "Zurich Tram Data",
-          "subtitle": "Recherche · Reduktion · Anreicherung · Vereinigung",
+          "subtitle": [
+            "Vom Rohdaten-Archiv zum Master-Datensatz",
+            "Data-Engineering-Pipeline für das Zürcher Tramnetz (VBZ) | 2023–2025"
+          ],
           "content": [
             {
               "type": "statement",
               "sentiment": "neutral",
-              "text": "Data-Engineering-Fundament für das Analyse-Projekt zh-tram-flow"
+              "text": "Data-Engineering-Grundlage für das Analyse- und Vorhersage-Projekt zh-tram-flow"
             }
           ]
         }
