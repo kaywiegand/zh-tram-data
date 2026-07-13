@@ -20,10 +20,10 @@ chapters:
       - id: ausgangssituation-title-overview
         views: [overview]
         role: title
-        title: "Zurich Tram Data"
-        subtitle:
-          - "Ein sauberer Datensatz aus fünf Quellen"
-          - "Die Data-Engineering-Grundlage für zh-tram-flow"
+        # title/subtitle werden für die Opening-Titel-Slide automatisch aus
+        # hub.tagline/hub.subtitle + view_meta.{view}.project/period generiert
+        # (generate_json_from_slides.py) — hier keine Werte pflegen, sie werden
+        # überschrieben. Content (KPIs) bleibt view-spezifisch von Hand gepflegt.
         content:
           - type: figures
             items:
@@ -35,10 +35,7 @@ chapters:
       - id: ausgangssituation-title-storyview
         views: [storyview]
         role: title
-        title: "Zurich Tram Data"
-        subtitle:
-          - "Vom Rohdaten-Archiv zum reproduzierbaren Master-Datensatz"
-          - "Recherche · Reduktion · Anreicherung · Vereinigung"
+        # title/subtitle automatisch aus hub (siehe Kommentar oben)
         content:
           - type: figures
             items:
@@ -50,10 +47,7 @@ chapters:
       - id: ausgangssituation-title-techview
         views: [techview]
         role: title
-        title: "Zurich Tram Data"
-        subtitle:
-          - "End-to-End Data-Engineering-Pipeline"
-          - "Polars · GeoPandas · Left/Spatial Joins · 5 Quellen → 1 Master"
+        # title/subtitle automatisch aus hub (siehe Kommentar oben)
         content:
           - type: figures
             items:

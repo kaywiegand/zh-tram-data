@@ -21,11 +21,6 @@
       "slides": [
         {
           "role": "title",
-          "title": "Zurich Tram Data",
-          "subtitle": [
-            "End-to-End Data-Engineering-Pipeline",
-            "Polars · GeoPandas · Left/Spatial Joins · 5 Quellen → 1 Master"
-          ],
           "content": [
             {
               "type": "figures",
@@ -51,7 +46,18 @@
                   "sentiment": "neutral"
                 }
               ]
+            },
+            {
+              "type": "view_teaser",
+              "label": "Engineering Deep-Dive",
+              "badge": "Data Engineering",
+              "description": "Werkzeugwahl, Join-Mechanik, Schema und Validierung im Detail. Für Data Engineers und Tech Leads."
             }
+          ],
+          "title": "Zurich Tram Data",
+          "subtitle": [
+            "Vom Rohdaten-Archiv zum Master-Datensatz",
+            "Data-Engineering-Pipeline für das Zürcher Tramnetz (VBZ) | 2023–2025"
           ]
         }
       ]

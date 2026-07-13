@@ -21,11 +21,6 @@
       "slides": [
         {
           "role": "title",
-          "title": "Zurich Tram Data",
-          "subtitle": [
-            "Vom Rohdaten-Archiv zum reproduzierbaren Master-Datensatz",
-            "Recherche · Reduktion · Anreicherung · Vereinigung"
-          ],
           "content": [
             {
               "type": "figures",
@@ -51,7 +46,18 @@
                   "sentiment": "neutral"
                 }
               ]
+            },
+            {
+              "type": "view_teaser",
+              "label": "Der ganze Weg",
+              "badge": "Portfolio",
+              "description": "Von 38 GB Rohdaten zum Master: Genese, Motivation, Reduktion, Anreicherung, Vereinigung — vollständig erzählt. Portfolio-Vollansicht."
             }
+          ],
+          "title": "Zurich Tram Data",
+          "subtitle": [
+            "Vom Rohdaten-Archiv zum Master-Datensatz",
+            "Data-Engineering-Pipeline für das Zürcher Tramnetz (VBZ) | 2023–2025"
           ]
         }
       ]

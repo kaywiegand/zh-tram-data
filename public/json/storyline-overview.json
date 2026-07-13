@@ -21,11 +21,6 @@
       "slides": [
         {
           "role": "title",
-          "title": "Zurich Tram Data",
-          "subtitle": [
-            "Ein sauberer Datensatz aus fünf Quellen",
-            "Die Data-Engineering-Grundlage für zh-tram-flow"
-          ],
           "content": [
             {
               "type": "figures",
@@ -51,7 +46,18 @@
                   "sentiment": "neutral"
                 }
               ]
+            },
+            {
+              "type": "view_teaser",
+              "label": "Business & Ergebnis",
+              "badge": "HR · Business",
+              "description": "Der Datensatz und der Weg dorthin, verdichtet für Stakeholder und Recruiter. Fokus auf Reduktion, Anreicherung und Resultat."
             }
+          ],
+          "title": "Zurich Tram Data",
+          "subtitle": [
+            "Vom Rohdaten-Archiv zum Master-Datensatz",
+            "Data-Engineering-Pipeline für das Zürcher Tramnetz (VBZ) | 2023–2025"
           ]
         }
       ]
