@@ -21,6 +21,7 @@
       "slides": [
         {
           "role": "title",
+          "layout": "L6",
           "content": [
             {
               "type": "figures",
@@ -88,6 +89,23 @@
     {
       "nav_label": "Genese & Motivation",
       "slides": [
+        {
+          "title": "Data Science Abschlussarbeit",
+          "subtitle": "Projektsuche zum Ende der Fortbildung",
+          "layout": "callout",
+          "content": [
+            {
+              "type": "statement",
+              "sentiment": "neutral",
+              "text": "Dieses Projekt entstand als Abschlussarbeit einer Data-Science-Fortbildung — der Rahmen war bewusst offen: nicht welches Modell, sondern welches Thema war die große Herausforderung."
+            },
+            {
+              "type": "statement",
+              "sentiment": "neutral",
+              "text": "Gesucht war ein Thema, an dem sich Data Science nicht abstrakt anfühlt, sondern an einem Alltagsbeispiel mit echtem Impact nachvollziehbar wird."
+            }
+          ]
+        },
         {
           "title": "Persönliche Motivation",
           "subtitle": "Ein datengetriebenes Thema mit gesellschaftlicher Relevanz",
@@ -163,8 +181,8 @@
       "nav_label": "Daten Reduktion",
       "slides": [
         {
-          "title": "Das Überwältigende bändigen",
-          "subtitle": "Reduktion in drei Schritten",
+          "title": "Deutliche Eingrenzungen",
+          "subtitle": "Vorgehen der Reduktion in drei Schritten",
           "content": [
             {
               "type": "steps",
@@ -194,27 +212,25 @@
       "nav_label": "Daten Anreicherung",
       "slides": [
         {
-          "title": "Das Dünne aufwerten",
+          "title": "Bedachte Aufwertung",
           "subtitle": "Vier Quellen, ein bemerkenswerter Sonderfall",
           "content": [
             {
-              "type": "sections",
+              "type": "box_grid",
               "items": [
+                "Fahrplan (GTFS) · +3 Spalten",
+                "Wetter (Meteo) · +7 Spalten",
+                "Stadtkreise (Geo) · +2 Spalten",
                 {
-                  "label": "Vier Quellen angereichert",
-                  "points": [
-                    "GTFS Fahrplan (+3) · Meteo Wetter (+7) · Geo Stadtkreis (+2) · Events (+4)",
-                    "10 → 26 Spalten"
-                  ]
-                },
-                {
-                  "label": "Spotlight: Events",
-                  "points": [
-                    "Keine Open-Data-Quelle → von Hand recherchiert und aufgebaut",
-                    "Der Fall, der echten Daten-Spürsinn verlangt"
-                  ]
+                  "text": "Events · +4 Spalten (von Hand recherchiert)",
+                  "highlight": true
                 }
               ]
+            },
+            {
+              "type": "statement",
+              "sentiment": "neutral",
+              "text": "10 → 26 Spalten — vier gezielt recherchierte Kontextquellen, integriert in den Master."
             }
           ]
         }

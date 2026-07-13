@@ -24,6 +24,7 @@ chapters:
         # hub.tagline/hub.subtitle + view_meta.{view}.project/period generiert
         # (generate_json_from_slides.py) — hier keine Werte pflegen, sie werden
         # überschrieben. Content (KPIs) bleibt view-spezifisch von Hand gepflegt.
+        layout: L6
         content:
           - type: figures
             items:
@@ -118,7 +119,7 @@ chapters:
     nav_label: Genese & Motivation
     slides:
       - id: genese-genese
-        views: [storyview]
+        views: [storyview, overview]
         title: "Data Science Abschlussarbeit"
         subtitle: "Projektsuche zum Ende der Fortbildung"
         layout: callout
@@ -265,8 +266,8 @@ chapters:
 
       - id: reduktion-overview
         views: [overview]
-        title: "Das Überwältigende bändigen"
-        subtitle: "Reduktion in drei Schritten"
+        title: "Deutliche Eingrenzungen"
+        subtitle: "Vorgehen der Reduktion in drei Schritten"
         content:
           - type: steps
             items:
@@ -405,19 +406,18 @@ chapters:
 
       - id: anreicherung-overview
         views: [overview]
-        title: "Das Dünne aufwerten"
+        title: "Bedachte Aufwertung"
         subtitle: "Vier Quellen, ein bemerkenswerter Sonderfall"
         content:
-          - type: sections
+          - type: box_grid
             items:
-              - label: "Vier Quellen angereichert"
-                points:
-                  - "GTFS Fahrplan (+3) · Meteo Wetter (+7) · Geo Stadtkreis (+2) · Events (+4)"
-                  - "10 → 26 Spalten"
-              - label: "Spotlight: Events"
-                points:
-                  - "Keine Open-Data-Quelle → von Hand recherchiert und aufgebaut"
-                  - "Der Fall, der echten Daten-Spürsinn verlangt"
+              - "Fahrplan (GTFS) · +3 Spalten"
+              - "Wetter (Meteo) · +7 Spalten"
+              - "Stadtkreise (Geo) · +2 Spalten"
+              - {text: "Events · +4 Spalten (von Hand recherchiert)", highlight: true}
+          - type: statement
+            sentiment: neutral
+            text: "10 → 26 Spalten — vier gezielt recherchierte Kontextquellen, integriert in den Master."
 
   # =====================================================================
   - id: vereinigung
