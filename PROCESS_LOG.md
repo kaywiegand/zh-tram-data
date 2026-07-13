@@ -299,3 +299,39 @@ Styleguide-v2-Retrofit auf zh-tram-flow (bestehende Story bleibt, gezielt neue E
 `box_grid`/`process_arrows`/`layout: callout` dort ergänzen wo passend).
 
 ---
+
+### 2026-07-13 (Fortsetzung) — Deployment: GitHub Pages live, Phase 3 abgeschlossen
+
+`git push` (35 Commits) nach `origin/main` — dabei ein kleines Remote-Divergenz (Kay hatte über
+die GitHub-Weboberfläche testweise eine `CNAME`-Datei angelegt und wieder gelöscht) sauber
+gemerged, kein Konfliktinhalt.
+
+**Deployment-Bug gefunden und gefixt:** GitHub Pages' "Deploy from a branch" bietet nur `/`
+(root) oder `/docs` als Ordner an — `/public` lässt sich darüber gar nicht auswählen. Ohne
+diese Option lief Pages bislang von Repo-Root mit Jekyll-Verarbeitung: `index.html` zeigte
+Jekyll's automatisch aus der README gebautes Theme, `overview`/`storyview`/`techview.html`
+gaben 404 (existieren nur unter `public/`). **Betrifft `zh-tram-flow` identisch** (gleicher
+Test, gleiches Ergebnis) — keine zh-tram-data-spezifische Macke, sondern eine Lücke zwischen
+`DEPLOYMENT.md`-Doku ("Folder: /public") und der tatsächlich über die GitHub-UI wählbaren
+Optionen.
+
+Fix: `.github/workflows/pages.yml` (GitHub-Actions-Deployment statt "Deploy from a branch") +
+`public/.nojekyll` ergänzt — der Workflow published `public/` direkt als Pages-Artefakt,
+unabhängig vom Ordnernamen. Kay musste dazu einmalig in den Repo-Settings die Pages-Source auf
+"GitHub Actions" umstellen und den Workflow einmal manuell auslösen (Settings-Wechsel allein
+triggert noch keinen Lauf). Danach alle vier Seiten + CSS/Bilder mit 200 verifiziert:
+https://kaywiegand.github.io/zh-tram-data/
+
+**README-Links korrigiert:** zeigten auf `public/index.html` etc. (relative Repo-Pfade —
+auf GitHub sieht man da nur die Rohdatei, keine gerenderte Seite). Jetzt auf die echten
+Pages-URLs umgestellt (`https://kaywiegand.github.io/zh-tram-data/...`), an beiden Stellen
+("Where to start" + "Reports & Artifacts"). README bleibt bewusst der Einstiegspunkt für
+GitHub-Browser — die Pages-Site ist das eigentliche, gestylte Artefakt.
+
+`docs/PROJECTS.md` (Workspace) und `ROADMAP.md` (Phase 3 jetzt komplett) aktualisiert.
+
+**Nächster Schritt:** `wgnd-skills`-Branch `feature/styleguide-v2` mergen (unverändert offen).
+Gleicher Pages-Fix (`.nojekyll` + Actions-Workflow) liegt für `zh-tram-flow` schon lokal
+committed bereit, noch nicht gepusht — auf Kays Go warten.
+
+---

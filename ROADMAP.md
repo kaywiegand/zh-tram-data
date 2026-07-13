@@ -62,11 +62,13 @@ ursprünglich erzeugten Referenz-Datensatz (validiert in `08_master-validation`)
 
 ---
 
-## Phase 3 — Portfolio-Aufbereitung
+## Phase 3 — Portfolio-Aufbereitung ✅ ABGESCHLOSSEN
 
 - [x] `/project-case` — Engineering-Case gebaut (engineering-first, 6 Kapitel: Reduktion + Anreicherung
       als zwei Bögen; Hub + overview/storyview/techview aus `slides.yaml` generiert). 2026-07-03.
-- [ ] Deployment (`public/` → GitHub Pages)
+- [x] Deployment (`public/` → GitHub Pages via GitHub-Actions-Workflow, da "Deploy from a
+      branch" kein `/public`-Unterordner zur Auswahl anbietet, nur root/`/docs`) — live seit
+      2026-07-13: https://kaywiegand.github.io/zh-tram-data/
 - [x] `00_introduction`: stale IST-Reduktion „21 → 8" → „21 → 10" korrigiert; zusätzlich
       `FAHRT_BEZEICHNER` aus der „Entfernte Spalten"-Tabelle entfernt (wird als `trip_id`
       behalten — Widerspruch zu `KEEP_COLS` aufgelöst). 2026-07-04.

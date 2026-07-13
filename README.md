@@ -5,7 +5,7 @@
 ![Python](https://img.shields.io/badge/Python-3.10-blue)
 ![Polars](https://img.shields.io/badge/Polars-0.20+-orange)
 ![Type](https://img.shields.io/badge/Type-Data%20Engineering-lightgrey)
-![Status](https://img.shields.io/badge/Status-Phase%202%20complete-brightgreen)
+![Status](https://img.shields.io/badge/Status-Phase%203%20complete-brightgreen)
 
 ---
 
@@ -26,7 +26,7 @@
 | New to the project | [`00_introduction`](notebooks/00_introduction.ipynb) — strategy, data landscape, every filter decision |
 | Looking for the pipeline | [`07_master-preparation`](notebooks/07_master-preparation.ipynb) — the join that produces `vbz_master.parquet` |
 | Looking for the tooling call | [`01_tooling-evaluation`](notebooks/01_tooling-evaluation.ipynb) — Pandas vs. Polars benchmark |
-| Want the short version | [`public/index.html`](public/index.html) — data engineering case landing page |
+| Want the short version | [Portfolio Hub](https://kaywiegand.github.io/zh-tram-data/) — data engineering case landing page |
 
 ---
 
@@ -168,10 +168,10 @@ In reading order — research → collection → processing → merge → valida
 
 | Artifact | What it shows |
 | :--- | :--- |
-| [Report](public/index.html) | Data engineering case landing — motivation, sources, process diagrams, result |
-| [Overview](public/overview.html) | Executive summary of the pipeline |
-| [Story View](public/storyview.html) | Narrative perspective — reduction and enrichment as two arcs |
-| [Tech View](public/techview.html) | Technical deep-dive — filters, joins, validation |
+| [Report](https://kaywiegand.github.io/zh-tram-data/) | Data engineering case landing — motivation, sources, process diagrams, result |
+| [Overview](https://kaywiegand.github.io/zh-tram-data/overview.html) | Executive summary of the pipeline |
+| [Story View](https://kaywiegand.github.io/zh-tram-data/storyview.html) | Narrative perspective — reduction and enrichment as two arcs |
+| [Tech View](https://kaywiegand.github.io/zh-tram-data/techview.html) | Technical deep-dive — filters, joins, validation |
 
 All HTML artifacts are generated from a single source (`public/md/slides.yaml`) so content can't drift between views. Built via `make portfolio` — full mechanism documented in [wgnd-skills/project-case/build-pipeline.md](https://github.com/kaywiegand/wgnd-skills/blob/main/project-case/build-pipeline.md).
 
