@@ -18,6 +18,7 @@
   "chapters": [
     {
       "nav_label": "Title",
+      "nav_tick_label": "Title",
       "slides": [
         {
           "role": "title",
@@ -64,6 +65,7 @@
     },
     {
       "nav_label": "Agenda",
+      "nav_tick_label": "Agenda",
       "slides": [
         {
           "title": "Inhaltsübersicht",
@@ -88,6 +90,7 @@
     },
     {
       "nav_label": "Ausgangssituation",
+      "nav_tick_label": "Ausgangssituation",
       "slides": [
         {
           "title": "Die Datenstrategie",
@@ -108,6 +111,7 @@
     },
     {
       "nav_label": "Daten Reduktion",
+      "nav_tick_label": "Daten Reduktion",
       "slides": [
         {
           "title": "Schweiz ÖPNV IST-Daten",
@@ -256,6 +260,7 @@
     },
     {
       "nav_label": "Daten Anreicherung",
+      "nav_tick_label": "Daten Anreicherung",
       "slides": [
         {
           "title": "Fahrplan (GTFS)",
@@ -440,6 +445,7 @@
     },
     {
       "nav_label": "Daten Zusammenführung",
+      "nav_tick_label": "Daten Zusammenführung",
       "slides": [
         {
           "title": "Die Join-Pipeline",
@@ -498,6 +504,7 @@
     },
     {
       "nav_label": "Resultat",
+      "nav_tick_label": "Resultat",
       "slides": [
         {
           "title": "Der Master-Datensatz",
@@ -634,6 +641,7 @@
     },
     {
       "nav_label": "Limitierungen",
+      "nav_tick_label": "Limitierungen",
       "slides": [
         {
           "title": "Bewusste Limitierung",
@@ -671,6 +679,7 @@
     },
     {
       "nav_label": "Ausblick",
+      "nav_tick_label": "Ausblick",
       "slides": [
         {
           "title": "Weitere Perspektiven",
@@ -703,6 +712,7 @@
     },
     {
       "nav_label": "Ende",
+      "nav_tick_label": "Ende",
       "slides": [
         {
           "role": "closing",

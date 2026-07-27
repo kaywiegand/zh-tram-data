@@ -17,8 +17,8 @@
 
 # Zurich Tram Data
 
-**End-to-End Data-Engineering-Pipeline**
-**Polars · GeoPandas · Left/Spatial Joins · 5 Quellen → 1 Master**
+**Vom Rohdaten-Archiv zum Master-Datensatz**
+**Data-Engineering-Pipeline für das Zürcher Tramnetz (VBZ) | 2023–2025**
 
 * **38 GB** — IST-Rohdaten komprimiert
 * **~4×** — Polars vs. Pandas
@@ -28,9 +28,9 @@
 
 ---
 
-### Inhalt
+### Agenda
 
-## Inhalt
+## Inhaltsübersicht
 *Der technische Weg durch die Pipeline*
 
 1. Ausgangssituation
@@ -47,7 +47,7 @@
 ### Ausgangssituation
 
 ## Die Datenstrategie
-*Fünf Datenquellen, ein reproduzierbarer Master-Datensatz*
+*Zusammenführung der fünf Datenquellen zu einem reproduzierbaren Master-Datensatz*
 
 
 
@@ -155,7 +155,7 @@
 
 ---
 
-### Masterdatensatz als Resultat
+### Resultat
 
 ## Der Master-Datensatz
 *Analysefertige, reproduzierbare Datengrundlage*
@@ -171,7 +171,7 @@
 
 
 ## Validierung
-*08_master-validation — die Qualitätsprüfung*
+*Validation Notebook — die Qualitätsprüfung*
 
 
 
@@ -192,3 +192,14 @@
 ## Weitere Perspektiven
 *Erweiterungen für eine nächste Iteration*
 
+
+
+---
+
+### Ende
+
+## Zurich Tram Data
+*['Vom Rohdaten-Archiv zum Master-Datensatz', 'Data-Engineering-Pipeline für das Zürcher Tramnetz (VBZ) | 2023–2025']*
+
+> Recherche · Reduktion · Anreicherung · Vereinigung
+> Master-Datensatz als Data-Engineering-Fundament für das Analyse-Projekt zh-tram-flow

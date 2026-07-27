@@ -17,8 +17,8 @@
 
 # Zurich Tram Data
 
-**Ein sauberer Datensatz aus fünf Quellen**
-**Die Data-Engineering-Grundlage für zh-tram-flow**
+**Vom Rohdaten-Archiv zum Master-Datensatz**
+**Data-Engineering-Pipeline für das Zürcher Tramnetz (VBZ) | 2023–2025**
 
 * **38 GB** — IST-Rohdaten, schweizweit
 * **94,4 M** — Halt-Ereignisse im Master
@@ -28,10 +28,10 @@
 
 ---
 
-### Inhalt
+### Agenda
 
-## Inhalt
-*Diese Präsentation auf einen Blick*
+## Inhaltsübersicht
+*Die wichtigsten Fakten auf dem Weg zum Master-Datensatz*
 
 1. Genese & Motivation
 2. Ausgangssituation
@@ -45,6 +45,12 @@
 ---
 
 ### Genese & Motivation
+
+## Data Science Abschlussarbeit
+*Projektsuche zum Ende der Fortbildung*
+
+> Dieses Projekt entstand als Abschlussarbeit einer Data-Science-Fortbildung — der Rahmen war bewusst offen: nicht welches Modell, sondern welches Thema war die große Herausforderung.
+> Gesucht war ein Thema, an dem sich Data Science nicht abstrakt anfühlt, sondern an einem Alltagsbeispiel mit echtem Impact nachvollziehbar wird.
 
 ## Persönliche Motivation
 *Ein datengetriebenes Thema mit gesellschaftlicher Relevanz*
@@ -68,9 +74,11 @@
   - Bewusst nicht Modellierung
 * **Einordnung**
   - Data-Engineering-Grundlage für zh-tram-flow (Analyse & Verspätungsvorhersage)
+* **Warum Zürich**
+  - Außergewöhnlich gute Open-Data-Landschaft fürs Tramnetz (VBZ) — frei zugänglich, gut dokumentiert, granular genug für echte Analyse.
 
 ## Die Datenstrategie
-*Fünf Datenquellen, ein reproduzierbarer Master-Datensatz*
+*Zusammenführung der fünf Datenquellen zu einem reproduzierbaren Master-Datensatz*
 
 
 
@@ -78,8 +86,8 @@
 
 ### Daten Reduktion
 
-## Das Überwältigende bändigen
-*Reduktion in drei Schritten*
+## Deutliche Eingrenzungen
+*Vorgehen der Reduktion in drei Schritten*
 
 
 
@@ -87,15 +95,10 @@
 
 ### Daten Anreicherung
 
-## Das Dünne aufwerten
+## Bedachte Aufwertung
 *Vier Quellen, ein bemerkenswerter Sonderfall*
 
-* **Vier Quellen angereichert**
-  - GTFS Fahrplan (+3) · Meteo Wetter (+7) · Geo Stadtkreis (+2) · Events (+4)
-  - 10 → 26 Spalten
-* **Spotlight: Events**
-  - Keine Open-Data-Quelle → von Hand recherchiert und aufgebaut
-  - Der Fall, der echten Daten-Spürsinn verlangt
+> 10 → 26 Spalten — vier gezielt recherchierte Kontextquellen, integriert in den Master-Datensatz.
 
 
 ---
@@ -109,7 +112,7 @@
 
 ---
 
-### Masterdatensatz als Resultat
+### Resultat
 
 ## Der Master-Datensatz
 *Analysefertige, reproduzierbare Datengrundlage*
@@ -136,6 +139,7 @@
 ### Ende
 
 ## Zurich Tram Data
-*Recherche · Reduktion · Anreicherung · Vereinigung*
+*['Vom Rohdaten-Archiv zum Master-Datensatz', 'Data-Engineering-Pipeline für das Zürcher Tramnetz (VBZ) | 2023–2025']*
 
-> Data-Engineering-Fundament für das Analyse-Projekt zh-tram-flow
+> Recherche · Reduktion · Anreicherung · Vereinigung
+> Master-Datensatz als Data-Engineering-Fundament für das Analyse-Projekt zh-tram-flow

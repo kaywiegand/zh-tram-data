@@ -17,8 +17,8 @@
 
 # Zurich Tram Data
 
-**Vom Rohdaten-Archiv zum reproduzierbaren Master-Datensatz**
-**Recherche · Reduktion · Anreicherung · Vereinigung**
+**Vom Rohdaten-Archiv zum Master-Datensatz**
+**Data-Engineering-Pipeline für das Zürcher Tramnetz (VBZ) | 2023–2025**
 
 * **38 GB** — IST-Rohdaten, schweizweit
 * **94,4 M** — Halt-Ereignisse im Master
@@ -28,10 +28,10 @@
 
 ---
 
-### Inhalt
+### Agenda
 
-## Inhalt
-*Sieben Kapitel entlang des Data-Engineering-Zyklus*
+## Inhaltsübersicht
+*Von der Projektgenese bis zum Ausblick*
 
 1. Genese & Motivation
 2. Ausgangssituation
@@ -47,11 +47,11 @@
 
 ### Genese & Motivation
 
-## Die Genese
-*Ausgangspunkt und Themenfindung des Projekts*
+## Data Science Abschlussarbeit
+*Projektsuche zum Ende der Fortbildung*
 
-> Entstanden als Abschlussarbeit einer Data-Science-Fortbildung — der Rahmen war bewusst offen: nicht welches Modell, sondern welches Thema.
-> Gesucht war ein Gegenstand, an dem sich Data Science nicht abstrakt anfühlt, sondern an einem Alltagsbeispiel mit echtem Impact nachvollziehbar wird.
+> Dieses Projekt entstand als Abschlussarbeit einer Data-Science-Fortbildung — der Rahmen war bewusst offen: nicht welches Modell, sondern welches Thema war die große Herausforderung.
+> Gesucht war ein Thema, an dem sich Data Science nicht abstrakt anfühlt, sondern an einem Alltagsbeispiel mit echtem Impact nachvollziehbar wird.
 
 ## Persönliche Motivation
 *Ein datengetriebenes Thema mit gesellschaftlicher Relevanz*
@@ -64,7 +64,7 @@
 
 ### Ausgangssituation
 
-## Warum Zürich
+## Warum ÖPNV in Zürich
 *Zürichs Open-Data-Ökosystem als Grundlage für reproduzierbare Analysen*
 
 > Zürich betreibt eine außergewöhnlich gute Open-Data-Landschaft für sein Tramnetz (VBZ) — frei zugänglich, gut dokumentiert, granular genug für echte Analyse.
@@ -82,14 +82,14 @@
 * **Einordnung**
   - Data-Engineering-Grundlage für zh-tram-flow (Analyse & Verspätungsvorhersage)
 
-## Die Aufgabe
+## Vom Ziel zur Aufgabe
 *Aufbau einer integrierten, analysefähigen Datengrundlage*
 
 > Einen Datensatz bauen, mit dem eine sinnvolle, qualitativ belastbare Analyse des Zürcher Tramnetzes überhaupt erst möglich wird.
 > Der Leitgedanke dahinter: reduzieren was da ist, anreichern was fehlt.
 
 ## Die Datenstrategie
-*Fünf Datenquellen, ein reproduzierbarer Master-Datensatz*
+*Zusammenführung der fünf Datenquellen zu einem reproduzierbaren Master-Datensatz*
 
 
 
@@ -199,7 +199,7 @@
 
 ---
 
-### Masterdatensatz als Resultat
+### Resultat
 
 ## Der Master-Datensatz
 *Analysefertige, reproduzierbare Datengrundlage*
@@ -235,6 +235,7 @@
 ### Ende
 
 ## Zurich Tram Data
-*Recherche · Reduktion · Anreicherung · Vereinigung*
+*['Vom Rohdaten-Archiv zum Master-Datensatz', 'Data-Engineering-Pipeline für das Zürcher Tramnetz (VBZ) | 2023–2025']*
 
-> Data-Engineering-Fundament für das Analyse-Projekt zh-tram-flow
+> Recherche · Reduktion · Anreicherung · Vereinigung
+> Master-Datensatz als Data-Engineering-Fundament für das Analyse-Projekt zh-tram-flow

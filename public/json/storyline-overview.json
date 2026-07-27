@@ -18,6 +18,7 @@
   "chapters": [
     {
       "nav_label": "Title",
+      "nav_tick_label": "Title",
       "slides": [
         {
           "role": "title",
@@ -64,6 +65,7 @@
     },
     {
       "nav_label": "Agenda",
+      "nav_tick_label": "Agenda",
       "slides": [
         {
           "title": "Inhaltsübersicht",
@@ -88,6 +90,7 @@
     },
     {
       "nav_label": "Genese & Motivation",
+      "nav_tick_label": "Genese & Motivation",
       "slides": [
         {
           "title": "Data Science Abschlussarbeit",
@@ -127,6 +130,7 @@
     },
     {
       "nav_label": "Ausgangssituation",
+      "nav_tick_label": "Ausgangssituation",
       "slides": [
         {
           "title": "Der Projektrahmen",
@@ -191,6 +195,7 @@
     },
     {
       "nav_label": "Daten Reduktion",
+      "nav_tick_label": "Daten Reduktion",
       "slides": [
         {
           "title": "Deutliche Eingrenzungen",
@@ -222,6 +227,7 @@
     },
     {
       "nav_label": "Daten Anreicherung",
+      "nav_tick_label": "Daten Anreicherung",
       "slides": [
         {
           "title": "Bedachte Aufwertung",
@@ -250,6 +256,7 @@
     },
     {
       "nav_label": "Daten Zusammenführung",
+      "nav_tick_label": "Daten Zusammenführung",
       "slides": [
         {
           "title": "Die Join-Pipeline",
@@ -272,6 +279,7 @@
     },
     {
       "nav_label": "Resultat",
+      "nav_tick_label": "Resultat",
       "slides": [
         {
           "title": "Der Master-Datensatz",
@@ -313,6 +321,7 @@
     },
     {
       "nav_label": "Limitierungen",
+      "nav_tick_label": "Limitierungen",
       "slides": [
         {
           "title": "Bewusste Limitierung",
@@ -350,6 +359,7 @@
     },
     {
       "nav_label": "Ende",
+      "nav_tick_label": "Ende",
       "slides": [
         {
           "role": "closing",
